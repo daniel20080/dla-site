@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Havørn One · Leave the ground</title>
+<meta name="description" content="Havørn is a fictional drone brand. A concept website by DLA.">
+<meta property="og:title" content="Havørn One · concept site by DLA">
+<meta property="og:description" content="A fictional drone brand. Scroll and fly out of the window over a fjord at sunrise.">
+<meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261019_151813_7d525970-e40f-4d8a-9025-65b5251fb15b.png">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+/* Layout: a 600vh pinned flight (canvas + FPV HUD), then specs, modes, detail hotspots, pre-order */
+:root{
+ --night:#07090c; --ink:#0d1117; --ice:#eef3f5; --mist:#9aa7b0; --amber:#ffb347; --fjord:#62d6c8; --line:rgba(238,243,245,.14);
+ --display:'Archivo',system-ui,sans-serif; --body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif; --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+ color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--ice);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+h1,h2,h3{font-family:var(--display);font-stretch:125%;font-weight:700;letter-spacing:-.01em;line-height:.98;text-wrap:balance}
+h2{font-size:clamp(2.1rem,5.4vw,4.6rem)}
+.btn{display:inline-flex;align-items:center;gap:.6em;border:1px solid var(--ice);border-radius:999px;padding:.85em 1.5em;font-weight:600;font-size:.95rem;background:transparent;text-decoration:none;transition:background .25s,color .25s}
+.btn:hover{background:var(--ice);color:var(--night)}
+.btn.amber{background:var(--amber);border-color:var(--amber);color:#1a1004}
+.btn.amber:hover{background:#ffc876}
+
+/* loader */
+#load{position:fixed;inset:0;z-index:50;background:var(--night);display:grid;place-items:center;transition:opacity .8s,visibility .8s}
+#load.done{opacity:0;visibility:hidden}
+#load .in{width:min(320px,70vw);display:grid;gap:14px;text-align:center}
+#load .mark{font-family:var(--display);font-stretch:125%;font-weight:700;font-size:1.6rem;letter-spacing:.18em}
+#load .bar{height:2px;background:var(--line);overflow:hidden}#lbar{height:100%;width:0;background:var(--amber);transition:width .3s}
+#load small{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--mist)}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:20;padding-top:env(safe-area-inset-top,0px);transition:background .4s,backdrop-filter .4s}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:68px}
+nav.solid{background:rgba(7,9,12,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.logo{font-family:var(--display);font-stretch:125%;font-weight:800;letter-spacing:.2em;font-size:1.05rem;text-decoration:none}
+nav ul{display:flex;gap:28px;list-style:none;font-size:.9rem;color:var(--mist)}
+nav ul a{text-decoration:none}nav ul a:hover{color:var(--ice)}
+nav .btn{padding:.6em 1.2em;font-size:.85rem}
+@media(max-width:820px){nav ul{display:none}}
+
+/* flight */
+#story{position:relative;height:640vh}
+.pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#cv{position:absolute;inset:0;width:100%;height:100%;display:block;background:#0b0f14}
+.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,9,12,.72) 0%,rgba(7,9,12,.25) 42%,rgba(7,9,12,0) 65%),linear-gradient(0deg,rgba(7,9,12,.6),rgba(7,9,12,0) 30%);pointer-events:none}
+.scene{position:absolute;left:max(20px,6vw);top:50%;transform:translateY(-50%);max-width:min(560px,86vw);opacity:0;pointer-events:none}
+.scene.on{pointer-events:auto}
+.scene h1,.scene h2{font-size:clamp(2.6rem,7vw,6.2rem);margin:.25em 0 .3em}
+.scene p{color:#d4dde2;max-width:42ch;font-size:1.08rem}
+.scene .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+/* FPV OSD */
+.osd{position:absolute;inset:0;pointer-events:none;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;color:rgba(238,243,245,.86);text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.osd .c{position:absolute;display:grid;gap:4px}
+.osd .tl{top:calc(84px + env(safe-area-inset-top,0px));left:max(20px,3vw)}
+.osd .tr{top:calc(84px + env(safe-area-inset-top,0px));right:max(20px,3vw);text-align:right}
+.osd .bl{bottom:max(24px,4vh);left:max(20px,3vw)}
+.osd .br{bottom:max(24px,4vh);right:max(20px,3vw);text-align:right}
+.osd b{font-weight:500;color:var(--ice);font-size:1.05rem;font-variant-numeric:tabular-nums}
+.osd .rec::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#ff4d3d;margin-right:8px;vertical-align:1px;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.osd .cross{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;opacity:.55}
+.osd .horizon{position:absolute;left:50%;top:50%;width:min(38vw,420px);height:1px;margin-left:calc(min(38vw,420px)/-2);background:linear-gradient(90deg,transparent,rgba(238,243,245,.6) 20%,rgba(238,243,245,.6) 40%,transparent 40%,transparent 60%,rgba(238,243,245,.6) 60%,rgba(238,243,245,.6) 80%,transparent);transform-origin:center}
+.osd .bat{display:inline-block;width:46px;height:12px;border:1px solid rgba(238,243,245,.8);border-radius:2px;position:relative;vertical-align:-1px;margin-left:8px}
+.osd .bat i{position:absolute;left:1px;top:1px;bottom:1px;background:var(--fjord);border-radius:1px}
+.cue{position:absolute;left:50%;bottom:max(26px,5vh);transform:translateX(-50%);font-family:var(--mono);font-size:.7rem;letter-spacing:.3em;color:var(--mist);text-align:center}
+.cue span{display:block;width:1px;height:40px;margin:10px auto 0;background:linear-gradient(var(--amber),transparent);animation:drop 1.8s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:820px){
+ .shade{background:linear-gradient(0deg,rgba(7,9,12,.85) 0%,rgba(7,9,12,.35) 45%,rgba(7,9,12,.1) 70%)}
+ .scene{top:auto;bottom:max(90px,12vh);transform:none}
+ .scene h1,.scene h2{font-size:clamp(2.3rem,11vw,3.4rem)}
+ .osd .cross,.osd .horizon{display:none}
+ .osd .bl,.osd .br{display:none}
+ .cue{display:none}
+}
+
+/* specs */
+.specs{padding-block:140px 110px;border-top:1px solid var(--line)}
+.specs .head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:70px}
+.specs .head p{color:var(--mist);max-width:44ch}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.stat{padding:30px 24px 30px 0;border-right:1px solid var(--line);min-width:0}
+.stat+.stat{padding-left:24px}.stat:last-child{border-right:0}
+.stat .n{font-family:var(--display);font-stretch:125%;font-weight:700;font-size:clamp(2.6rem,5vw,4.4rem);line-height:1;font-variant-numeric:tabular-nums}
+.stat .n small{font-size:.38em;font-stretch:100%;color:var(--amber);margin-left:4px}
+.stat .l{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);margin-top:12px}
+@media(max-width:900px){.specs .head{grid-template-columns:1fr}.grid4{grid-template-columns:1fr 1fr}.stat{padding:24px 12px 24px 0!important;border-right:0;border-bottom:1px solid var(--line)}}
+
+/* modes */
+.modes{padding-block:40px 120px}
+.modes .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:36px 0 26px}
+.modes .tabs button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:.6em 1.2em;font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist)}
+.modes .tabs button[aria-selected=true]{background:var(--ice);color:var(--night);border-color:var(--ice)}
+.stage{position:relative;aspect-ratio:16/8;max-width:100%;border-radius:18px;overflow:hidden;background:var(--ink)}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .7s,transform 1.4s}
+.stage img.on{opacity:1;transform:none}
+.stage .cap{position:absolute;left:0;right:0;bottom:0;padding:28px;background:linear-gradient(0deg,rgba(7,9,12,.85),transparent);display:flex;justify-content:space-between;gap:20px;align-items:end;flex-wrap:wrap}
+.stage .cap h3{font-size:clamp(1.5rem,3vw,2.4rem)}
+.stage .cap p{color:#cfd8dd;max-width:46ch}
+@media(max-width:700px){.stage{aspect-ratio:4/5}.stage .cap{padding:20px}}
+
+/* detail */
+.detail{padding-block:110px;background:radial-gradient(70% 60% at 50% 40%,#151b22,var(--night))}
+.detail .center{text-align:center;max-width:720px;margin:0 auto 40px}
+.detail .center p{color:var(--mist);margin-top:14px}
+.shot{position:relative;max-width:1000px;margin:0 auto}
+.shot img{border-radius:14px}
+.hot{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:1px solid var(--amber);background:rgba(255,179,71,.18);display:grid;place-items:center}
+.hot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--amber)}
+.hot::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(255,179,71,.5);animation:ping 2.2s infinite}
+@keyframes ping{from{transform:scale(.6);opacity:1}to{transform:scale(1.5);opacity:0}}
+.tip{position:absolute;z-index:3;width:min(260px,70vw);background:rgba(13,17,23,.94);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.9rem;color:#d4dde2;opacity:0;transform:translateY(6px);pointer-events:none;transition:.25s}
+.tip.on{opacity:1;transform:none}
+.tip b{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:4px;font-weight:500}
+
+/* order */
+.order{padding-block:120px;border-top:1px solid var(--line)}
+.order .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start}
+.kits{display:grid;gap:12px;margin-top:30px}
+.kit{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;text-align:left;border:1px solid var(--line);background:transparent;border-radius:14px;padding:20px 22px;transition:border-color .2s,background .2s}
+.kit[aria-pressed=true]{border-color:var(--amber);background:rgba(255,179,71,.06)}
+.kit .dot{width:18px;height:18px;border-radius:50%;border:1px solid var(--mist)}
+.kit[aria-pressed=true] .dot{border:5px solid var(--amber)}
+.kit h4{font-family:var(--display);font-stretch:110%;font-size:1.15rem}
+.kit p{color:var(--mist);font-size:.88rem}
+.kit .pr{font-family:var(--mono);font-size:1rem;font-variant-numeric:tabular-nums}
+.summary{position:sticky;top:96px;border:1px solid var(--line);border-radius:18px;padding:28px;background:var(--ink)}
+.summary dl{display:grid;grid-template-columns:1fr auto;gap:10px 16px;margin:18px 0 22px;font-size:.95rem}
+.summary dt{color:var(--mist)}.summary dd{text-align:right;font-variant-numeric:tabular-nums}
+.summary .tot{font-family:var(--display);font-stretch:125%;font-size:2.4rem;font-weight:700;font-variant-numeric:tabular-nums}
+.summary .btn{width:100%;justify-content:center;margin-top:18px}
+.summary small{display:block;color:var(--mist);margin-top:12px;font-size:.8rem}
+.opt{display:flex;align-items:center;gap:10px;margin-top:16px;color:#d4dde2;font-size:.95rem}
+.opt input{accent-color:var(--amber);width:18px;height:18px}
+@media(max-width:900px){.order .grid{grid-template-columns:1fr}.summary{position:static}}
+
+footer{border-top:1px solid var(--line);padding-block:40px 70px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--mist);font-size:.85rem}
+.toast{position:fixed;left:50%;bottom:70px;transform:translate(-50%,20px);background:var(--ice);color:var(--night);padding:12px 20px;border-radius:999px;font-weight:600;font-size:.9rem;opacity:0;transition:.3s;z-index:60;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="load"><div class="in"><div class="mark">HAVØRN</div><div class="bar"><div id="lbar"></div></div><small>PRE-FLIGHT CHECK</small></div></div>
+
+<nav id="nav"><div class="wrap">
+ <a class="logo" href="#top">HAVØRN</a>
+ <ul><li><a href="#specs">Specs</a></li><li><a href="#modes">Modes</a></li><li><a href="#detail">Design</a></li><li><a href="#order">Pre-order</a></li></ul>
+ <a class="btn" href="#order">Pre-order</a>
+</div></nav>
+
+<main id="top">
+<section id="story" aria-label="Fly with Havørn One">
+ <div class="pin">
+  <canvas id="cv" aria-hidden="true"></canvas>
+  <div class="shade"></div>
+  <div class="osd" aria-hidden="true">
+   <div class="c tl"><span class="rec">REC</span><span>8K · 60 FPS</span></div>
+   <div class="c tr"><span>BAT <i class="bat"><i id="batI" style="width:96%"></i></i></span><span id="gps">GPS 21 SAT</span></div>
+   <div class="c bl"><span>ALT</span><b id="alt">1.2 m</b></div>
+   <div class="c br"><span>SPD</span><b id="spd">0 km/h</b></div>
+   <svg class="cross" viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="42" cy="42" r="3"></circle><path d="M42 18v12M42 54v12M18 42h12M54 42h12"></path></svg>
+   <div class="horizon" id="hz"></div>
+  </div>
+  <div class="scene">
+   <span class="kick">Havørn One</span>
+   <h1>Leave the room.</h1>
+   <p>A 249-gram camera drone with ducted props, so you can fly it indoors, through a doorway, and straight out of the window.</p>
+  </div>
+  <div class="scene">
+   <span class="kick">0 → 68 km/h in 2.1 s</span>
+   <h2>Then leave the ground.</h2>
+   <p>Drop off a 600-metre cliff and level out a hand's width above the water. Stabilisation does the rest.</p>
+  </div>
+  <div class="scene">
+   <span class="kick">Hover lock</span>
+   <h2>Hold perfectly still.</h2>
+   <p>Gale-force gusts, one fixed frame. Havørn One holds position to the centimetre.</p>
+   <div class="row"><a class="btn amber" href="#order">Pre-order · from $1,099</a><a class="btn" href="#specs">See the specs</a></div>
+  </div>
+  <div class="cue">SCROLL TO TAKE OFF<span></span></div>
+ </div>
+</section>
+
+<section class="specs" id="specs"><div class="wrap">
+ <div class="head">
+  <div><span class="kick">Flight sheet</span><h2 style="margin-top:14px">Small enough to carry. Built to go far.</h2></div>
+  <p>Every number below was a design target before it was a feature. Under 250 grams means no registration in most countries.</p>
+ </div>
+ <div class="grid4">
+  <div class="stat"><div class="n" data-count="46">0<small>min</small></div><div class="l">Flight time</div></div>
+  <div class="stat"><div class="n" data-count="20">0<small>km</small></div><div class="l">Video range</div></div>
+  <div class="stat"><div class="n" data-count="68">0<small>km/h</small></div><div class="l">Top speed</div></div>
+  <div class="stat"><div class="n" data-count="249">0<small>g</small></div><div class="l">Take-off weight</div></div>
+ </div>
+</div></section>
+
+<section class="modes" id="modes"><div class="wrap">
+ <span class="kick">Flight modes</span>
+ <h2 style="margin-top:14px">Four ways to fly.</h2>
+ <div class="tabs" role="tablist" id="mtabs"></div>
+ <div class="stage" id="stage"></div>
+</div></section>
+
+<section class="detail" id="detail"><div class="wrap">
+ <div class="center"><span class="kick">Design</span><h2 style="margin-top:14px">Every gram, earned.</h2><p>Tap the amber points.</p></div>
+ <div class="shot" id="shot">
+  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261019_151721_511aa0b4-f958-4f39-a3a0-07df0ad15a88.png" alt="The Havørn One drone, matte graphite with ducted propellers and a copper-ringed camera" width="1344" height="752" loading="lazy">
+ </div>
+</div></section>
+
+<section class="order" id="order"><div class="wrap">
+ <div class="grid">
+  <div>
+   <span class="kick">Pre-order</span>
+   <h2 style="margin-top:14px">Ships in spring.</h2>
+   <div class="kits" id="kits"></div>
+   <label class="opt"><input type="checkbox" id="care"> Havørn Care, two years of crash replacement (+$129)</label>
+  </div>
+  <aside class="summary" aria-live="polite">
+   <span class="kick">Your Havørn</span>
+   <dl><dt>Kit</dt><dd id="sK">—</dd><dt>Care</dt><dd id="sC">None</dd><dt>Shipping</dt><dd>Free</dd></dl>
+   <div class="tot" id="sT">$0</div>
+   <button class="btn amber" type="button" id="buy">Reserve mine</button>
+   <small>Reserve now, pay when it ships.</small>
+  </aside>
+ </div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>Havørn is a fictional brand. A concept website by DLA. Nothing here can be bought.</span><a href="../index.html">Website by DLA</a></div></footer>
+<div class="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+const CDN='https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/';
+const SRC=[{d:CDN+'a12adfb7-dd15-4175-906a-7151bf70515d.mp4',m:CDN+'1ef9a5bb-a4da-40c8-a161-be93473077ac.mp4'},{d:CDN+'a7fbb3a9-a324-4a20-a333-85abb9ce958f.mp4',m:CDN+'1614eb47-f7d0-4eae-a545-8efc0d622b1e.mp4'},{d:CDN+'75505879-8ff5-4489-917a-2d2ea07b0df0.mp4',m:CDN+'2fe05446-66d3-4087-8cf6-4765a4d8540c.mp4'}];
+
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d'),story=document.getElementById('story'),lbar=document.getElementById('lbar'),nav=document.getElementById('nav');
+const scenes=[...document.querySelectorAll('.scene')],cue=document.querySelector('.cue');
+const alt=document.getElementById('alt'),spd=document.getElementById('spd'),hz=document.getElementById('hz'),batI=document.getElementById('batI');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const vids=[],prog=SRC.map(()=>0);let dirty=true;
+async function loadOne(s,i){const url=innerWidth<900&&s.m?s.m:s.d;let blobUrl=url;
+ try{const r=await fetch(url);const total=+r.headers.get('content-length')||0;const rd=r.body.getReader();const parts=[];let got=0;
+  for(;;){const {done,value}=await rd.read();if(done)break;parts.push(value);got+=value.length;prog[i]=total?got/total:.5;lbar.style.width=(prog.reduce((a,b)=>a+b,0)/SRC.length*100)+'%';}
+  blobUrl=URL.createObjectURL(new Blob(parts,{type:'video/mp4'}));}catch(e){}
+ const v=document.createElement('video');v.muted=true;v.playsInline=true;v.preload='auto';v.src=blobUrl;
+ await new Promise(res=>{v.addEventListener('loadeddata',res,{once:true});v.addEventListener('error',res,{once:true});v.load();});
+ v.addEventListener('seeked',()=>{dirty=true;});vids[i]=v;prog[i]=1;}
+/* p ranges: 0 cabin to window, 1 dive over fjord, 2 climb to hover */
+const VS=[[0,.3],[.3,.72],[.72,1]];
+const SH=[[0,.26],[.3,.66],[.76,1]];
+let sp=-1,lastP=-1;
+const sm=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x);};
+function place(v){const W=cv.width,H=cv.height,vw=v.videoWidth,vh=v.videoHeight;const s=Math.max(W/vw,H/vh);const dw=vw*s,dh=vh*s;return [(W-dw)/2,(H-dh)/2,dw,dh];}
+function current(p){let i=0;for(let k=0;k<VS.length;k++)if(p>=VS[k][0])i=k;const [a,b]=VS[i];return {i,lp:Math.min(1,Math.max(0,(p-a)/(b-a)))};}
+const ALT=p=>p<.3?1.2+sm(.18,.3,p)*310:p<.5?312-sm(.3,.5,p)*308:p<.72?4+Math.sin(p*40)*.6:4+sm(.72,.92,p)*226;
+const SPD=p=>p<.3?sm(.03,.28,p)*42:p<.5?42+sm(.3,.44,p)*26:p<.72?68-sm(.6,.72,p)*12:56*(1-sm(.78,.95,p));
+function tick(){requestAnimationFrame(tick);
+ const r=story.getBoundingClientRect();const p=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));
+ sp=sp<0?p:sp+(p-sp)*(RM?1:.12);
+ const c=current(sp);const v=vids[c.i];
+ if(v&&v.readyState>=2&&!v.seeking&&(dirty||Math.abs(sp-lastP)>1e-4)){const [x,y,w,h]=place(v);ctx.drawImage(v,x,y,w,h);dirty=false;lastP=sp;}
+ if(v&&v.duration&&!v.seeking){const t=Math.min(v.duration-.05,c.lp*(v.duration-.05));if(Math.abs(v.currentTime-t)>.4/24)v.currentTime=t;}
+ scenes.forEach((el,i)=>{const [a,b]=SH[i];const q=(sp-a)/(b-a);let o=0;
+  if(q>=-.05&&q<=1.05)o=Math.min(i===0?1:sm(.08,.24,q),i===2?1:1-sm(.74,.9,q));
+  el.style.opacity=o;el.style.transform=innerWidth>820?`translateY(calc(-50% + ${(1-o)*26}px))`:`translateY(${(1-o)*20}px)`;el.classList.toggle('on',o>.5);});
+ const a=ALT(sp),s=SPD(sp);alt.textContent=(a<10?a.toFixed(1):Math.round(a))+' m';spd.textContent=Math.round(s)+' km/h';
+ const bank=sp>.3&&sp<.72?Math.sin(sp*22)*9:sp>.72&&sp<.86?-12*(1-sm(.72,.86,sp))*sm(.72,.76,sp):0;hz.style.transform=`rotate(${bank}deg)`;
+ batI.style.width=(96-sp*7)+'%';
+ cue.style.opacity=1-sm(0,.03,sp);
+ nav.classList.toggle('solid',r.bottom<70||sp>.02);
+}
+function size(){const d=Math.min(devicePixelRatio||1,2);cv.width=Math.round(innerWidth*d);cv.height=Math.round(innerHeight*d);dirty=true;}
+addEventListener('resize',size);size();
+Promise.all(SRC.map(loadOne)).then(()=>{document.getElementById('load').classList.add('done');window.__ready=1;});
+setTimeout(()=>document.getElementById('load').classList.add('done'),14000);
+requestAnimationFrame(tick);
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const el=e.target,to=+el.dataset.count,unit=el.querySelector('small').outerHTML;const t0=performance.now();
+ const step=t=>{const k=Math.min(1,(t-t0)/1400),v=Math.round(to*(1-Math.pow(1-k,3)));el.innerHTML=v+unit;if(k<1)requestAnimationFrame(step);};RM?el.innerHTML=to+unit:requestAnimationFrame(step);}),{threshold:.4});
+document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
+
+const IMG='https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/';
+const MODES=[
+ {k:'Glide',img:'hf_20261019_151814_ff8f1642-6a66-40ca-a104-65fc4a49feac.png',t:'Glide',d:'Skims the water at a fixed height you set, down to 30 cm. The horizon stays dead level.',a:'Low and steady'},
+ {k:'Dive',img:'hf_20261019_151815_683af2a9-dc07-42a5-9aa6-bdc2f98c138f.png',t:'Dive',d:'Full manual FPV with a 155° field of view. Point it off a cliff and follow it down.',a:'0–68 km/h'},
+ {k:'Indoor',img:'hf_20261019_151814_704e584e-9454-4006-a610-38a8334235ec.png',t:'Indoor',d:'Ducted props and soft speed limits for flying through rooms, hallways and open windows.',a:'Max 12 km/h'},
+ {k:'Hover lock',img:'hf_20261019_151813_7d525970-e40f-4d8a-9025-65b5251fb15b.png',t:'Hover lock',d:'Holds a fixed frame in winds up to 38 km/h. Perfect for timelapses over the fjord.',a:'±1 cm'}];
+const tabs=document.getElementById('mtabs'),stage=document.getElementById('stage');
+stage.innerHTML=MODES.map((m,i)=>`<img src="${IMG+m.img}" alt="Havørn One in ${m.t} mode" loading="lazy"${i===0?' class="on"':''}>`).join('')+'<div class="cap"><div><span class="kick" id="mA"></span><h3 id="mT"></h3></div><p id="mD"></p></div>';
+const imgs=[...stage.querySelectorAll('img')];
+function setMode(i){imgs.forEach((im,j)=>im.classList.toggle('on',j===i));[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+ document.getElementById('mA').textContent=MODES[i].a;document.getElementById('mT').textContent=MODES[i].t;document.getElementById('mD').textContent=MODES[i].d;}
+MODES.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=m.k;b.onclick=()=>setMode(i);tabs.appendChild(b);});
+setMode(0);
+
+const HOTS=[{x:31,y:47,t:'Ducted props',d:'Carbon guards around every propeller. Brush a wall and keep flying.'},
+ {x:42,y:61,t:'1-inch sensor',d:'8K at 60 fps on a three-axis gimbal, behind a copper-ringed lens.'},
+ {x:58,y:49,t:'Amber beacon',d:'A light strip you can see from 500 m, so you never lose it against the sky.'},
+ {x:75,y:33,t:'Folding arms',d:'The whole drone folds to the size of a paperback.'}];
+const shot=document.getElementById('shot');const tip=document.createElement('div');tip.className='tip';shot.appendChild(tip);
+HOTS.forEach(h=>{const b=document.createElement('button');b.type='button';b.className='hot';b.style.left=h.x+'%';b.style.top=h.y+'%';b.setAttribute('aria-label',h.t);
+ const show=()=>{tip.innerHTML=`<b>${h.t}</b>${h.d}`;const left=Math.min(h.x,64);tip.style.left=left+'%';tip.style.top=(h.y+5)+'%';tip.classList.add('on');};
+ b.addEventListener('mouseenter',show);b.addEventListener('focus',show);b.addEventListener('click',show);b.addEventListener('mouseleave',()=>tip.classList.remove('on'));b.addEventListener('blur',()=>tip.classList.remove('on'));shot.appendChild(b);});
+
+const KITS=[{n:'Havørn One',d:'Drone, one battery, controller',p:1099},{n:'Fly More kit',d:'Three batteries, charging hub, sling bag',p:1399},{n:'FPV kit',d:'Fly More kit plus Havørn goggles and motion controller',p:1849}];
+let kit=1;const kits=document.getElementById('kits');const usd=n=>'$'+n.toLocaleString('en-US');
+KITS.forEach((k,i)=>{const b=document.createElement('button');b.type='button';b.className='kit';b.innerHTML=`<span class="dot"></span><span><h4>${k.n}</h4><p>${k.d}</p></span><span class="pr">${usd(k.p)}</span>`;b.onclick=()=>{kit=i;sum();};kits.appendChild(b);});
+const care=document.getElementById('care');care.onchange=sum;
+function sum(){[...kits.children].forEach((b,j)=>b.setAttribute('aria-pressed',j===kit));const c=care.checked?129:0;
+ document.getElementById('sK').textContent=KITS[kit].n;document.getElementById('sC').textContent=c?'+$129':'None';document.getElementById('sT').textContent=usd(KITS[kit].p+c);}
+sum();
+const toast=document.querySelector('.toast');
+document.getElementById('buy').onclick=()=>{toast.textContent='This is a concept site, so nothing is reserved.';toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),2800);};
+
+})();
+</script><div class="fl-demo-flag" role="note" dir="ltr" style="position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2147483647;pointer-events:none;font:500 11px/1.35 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;letter-spacing:.02em;color:#f3efe6;background:rgba(10,10,12,.8);border:1px solid rgba(255,255,255,.2);padding:6px 13px;border-radius:999px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis;box-shadow:0 4px 18px rgba(0,0,0,.35)">Concept demo by DLA · Not a real business</div>
+</body></html>

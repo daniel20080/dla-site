@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven Bath Studio</title>
+<meta name="description" content="Haven Bath Studio, full bathroom renovations. A demo concept by DLA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{--bone:#F4EFE8;--sand:#E7DCCD;--stone:#CDBBA4;--ink:#262220;--mute:#776D63;--walnut:#5E4130;--brass:#A9844F;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bone);color:var(--ink);-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);font-size:17px;line-height:1.65;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:4px}
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(16px,3.4vw,48px);transition:background .4s,color .4s}
+.nav.solid{background:rgba(244,239,232,.92);backdrop-filter:blur(10px);color:var(--ink)}
+.logo{font-family:var(--serif);font-size:24px;letter-spacing:.02em;text-decoration:none;line-height:1}
+.logo small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;margin-top:4px;opacity:.75}
+.nav ul{display:flex;gap:30px;list-style:none;font-size:14px}
+.nav ul a{text-decoration:none;opacity:.85}
+.nav .cta{font-size:14px;font-weight:500;text-decoration:none;padding:10px 18px;border:1px solid currentColor;border-radius:999px}
+
+.hero{position:relative;height:780vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--bone);color:#fff}
+.intro{position:absolute;left:0;right:0;top:calc(9vh + 40px);text-align:center;color:var(--ink);padding:0 16px;z-index:1}
+.intro .eyebrow{margin-bottom:16px}
+.intro h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.5rem,5vw,5rem);line-height:1;letter-spacing:-.015em;max-width:20ch;margin:0 auto}
+.intro .hint{margin-top:18px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute)}
+.cam{position:absolute;inset:0;transform-origin:50% 50%;will-change:transform,clip-path;clip-path:inset(0 round 16px);transform:translateY(20vh) scale(.5);z-index:2}
+.cam img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.l4{will-change:opacity}
+.cap,.rail{z-index:3}
+.capcta{pointer-events:auto;display:inline-block;margin-top:22px;font-size:14px;font-weight:500;text-decoration:none;padding:13px 22px;border-radius:999px;background:var(--bone);color:var(--ink)}
+.nav.ondark{color:#fff}
+.l1{-webkit-mask-image:linear-gradient(to top,#000 40%,transparent 60%);mask-image:linear-gradient(to top,#000 40%,transparent 60%);-webkit-mask-size:100% 250%;mask-size:100% 250%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:0 0%;mask-position:0 0%}
+.l2{opacity:0}
+.l3{-webkit-mask-image:linear-gradient(to left,#000 40%,transparent 60%);mask-image:linear-gradient(to left,#000 40%,transparent 60%);-webkit-mask-size:250% 100%;mask-size:250% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:0 0;mask-position:0 0}
+.shade{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(to top,rgba(24,19,15,.66),rgba(24,19,15,0) 52%),linear-gradient(rgba(24,19,15,.38),rgba(24,19,15,0) 20%)}
+.cap{position:absolute;left:clamp(16px,5vw,72px);bottom:clamp(36px,9vh,90px);max-width:620px;opacity:0;pointer-events:none}
+.cap .n{font-size:12px;letter-spacing:.26em;text-transform:uppercase;opacity:.8;margin-bottom:14px;display:flex;gap:12px;align-items:center}
+.cap .n i{display:block;width:34px;height:1px;background:currentColor}
+.cap h1,.cap h2{font-family:var(--serif);font-weight:300;line-height:.98;letter-spacing:-.01em}
+.cap h2{font-size:clamp(2.6rem,6vw,5.6rem)}
+.cap p{margin-top:16px;max-width:42ch;font-size:16px;opacity:.88}
+.cap .hint{margin-top:26px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;opacity:.7}
+.rail{position:absolute;right:clamp(16px,3.4vw,48px);top:50%;transform:translateY(-50%);display:grid;gap:16px;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.rail{opacity:0}.rail div{display:flex;align-items:center;gap:12px;justify-content:flex-end;opacity:.45;transition:opacity .3s}
+.rail div.on{opacity:1}
+.rail b{display:block;width:8px;height:8px;border-radius:50%;border:1px solid #fff}
+.rail div.on b{background:#fff}
+
+section h2.t{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,5.4vw,5rem);line-height:1;letter-spacing:-.01em}
+.eyebrow{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--mute);margin-bottom:22px}
+.under{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(30px,6vw,100px);align-items:center;padding:18vh clamp(16px,5vw,72px)}
+.under figure{aspect-ratio:4/5;overflow:hidden;border-radius:4px}
+.under img{width:100%;height:115%;object-fit:cover}
+.under p.lead{margin-top:22px;color:var(--mute);max-width:44ch}
+.under ul{list-style:none;margin-top:34px;border-top:1px solid var(--stone)}
+.under li{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:16px 0;border-bottom:1px solid var(--stone)}
+.under li span{font-family:var(--serif);font-size:20px;color:var(--brass)}
+.under li b{font-weight:500}
+.under li p{color:var(--mute);font-size:15px}
+
+.details{padding:6vh clamp(16px,5vw,72px) 18vh}
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:7vh}
+.dgrid figure{overflow:hidden;border-radius:4px}
+.dgrid .im{aspect-ratio:4/5;overflow:hidden}
+.dgrid img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.dgrid figure:hover img{transform:scale(1.04)}
+.dgrid figcaption{padding:14px 2px 0;display:flex;justify-content:space-between;gap:14px;font-size:15px}
+.dgrid figcaption span{color:var(--mute)}
+.dgrid figure:nth-child(2){margin-top:9vh}
+
+.ba{padding:16vh clamp(16px,5vw,72px);background:var(--ink);color:var(--bone)}
+.ba .eyebrow{color:#a99d90}
+.ba p.lead{margin-top:18px;color:#bdb1a4;max-width:46ch}
+.cmp{position:relative;margin-top:7vh;aspect-ratio:16/9;overflow:hidden;border-radius:4px;user-select:none;touch-action:pan-y;cursor:ew-resize}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cmp .after{clip-path:inset(0 0 0 50%)}
+.cmp .bar{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--bone);transform:translateX(-1px)}
+.cmp .knob{position:absolute;top:50%;left:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--bone);color:var(--ink);display:grid;place-items:center;font-size:18px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.cmp .tag{position:absolute;bottom:16px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;padding:7px 12px;background:rgba(20,16,13,.6);border-radius:999px}
+.cmp .tb{left:16px}.cmp .ta{right:16px}
+.cmp input{position:absolute;inset:0;opacity:0;cursor:ew-resize;width:100%}
+
+.steps{padding:18vh clamp(16px,5vw,72px)}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:8vh;border-top:1px solid var(--stone)}
+.sgrid div{padding:26px 26px 0 0}
+.sgrid span{font-family:var(--serif);font-size:44px;font-weight:300;color:var(--brass);line-height:1}
+.sgrid h3{font-weight:500;font-size:18px;margin-top:16px}
+.sgrid em{display:block;font-style:normal;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:4px}
+.sgrid p{color:var(--mute);font-size:15px;margin-top:10px;max-width:30ch}
+
+.contact{position:relative;padding:18vh clamp(16px,5vw,72px) 40px;background:var(--sand);overflow:hidden}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px)}
+.contact p.lead{margin-top:18px;color:var(--mute);max-width:40ch}
+.form{display:grid;gap:22px}
+.form h3{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:inherit;font-size:15px;padding:11px 18px;border-radius:999px;border:1px solid var(--stone);background:transparent;color:var(--ink);cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--bone)}
+.go{justify-self:start;margin-top:6px;font:inherit;font-weight:500;padding:17px 30px;border:0;border-radius:999px;background:var(--walnut);color:var(--bone);cursor:pointer}
+.facts{margin-top:44px;display:grid;gap:8px;color:var(--mute);font-size:15px}
+.foot{margin-top:14vh;padding-top:18px;border-top:1px solid var(--stone);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:var(--mute)}
+@media (max-width:900px){.nav ul{display:none}.dgrid{grid-template-columns:1fr 1fr}.dgrid figure:nth-child(3){display:none}.sgrid{grid-template-columns:1fr 1fr;row-gap:30px}}
+@media (max-width:760px){
+ .rail{display:none}
+ .under,.contact .wrap{grid-template-columns:1fr}
+ .dgrid{grid-template-columns:1fr}.dgrid figure:nth-child(2){margin-top:0}.dgrid figure:nth-child(3){display:block}
+ .cmp{aspect-ratio:4/5}
+ .sgrid{grid-template-columns:1fr}
+ .cap{right:16px}
+ .intro{top:calc(10vh + 30px)}
+ .cam{clip-path:inset(50% 6% 7% 6% round 6px);transform:none}
+}
+@media (prefers-reduced-motion:reduce){.cam{clip-path:none}.intro{display:none}.cA{opacity:1}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav"><a class="logo" href="#top">Haven<small>Bath Studio</small></a>
+ <ul><li><a href="#under">How we build</a></li><li><a href="#ba">Before &amp; after</a></li><li><a href="#steps">Process</a></li></ul>
+ <a class="cta" href="#contact">Book a site visit</a></header>
+<main id="top">
+ <section class="hero" aria-label="A bathroom built step by step">
+  <div class="stage" id="stage">
+   <div class="intro" id="intro"><div class="eyebrow">Haven Bath Studio · Bathroom renovations</div><h1>Bathrooms, built from the bare wall&nbsp;up.</h1><p class="hint">Scroll to see one come together</p></div>
+   <div class="cam" id="cam">
+    <img class="l0" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/acc9f3e1-b01e-49c6-8840-4d17bda472a6.jpg" alt="An empty bathroom shell with bare plaster walls and pipe stubs">
+    <img class="l1" id="l1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/0bb88617-fce0-47d4-838d-c337744386c3.jpg" alt="">
+    <img class="l2" id="l2" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/4b06ab0b-1f7b-41cb-8b69-489a75aa293b.jpg" alt="">
+    <img class="l3" id="l3" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/343a5eca-dda7-40fe-8efa-18c127352cb6.jpg" alt="">
+    <img class="l4" id="l4" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/343a5eca-dda7-40fe-8efa-18c127352cb6.jpg" alt="The finished bathroom with travertine walls, a freestanding bath, a glass shower and a walnut vanity">
+    <div class="shade" id="shade"></div>
+   </div>
+   <div class="cap cA"><div class="n"><i></i>Hand-over day</div><h2>This is how we hand it back.</h2><p>Travertine, frameless glass, a walnut vanity and heat under the floor.</p></div>
+   <div class="cap cB"><div class="n"><i></i>01 · Day one</div><h2>And this is how it started.</h2><p>Bare walls, new pipes and one centre line that the window, the bath and the drain all line up to.</p></div>
+   <div class="cap cC"><div class="n"><i></i>02 · Stone</div><h2>Stone, from the floor up.</h2><p>Large-format travertine, laid row by row and matched across every wall.</p></div>
+   <div class="cap cD"><div class="n"><i></i>03 · Fixtures</div><h2>A shower you just walk into.</h2><p>Frameless glass, a linear drain and a rainfall head. Nothing to step over.</p></div>
+   <div class="cap cE"><div class="n"><i></i>04 · Finish</div><h2>Walnut and warm light.</h2><p>A floating vanity, backlit mirrors and heated floors under the stone.</p></div>
+   <div class="cap cF"><div class="n"><i></i>Five weeks</div><h2>One team, start to finish.</h2><p>Same crew from the first wall to the last grout line.</p><a class="capcta" href="#contact">Book a site visit</a></div>
+   <div class="rail" id="rail" aria-hidden="true"><div>Day one<b></b></div><div>Stone<b></b></div><div>Fixtures<b></b></div><div>Finish<b></b></div></div>
+  </div>
+ </section>
+
+ <section class="under" id="under" aria-label="How we build">
+  <figure><img loading="lazy" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/665c3f22-88db-4d4e-af29-ec84395db138.jpg" alt="A shower corner coated in grey waterproofing membrane with a linear drain"></figure>
+  <div>
+   <div class="eyebrow">How we build</div>
+   <h2 class="t">Most of a bathroom is the part you never see.</h2>
+   <p class="lead">Tiles last as long as what’s behind them. So the hidden work gets the most time.</p>
+   <ul>
+    <li><span>i</span><div><b>Waterproofing, tested</b><p>Every wet area is sealed with a membrane and flood-tested before a single tile goes down.</p></div></li>
+    <li><span>ii</span><div><b>Floors that fall to the drain</b><p>A sloped screed, so water never sits on the floor.</p></div></li>
+    <li><span>iii</span><div><b>New pipes, new wiring</b><p>Supply lines and circuits replaced, not patched.</p></div></li>
+    <li><span>iv</span><div><b>Heat under the stone</b><p>Underfloor heating on its own thermostat.</p></div></li>
+   </ul>
+  </div>
+ </section>
+
+ <section class="details" aria-label="Details">
+  <div class="eyebrow">Details</div>
+  <h2 class="t">The small things you touch every day.</h2>
+  <div class="dgrid">
+   <figure><div class="im"><img loading="lazy" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/712f54b5-2ad3-4aa9-b076-be932d431d8d.jpg" alt="A brushed brass faucet filling a white bath"></div><figcaption>Brushed brass<span>Solid, not plated</span></figcaption></figure>
+   <figure><div class="im"><img loading="lazy" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/0676aca9-3ca6-42ac-bba0-1c9d8e2f5ea6.jpg" alt="A floating walnut vanity with a stone basin"></div><figcaption>Walnut vanity<span>Made to measure</span></figcaption></figure>
+   <figure><div class="im"><img loading="lazy" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/fd5876c8-20fa-4fa6-8092-1fa96cd89dfd.jpg" alt="A brass rainfall shower head running"></div><figcaption>Rainfall shower<span>Thermostatic valve</span></figcaption></figure>
+  </div>
+ </section>
+
+ <section class="ba" id="ba" aria-label="Before and after">
+  <div class="eyebrow">Before &amp; after</div>
+  <h2 class="t">Same room. Five weeks apart.</h2>
+  <p class="lead">Drag across the photo to see the room the day we started and the day we handed it back.</p>
+  <div class="cmp" id="cmp">
+   <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/acc9f3e1-b01e-49c6-8840-4d17bda472a6.jpg" alt="The bathroom before the renovation">
+   <img class="after" id="after" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/343a5eca-dda7-40fe-8efa-18c127352cb6.jpg" alt="The bathroom after the renovation">
+   <div class="bar" id="bar"></div><div class="knob" id="knob" aria-hidden="true">↔</div>
+   <span class="tag tb">Before</span><span class="tag ta">After</span>
+   <input type="range" min="0" max="100" value="50" id="rng" aria-label="Compare before and after">
+  </div>
+ </section>
+
+ <section class="steps" id="steps" aria-label="Process">
+  <div class="eyebrow">Process</div>
+  <h2 class="t">Four steps, one team.</h2>
+  <div class="sgrid">
+   <div><span>01</span><h3>Site visit</h3><em>1 hour</em><p>We measure, check what’s behind the walls and listen to how you use the room.</p></div>
+   <div><span>02</span><h3>Design &amp; fixed quote</h3><em>About a week</em><p>Drawings, materials and one price, so nothing changes once we start.</p></div>
+   <div><span>03</span><h3>Build</h3><em>3 to 5 weeks</em><p>Strip-out, plumbing, waterproofing, stone and fit-out, by our own crew.</p></div>
+   <div><span>04</span><h3>Hand-over</h3><em>1 day</em><p>A deep clean, a walk-through and a written warranty.</p></div>
+  </div>
+ </section>
+
+ <section class="contact" id="contact" aria-label="Book a site visit">
+  <div class="wrap">
+   <div>
+    <div class="eyebrow">Start here</div>
+    <h2 class="t">Book a site visit.</h2>
+    <p class="lead">Tell us a little about the room. We’ll call to set a time and come measure, free.</p>
+    <div class="facts"><span>Free site visit and fixed quote</span><span>Monday to Friday, 8am to 5pm</span></div>
+   </div>
+   <div class="form">
+    <div><h3>Which room</h3><div class="chips" data-g=""><button aria-pressed="true">Main bathroom</button><button aria-pressed="false">En-suite</button><button aria-pressed="false">Guest WC</button></div></div>
+    <div><h3>What you have in mind</h3><div class="chips" data-g=""><button aria-pressed="false">Refresh</button><button aria-pressed="true">Full renovation</button><button aria-pressed="false">Wet room</button></div></div>
+    <div><h3>When</h3><div class="chips" data-g=""><button aria-pressed="false">As soon as possible</button><button aria-pressed="true">In 1 to 3 months</button><button aria-pressed="false">Just planning</button></div></div>
+    <button class="go" onclick="this.textContent='Demo only, nothing sent'">Request a site visit</button>
+   </div>
+  </div>
+  <footer class="foot"><span>Haven Bath Studio is a demo concept. The studio and the photos are illustrations.</span><span>Website by <a href="../index.html">DLA</a></span></footer>
+ </section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+document.querySelectorAll('[data-g]').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));}));
+(function(){const r=document.getElementById('rng'),a=document.getElementById('after'),bar=document.getElementById('bar'),k=document.getElementById('knob');
+ const set=v=>{a.style.clipPath=`inset(0 0 0 ${v}%)`;bar.style.left=v+'%';k.style.left=v+'%';};r.addEventListener('input',()=>set(r.value));set(50);})();
+(function(){
+ const nav=document.getElementById('nav');
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches||!window.gsap)return;
+ gsap.registerPlugin(ScrollTrigger);
+ const cam=document.getElementById('cam'),l1=document.getElementById('l1'),l2=document.getElementById('l2'),l3=document.getElementById('l3'),l4=document.getElementById('l4'),shade=document.getElementById('shade'),intro=document.getElementById('intro'),rail=document.getElementById('rail');
+ const sm=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x);};
+ const imgs=[...cam.querySelectorAll('img')];const caps=[...document.querySelectorAll('.cap')],rails=[...rail.querySelectorAll('div')];
+ const win=[[.1,.13,.18,.21],[.23,.26,.31,.34],[.36,.4,.47,.51],[.53,.57,.65,.69],[.72,.76,.84,.88],[.9,.94,1.1,1.2]];
+ const S={p:0};
+ function draw(p){
+  const mob=innerWidth<760,e=sm(0,.12,p);
+  const T=mob?50:57,X=mob?6:16,B=mob?7:5;
+  const z=1+(mob?0.05:0.16)*sm(.12,1,p);
+  if(mob){cam.style.clipPath=`inset(${(T*(1-e)).toFixed(2)}% ${(X*(1-e)).toFixed(2)}% ${(B*(1-e)).toFixed(2)}% ${(X*(1-e)).toFixed(2)}% round ${(6*(1-e)).toFixed(1)}px)`;cam.style.transform=`scale(${z.toFixed(4)})`;}
+  else{const sc=(.5+.5*e)*z;cam.style.clipPath=`inset(0 round ${(8/sc*(1-e)).toFixed(1)}px)`;cam.style.transform=`translateY(${(20*(1-e)).toFixed(2)}vh) scale(${sc.toFixed(4)})`;}
+  intro.style.opacity=1-sm(.02,.08,p);intro.style.transform=`translateY(${(-40*sm(0,.1,p)).toFixed(1)}px)`;
+  shade.style.opacity=sm(.06,.12,p);
+  nav.classList.toggle('ondark',e>.85&&!nav.classList.contains('solid'));
+  l4.style.opacity=1-sm(.205,.255,p);
+  const t1=sm(.34,.5,p),t2=sm(.53,.66,p),t3=sm(.7,.86,p);
+  const m1=(t1*100).toFixed(2)+'%';l1.style.webkitMaskPosition=l1.style.maskPosition='0 '+m1;
+  l2.style.opacity=t2;l2.style.filter=`blur(${((1-t2)*3).toFixed(2)}px)`;
+  const m3=(t3*100).toFixed(2)+'%';l3.style.webkitMaskPosition=l3.style.maskPosition=m3+' 0';
+  const ox=mob?(50-32*sm(.53,.66,p)+62*sm(.7,.86,p)-12*sm(.89,1,p)):50;if(ox!==S.ox){S.ox=ox;imgs.forEach(im=>im.style.objectPosition=ox.toFixed(2)+'% 50%');}
+  caps.forEach((c,i)=>{const [a,b,cc,d]=win[i];const o=Math.min(sm(a,b,p),1-sm(cc,d,p));c.style.opacity=o;c.style.transform=`translateY(${((1-o)*24).toFixed(1)}px)`;c.style.pointerEvents=o>.5?'auto':'none';});
+  rail.style.opacity=sm(.22,.27,p)*(1-sm(.88,.92,p));
+  const st=p<.24?0:p<.36?1:p<.53?2:p<.7?3:4;rails.forEach((r,i)=>r.classList.toggle('on',i<st));
+ }
+ window.__draw=()=>draw(S.p);draw(0);addEventListener('resize',()=>draw(S.p));
+ gsap.fromTo('#intro h1',{y:40,opacity:0},{y:0,opacity:1,duration:1.4,ease:'power3.out'});
+ gsap.to(S,{p:1,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom bottom',scrub:.4},onUpdate(){draw(S.p);}});
+ ScrollTrigger.create({trigger:'.hero',start:'bottom 80px',onEnter:()=>{nav.classList.add('solid');nav.classList.remove('ondark');},onLeaveBack:()=>{nav.classList.remove('solid');draw(S.p);}});
+ gsap.fromTo('.under img',{yPercent:-12},{yPercent:0,ease:'none',scrollTrigger:{trigger:'.under',start:'top bottom',end:'bottom top',scrub:true}});
+ gsap.from('.dgrid figure',{y:80,opacity:0,stagger:.12,scrollTrigger:{trigger:'.dgrid',start:'top 90%',end:'top 45%',scrub:true}});
+ gsap.from('.sgrid div',{y:50,opacity:0,stagger:.1,scrollTrigger:{trigger:'.sgrid',start:'top 90%',end:'top 55%',scrub:true}});
+ gsap.from('.under li',{x:-30,opacity:0,stagger:.08,scrollTrigger:{trigger:'.under ul',start:'top 90%',end:'top 55%',scrub:true}});
+})();
+</script>
+<div class="fl-demo-flag" role="note" dir="ltr" style="position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2147483647;pointer-events:none;font:500 11px/1.35 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;letter-spacing:.02em;color:#f3efe6;background:rgba(10,10,12,.8);border:1px solid rgba(255,255,255,.2);padding:6px 13px;border-radius:999px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis;box-shadow:0 4px 18px rgba(0,0,0,.35)">Concept demo by DLA · Not a real business</div>
+</body></html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SOLSTICE · Manual Espresso</title>
+<meta name="description" content="Concept demo by DLA. SOLSTICE is a fictional coffee hardware brand. AI-generated film, scrubbed by scroll.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0806;--cream:#efe6d8;--mute:#92826f;--copper:#d98f4e;--ember:#f4b97a;--disp:'Space Grotesk',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--cream);-webkit-font-smoothing:antialiased}
+body{font-family:var(--disp);font-size:17px;line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+.mono{font-family:var(--mono)}
+.top{position:fixed;inset:0 0 auto;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px clamp(16px,3vw,44px);pointer-events:none}
+.top b{font-weight:700;font-size:16px;letter-spacing:.18em}
+.top b i{font-style:normal;color:var(--copper)}
+.top span{font:400 10px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(239,230,216,.6);text-align:right}
+/* film */
+.story{position:relative;height:1200vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#000}
+#film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(125% 92% at 50% 50%,transparent 54%,rgba(0,0,0,.55)),linear-gradient(180deg,rgba(0,0,0,.4),transparent 25%,transparent 70%,rgba(0,0,0,.55))}
+.grain{position:absolute;inset:-50%;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:gr 1.1s steps(6) infinite}
+@keyframes gr{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}100%{transform:translate(0,0)}}
+.title{position:absolute;inset:0;display:grid;place-items:center;text-align:center;z-index:4;pointer-events:none;padding:0 16px}
+.title h1{font-weight:700;font-size:clamp(52px,11vw,170px);letter-spacing:.06em;line-height:1;text-transform:uppercase}
+.title h1 i{font-style:normal;color:var(--copper)}
+.title p{margin:20px auto 0;max-width:40ch;color:var(--mute);font:400 13px/1.7 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.cue{position:absolute;left:50%;bottom:clamp(26px,5vh,48px);transform:translateX(-50%);z-index:4;font:500 10px/1 var(--mono);letter-spacing:.3em;text-transform:uppercase;color:rgba(239,230,216,.6);display:flex;flex-direction:column;align-items:center;gap:12px;pointer-events:none}
+.cue i{width:1px;height:44px;background:linear-gradient(180deg,rgba(217,143,78,.95),transparent);animation:cue 1.9s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+/* step chapters — top-left cards */
+.ch{position:absolute;left:clamp(18px,5vw,84px);top:clamp(88px,14vh,150px);max-width:min(560px,calc(100vw - 36px));z-index:4;pointer-events:none}
+.ch .n{display:inline-flex;align-items:center;gap:10px;font:500 11px/1 var(--mono);letter-spacing:.24em;color:var(--copper);text-transform:uppercase}
+.ch .n:before{content:"";width:26px;height:1px;background:var(--copper)}
+.ch h2{margin-top:16px;font-weight:700;font-size:clamp(36px,5.2vw,84px);line-height:1.0;letter-spacing:-.015em;text-transform:uppercase}
+.ch h2 em{font-style:normal;color:var(--ember)}
+.ch p{margin-top:14px;color:#cbbda8;font-size:clamp(14px,1.2vw,17px);max-width:40ch}
+.ch .w{display:inline-block;opacity:0;transform:translateY(.4em);filter:blur(7px);transition:opacity .65s,transform .65s cubic-bezier(.2,.7,.2,1),filter .65s}
+.ch.on .w{opacity:1;transform:none;filter:none}
+.ch .n,.ch p{opacity:0;transition:opacity .6s .15s}
+.ch.on .n,.ch.on p{opacity:1}
+.ch h2,.ch p{text-shadow:0 2px 26px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.45)}
+/* extraction timer */
+.timer{position:absolute;left:clamp(18px,5vw,84px);bottom:clamp(30px,6vh,64px);z-index:4;pointer-events:none;opacity:0;transition:opacity .5s}
+.timer.on{opacity:1}
+.timer .k{font:500 10px/1 var(--mono);letter-spacing:.28em;color:var(--mute);text-transform:uppercase}
+.timer .v{margin-top:8px;font:500 clamp(34px,4.6vw,72px)/1 var(--mono);color:var(--ember);font-variant-numeric:tabular-nums}
+.timer .v small{font-size:.45em;color:var(--mute)}
+.timer .bar{margin-top:12px;width:clamp(120px,14vw,220px);height:2px;background:rgba(239,230,216,.16)}
+.timer .bar i{display:block;height:100%;width:0;background:var(--copper);box-shadow:0 0 10px rgba(217,143,78,.8)}
+.prog{position:absolute;left:0;bottom:0;height:2px;background:var(--copper);z-index:5;width:0;box-shadow:0 0 12px rgba(217,143,78,.6)}
+.loader{position:absolute;inset:0;z-index:9;display:grid;place-items:center;background:#000;transition:opacity 1s}
+.loader .in{text-align:center}
+.loader .in b{display:block;font-weight:700;font-size:26px;letter-spacing:.2em;text-transform:uppercase}
+.loader .ln{margin:18px auto 0;width:180px;height:2px;background:rgba(239,230,216,.14);overflow:hidden}
+.loader .ln i{display:block;height:100%;width:0;background:var(--copper);transition:width .3s}
+.loader .lt{margin-top:12px;font:500 10px/1 var(--mono);letter-spacing:.26em;color:var(--mute);text-transform:uppercase}
+.loader.done{opacity:0;pointer-events:none}
+/* sections */
+.sec{padding:clamp(90px,15vh,170px) clamp(18px,5vw,84px);position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:500 11px/1 var(--mono);letter-spacing:.24em;color:var(--copper);text-transform:uppercase}
+.eyebrow:before{content:"";width:26px;height:1px;background:var(--copper)}
+.sec h2{margin-top:18px;font-weight:700;font-size:clamp(36px,4.6vw,76px);line-height:1.02;letter-spacing:-.015em;text-transform:uppercase;max-width:20ch}
+.sec h2 em{font-style:normal;color:var(--ember)}
+.lead{margin-top:20px;color:#cbbda8;max-width:54ch;font-size:clamp(15px,1.25vw,18px)}
+.ritual{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px);margin-top:clamp(44px,7vh,80px)}
+.ritual div{border-top:2px solid rgba(239,230,216,.16);padding-top:20px}
+.ritual b{display:block;font-weight:700;font-size:clamp(18px,1.6vw,24px);text-transform:uppercase;letter-spacing:.02em}
+.ritual p{margin-top:10px;color:#b4a68f;font-size:15px}
+.ritual span{display:inline-block;margin-bottom:12px;font:500 11px/1 var(--mono);letter-spacing:.2em;color:var(--copper)}
+.specs{border-top:1px solid rgba(239,230,216,.12)}
+.grid{margin-top:clamp(40px,7vh,76px);display:grid;grid-template-columns:repeat(4,1fr)}
+.grid div{padding:22px 22px 0 0;border-top:2px solid rgba(239,230,216,.2)}
+.grid b{display:block;font:500 clamp(40px,5.2vw,84px)/1 var(--mono);font-variant-numeric:tabular-nums}
+.grid small{display:block;margin-top:10px;color:#b4a68f;font-size:14px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em}
+/* run */
+.run{text-align:center;position:relative;overflow:hidden}
+.run:before{content:"";position:absolute;left:50%;top:45%;width:110vw;height:80vh;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(217,143,78,.13),transparent);pointer-events:none}
+.run h2{margin-left:auto;margin-right:auto}
+.run .lead{margin-left:auto;margin-right:auto}
+.wform{position:relative;margin:34px auto 0;display:flex;gap:10px;max-width:470px}
+.wform input{flex:1;font:400 15px/1 var(--mono);color:var(--cream);background:rgba(239,230,216,.06);border:1px solid rgba(239,230,216,.28);padding:16px 20px;outline:none}
+.wform input::placeholder{color:var(--mute)}
+.wform input:focus{border-color:var(--copper)}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:700 13px/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;padding:16px 26px;border:1px solid transparent;background:var(--copper);color:#1d1106;cursor:pointer;text-decoration:none;transition:background .3s,border-color .3s,color .3s;white-space:nowrap}
+.btn:hover{background:var(--ember)}
+.btn.ghost{background:transparent;border-color:rgba(239,230,216,.32);color:var(--cream)}
+.btn.ghost:hover{border-color:var(--cream)}
+.wnote{position:relative;margin-top:16px;font:400 12px/1.6 var(--mono);color:var(--mute)}
+.end{text-align:center;padding-bottom:130px}
+.end h2{max-width:none}
+.end p.about{margin:20px auto 0;max-width:48ch;color:#cbbda8}
+.btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+.fine{margin:64px auto 0;font:400 12px/1.7 var(--mono);color:var(--mute);max-width:72ch}
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s,transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (max-width:860px){
+ .ritual{grid-template-columns:1fr;gap:24px}
+ .grid{grid-template-columns:1fr 1fr;row-gap:30px}
+ .ch h2{font-size:clamp(32px,8.8vw,50px)}
+ .timer .v{font-size:34px}
+ .wform{flex-direction:column}.wform .btn{width:100%}
+ .top span{max-width:52vw}}
+@media (prefers-reduced-motion:reduce){.grain,.cue i{animation:none}}
+</style>
+
+</head>
+<body>
+<header class="top"><b>SOLSTICE<i>.</i></b><span>Concept demo · not a real product</span></header>
+<section class="story" id="story" aria-label="Scroll-driven film of a manual espresso machine pulling a shot at dawn">
+  <div class="stage" id="stage">
+    <video id="film" muted="" playsinline="" preload="auto"></video>
+    <div class="vig"></div>
+    <div class="grain"></div>
+    <div class="title" id="title"><div><h1 id="h1">SOLSTICE<i>.</i></h1><p>A manual espresso ritual · one lever · nine bars · no buttons</p></div></div>
+    <div class="cue" id="cue">Scroll to pull the shot<i></i></div>
+    <div class="ch" data-a="0.04" data-b="0.17"><div class="n">Step 01 · Before light</div><h2>The kitchen is still <em>asleep.</em></h2><p>Matte black, brass and walnut, waiting for first light.</p></div>
+    <div class="ch" data-a="0.27" data-b="0.43"><div class="n">Step 02 · The pull</div><h2>One lever. <em>Nine bars.</em></h2><p>No pump, no buttons — your hand is the machine.</p></div>
+    <div class="ch" data-a="0.52" data-b="0.68"><div class="n">Step 03 · Crema</div><h2>Twenty-five seconds of <em>patience.</em></h2><p>Tiger-striped crema, pulled slow, poured dense.</p></div>
+    <div class="ch" data-a="0.78" data-b="0.94"><div class="n">Step 04 · Ritual</div><h2>Morning, <em>earned.</em></h2><p>One cup, one window, no noise.</p></div>
+    <div class="timer" id="timer"><div class="k">Extraction</div><div class="v"><span id="tv">00.0</span><small> s</small></div><div class="bar"><i id="tb"></i></div></div>
+    <div class="prog" id="prog"></div>
+    <div class="loader" id="loader"><div class="in"><b>Solstice.</b><div class="ln"><i id="lb"></i></div><div class="lt" id="lp">Heating up</div></div></div>
+  </div>
+</section>
+<section class="sec">
+  <div class="rv"><div class="eyebrow">Why it exists</div>
+  <h2>Espresso machines got <em>loud.</em> We went quiet.</h2>
+  <p class="lead">SOLSTICE is a manual lever machine milled from a single block of matte-black aluminium with a brass lever. No pump screaming at 6 a.m., no screens, no app. You heat, you pull, you drink. The whole ritual takes two minutes and makes the best thirty millilitres of your day.</p></div>
+  <div class="ritual rv">
+    <div><span>01</span><b>Your hand is the pump</b><p>The brass lever drives a full nine bars through the puck — pressure you can feel and shape.</p></div>
+    <div><span>02</span><b>Nothing to break</b><p>Three moving parts, zero electronics. Machined aluminium, brass and steel, built for decades.</p></div>
+    <div><span>03</span><b>Silent by design</b><p>The loudest thing in the room is the first sip. Pull a shot while the house sleeps.</p></div>
+  </div>
+</section>
+<section class="sec specs">
+  <div class="rv"><div class="eyebrow">On paper</div><h2>Small machine, <em>serious numbers.</em></h2></div>
+  <div class="grid rv">
+    <div><b>9<small style="font-size:.5em">bar</small></b><small>of lever pressure</small></div>
+    <div><b>58<small style="font-size:.5em">mm</small></b><small>pro-size basket</small></div>
+    <div><b>25<small style="font-size:.5em">s</small></b><small>ideal extraction</small></div>
+    <div><b>3</b><small>moving parts, total</small></div>
+  </div>
+</section>
+<section class="sec run" id="run">
+  <div class="rv"><div class="eyebrow">First run</div>
+  <h2>Three hundred machines. <em>Then we rest.</em></h2>
+  <p class="lead">The first production run is 300 numbered machines. Join the list for first pick and the launch price.</p>
+  <form class="wform" id="wf"><input type="email" placeholder="you@email.com" aria-label="Email" required=""><button class="btn" type="submit">Get in line</button></form>
+  <p class="wnote" id="wnote">Demo form — this page is a concept, nothing is collected.</p></div>
+</section>
+<section class="sec end">
+  <div class="rv"><div class="eyebrow">Made by DLA</div>
+  <h2>This machine doesn't exist.<br><em>The website does.</em></h2>
+  <p class="about">SOLSTICE is a fictional brand we invented to show what a launch page can feel like. The film is AI-generated from product stills — no studio, no shoot. Launching a real product? We'll build this for yours.</p>
+  <div class="btns"><a class="btn" href="../index.html">Back to DLA</a><a class="btn ghost" href="../index.html#contact">Talk to us</a></div>
+  <p class="fine">SOLSTICE is a fictional demonstration brand. All footage on this page is AI-generated. Built as a portfolio concept by DLA.</p></div>
+</section>
+<script>window.SOL_ASSETS={"duration":26.209,"desktop":{"url":"https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/7b179474-72a7-40eb-9d61-87fe1394caa8.mp4"},"mobile":{"url":"https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/59176668-54a1-4fb1-a56c-00c0bc14a4ac.mp4"}};</script><script>
+const A=window.SOL_ASSETS;
+const $=id=>document.getElementById(id);
+const story=$('story'),vid=$('film');
+const mob=innerWidth<760;
+const V=mob?A.mobile:A.desktop;
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),sm=(a,b,x)=>{x=clamp((x-a)/(b-a));return x*x*(3-2*x)};
+async function blobURL(url,onp){const r=await fetch(url);const tot=+r.headers.get('content-length')||0;const rd=r.body.getReader();let got=0,ch=[];for(;;){const {done,value}=await rd.read();if(done)break;ch.push(value);got+=value.length;onp&&onp(tot?got/tot:0)}return URL.createObjectURL(new Blob(ch))}
+const chs=[...document.querySelectorAll('.ch')];
+chs.forEach(c=>{const h=c.querySelector('h2');h.innerHTML=h.innerHTML.replace(/(<em>.*?<\/em>|[^<\s]+)(\s|$)/g,(m,w,sp)=>`<span class="w">${w}</span>${sp}`);[...h.querySelectorAll('.w')].forEach((w,i)=>w.style.transitionDelay=(i*70)+'ms')});
+function prog(){const r=story.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight))}
+let cur=0,lastT=-1,ready=false;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const wf=$('wf');if(wf)wf.addEventListener('submit',e=>{e.preventDefault();$('wnote').textContent='This is a demo page — but machine No. 001 would have just been claimed.';wf.querySelector('input').value='';});
+const title=$('title'),cue=$('cue'),timer=$('timer'),tv=$('tv'),tb=$('tb'),progEl=$('prog');
+function extAt(p){if(p<.06)return 0;if(p<.88)return 25*sm(.06,.88,p);return 25}
+function frame(){
+ if(ready){const tgt=prog();cur+=(tgt-cur)*.16;if(Math.abs(tgt-cur)<.0002)cur=tgt;
+ const t=cur*A.duration;
+ if(Math.abs(t-lastT)>1/48&&vid.readyState>=2){vid.currentTime=Math.min(t,A.duration-.06);lastT=t;}
+ const ti=1-sm(0,.05,cur);title.style.opacity=ti;title.style.transform=`scale(${1+.06*(1-ti)})`;title.style.filter=`blur(${(1-ti)*10}px)`;cue.style.opacity=1-sm(0,.015,cur);
+ const ex=extAt(cur);tv.textContent=(ex<10?'0':'')+ex.toFixed(1);tb.style.width=(ex/25*100)+'%';
+ chs.forEach(c=>c.classList.toggle('on',cur>+c.dataset.a&&cur<+c.dataset.b));
+ timer.classList.toggle('on',cur>.05&&cur<.97);
+ progEl.style.width=(cur*100)+'%';}
+ requestAnimationFrame(frame);}
+(async()=>{
+ const set=(f,l)=>{$('lb').style.width=(f*100)+'%';$('lp').textContent=l};
+ const vurl=await blobURL(V.url,f=>set(f,'Heating up '+Math.round(f*100)+'%'));
+ vid.src=vurl;await new Promise(r=>{vid.onloadeddata=r;vid.load()});
+ ready=true;$('loader').classList.add('done');window.__ready=1;requestAnimationFrame(frame);
+})();
+</script><div class="fl-demo-flag" role="note" dir="ltr" style="position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2147483647;pointer-events:none;font:500 11px/1.35 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;letter-spacing:.02em;color:#f3efe6;background:rgba(10,10,12,.8);border:1px solid rgba(255,255,255,.2);padding:6px 13px;border-radius:999px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis;box-shadow:0 4px 18px rgba(0,0,0,.35)">Concept demo by DLA · Not a real business</div>
+</body></html>

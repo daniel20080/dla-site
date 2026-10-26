@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calibre Room</title>
+<meta name="description" content="Calibre Room, a fine watch boutique and atelier. A demo concept by DLA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,200;1,300&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root{--black:#000;--ink:#0B0D10;--steel:#C7CBD1;--bone:#EDEAE4;--mute:#8A8F98;--ruby:#C0183A;--disp:'Spectral',Georgia,serif;--sans:'Geist',system-ui,sans-serif;--mono:'Geist Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--black);color:var(--bone);-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:1px solid var(--ruby);outline-offset:4px}
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(16px,3vw,40px);mix-blend-mode:difference}
+.nav__logo{font-family:var(--disp);font-weight:300;font-size:22px;letter-spacing:.02em;text-decoration:none;color:#fff}
+.nav a.b{font-size:14px;font-weight:500;text-decoration:none;color:#fff;border-bottom:1px solid rgba(255,255,255,.6);padding-bottom:2px}
+
+.hero{position:relative;height:380vh;background:#000}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#000}
+.vbox{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);will-change:transform}
+.vbox canvas,.vbox #poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vbox canvas{opacity:0;transition:opacity .5s}
+.vbox canvas.on{opacity:1}
+.hbar{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--ruby);z-index:3;box-shadow:0 0 12px rgba(192,24,58,.6)}
+.hload{position:absolute;right:clamp(16px,3vw,40px);bottom:22px;z-index:3;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--mute);transition:opacity .6s}
+.vbox::after{content:"";position:absolute;inset:-2px;pointer-events:none;background:radial-gradient(120% 90% at 50% 50%,transparent 55%,#000 100%)}
+.co{position:absolute;width:0;height:0;opacity:0}
+.co i{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--ruby);box-shadow:0 0 0 4px rgba(192,24,58,.25)}
+.co b{position:absolute;left:0;width:1px;background:linear-gradient(var(--steel),rgba(199,203,209,.2));transform-origin:0 0}
+.co span{position:absolute;white-space:nowrap;font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;color:var(--bone);transform:translateX(-50%);background:rgba(0,0,0,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:7px 11px;border-radius:8px;border:1px solid rgba(199,203,209,.18);line-height:1.35}
+.co.l span{transform:translateX(-14px)}.co.r span{transform:translateX(calc(-100% + 14px))}
+.co span em{display:block;font-style:normal;color:var(--mute);font-size:11px}
+.co.up b{top:-70px;height:66px}.co.up span{top:-118px}
+.co.dn b{top:4px;height:56px}.co.dn span{top:60px}
+.beat{position:absolute;left:0;right:0;text-align:center;padding:0 20px;opacity:0;pointer-events:none;text-shadow:0 2px 24px #000,0 0 60px rgba(0,0,0,.9)}
+.beat h1,.beat h2{font-family:var(--disp);font-weight:200;line-height:.95;letter-spacing:-.01em}
+.b1{bottom:9vh}.b1 h1{font-size:clamp(3.4rem,10vw,9rem)}.b1 p{margin:14px auto 0;max-width:40ch;color:var(--steel);font-size:16px}
+.b1 small{display:block;margin-top:28px;font-family:var(--mono);font-size:12px;color:var(--mute)}
+.b2{top:12vh}.b2 h2{font-size:clamp(2.6rem,7vw,6rem)}.b2 p{margin-top:10px;color:var(--steel)}
+.b3{bottom:4vh}.b3 h2{font-size:clamp(2rem,4.6vw,4rem);font-style:italic}.b3 p{margin:10px auto 0;max-width:46ch;color:var(--steel)}
+
+.live{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;padding:12vh clamp(16px,5vw,80px);background:radial-gradient(60% 60% at 70% 50%,#14171c,#000 70%)}
+.live h2{font-family:var(--disp);font-weight:200;font-size:clamp(2.6rem,6vw,5.4rem);line-height:1}
+.live p{margin-top:18px;color:var(--steel);max-width:36ch}
+.live .t{display:block;margin-top:22px;font-family:var(--mono);font-size:15px;color:var(--bone)}
+.dial{width:min(100%,520px);justify-self:center;filter:drop-shadow(0 40px 60px rgba(0,0,0,.8))}
+
+.coll{padding:14vh clamp(16px,5vw,80px)}
+.coll h2,.atelier h2,.visit h2{font-family:var(--disp);font-weight:200;font-size:clamp(2.6rem,6vw,5.4rem);line-height:1}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,34px);margin-top:8vh}
+.w figure{aspect-ratio:4/5;overflow:hidden;background:#050505}
+.w img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.w:hover img{transform:scale(1.05)}
+.w h3{font-family:var(--disp);font-weight:300;font-size:1.9rem;margin-top:18px}
+.w .s{font-family:var(--mono);font-size:12.5px;color:var(--mute);margin-top:4px}
+.w .row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid #1c1f24}
+.w .row b{font-weight:500}
+.w .row a{font-size:14px;text-decoration:none;border-bottom:1px solid var(--ruby);padding-bottom:2px}
+.note{margin-top:22px;font-size:13px;color:var(--mute)}
+
+.atelier{position:relative;min-height:110vh;display:grid;align-items:end;overflow:hidden}
+.atelier>img{position:absolute;inset:0;width:100%;height:120%;object-fit:cover;filter:saturate(.85)}
+.atelier::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.35) 40%,#000 92%)}
+.atelier .in{position:relative;z-index:2;padding:0 clamp(16px,5vw,80px) 10vh}
+.atelier h2{max-width:14ch}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:6vh}
+.steps li{border-top:1px solid rgba(199,203,209,.35);padding-top:14px}
+.steps li span{font-family:var(--mono);font-size:12px;color:var(--ruby)}
+.steps li h3{font-weight:500;font-size:1.05rem;margin-top:6px}
+.steps li p{font-size:15px;color:var(--steel);margin-top:4px}
+.atelier .price{margin-top:5vh;color:var(--steel);max-width:52ch}
+
+.visit{padding:16vh clamp(16px,5vw,80px) 40px}
+.visit p.l{margin-top:16px;color:var(--steel);max-width:44ch}
+.pick{margin-top:30px;display:grid;gap:18px;max-width:640px}
+.pick h3{font-size:13px;font-weight:500;color:var(--mute);margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:inherit;font-size:15px;padding:10px 18px;border-radius:999px;border:1px solid #2a2e35;background:transparent;color:var(--bone);cursor:pointer}
+.chips button[aria-pressed=true]{border-color:var(--bone);background:var(--bone);color:#000}
+.go{margin-top:30px;font:inherit;font-weight:500;font-size:17px;padding:17px 30px;border:0;border-radius:999px;background:var(--ruby);color:#fff;cursor:pointer}
+.addr{margin-top:60px;font-family:var(--mono);font-size:13px;color:var(--mute)}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid #1c1f24;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:var(--mute)}
+@media (max-width:760px){
+ .live{grid-template-columns:1fr;text-align:center}.live p{margin-inline:auto}
+ .grid{grid-template-columns:1fr}
+ .steps{grid-template-columns:1fr 1fr}
+ .co.m-hide{display:none}
+ .co span{font-size:10.5px}.co span em{font-size:9.5px}
+ .co.up b{top:-46px;height:42px}.co.up span{top:-92px}
+ .co.dn b{top:4px;height:42px}.co.dn span{top:46px}
+ .b2{top:14vh}
+}
+@media (prefers-reduced-motion:reduce){.beat{opacity:1;position:relative}.co{opacity:1}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="sharp" color-interpolation-filters="sRGB"><feConvolveMatrix order="3" kernelMatrix="0 -0.3 0 -0.3 2.2 -0.3 0 -0.3 0" preserveAlpha="true"/></filter></svg>
+<header class="nav"><a class="nav__logo" href="#top">Calibre Room</a><a class="b" href="#visit">Book a viewing</a></header>
+<main id="top">
+ <section class="hero" aria-label="Calibre Room">
+  <div class="stage">
+   <div class="vbox" id="vbox">
+    <img id="poster" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/c3360e6e-dfc5-41bd-ac33-aba03faf4b30.jpg" alt="A skeleton watch separating into its parts">
+    <canvas id="film" aria-hidden="true"></canvas>
+    <div class="co dn l m-hide" style="left:11%;top:62%"><i></i><b></b><span>Sapphire crystal<em>with the hands</em></span></div>
+    <div class="co up l m-hide" style="left:26%;top:33%"><i></i><b></b><span>Skeleton dial<em>hand-finished</em></span></div>
+    <div class="co up" style="left:47.5%;top:24%"><i></i><b></b><span>Mainspring barrel<em>72 h reserve</em></span></div>
+    <div class="co up" style="left:45%;top:63%"><i></i><b></b><span>Balance wheel<em>4 Hz, 28,800 beats an hour</em></span></div>
+    <div class="co up r" style="left:76.5%;top:24%"><i></i><b></b><span>Case<em>41 mm steel</em></span></div>
+    <div class="co dn r m-hide" style="left:88%;top:60%"><i></i><b></b><span>Caseback and crown<em>screw-down</em></span></div>
+   </div>
+   <div class="beat b1"><h1>Calibre Room</h1><p>Fine watches, and the watchmakers who keep them running. Madison Avenue, New York.</p><small>Scroll to open the watch</small></div>
+   <div class="beat b2"><h2>247 parts.</h2><p>Some of them smaller than a grain of sand.</p></div>
+   <div class="beat b3"><h2>We know every one of them.</h2><p>Sourcing, servicing and restoration for collectors.</p></div>
+   <div class="hbar" id="hbar"></div>
+   <div class="hload" id="hload">WINDING 0%</div>
+  </div>
+ </section>
+
+ <section class="live" aria-label="Live time">
+  <div><h2>This one is running right now.</h2><p>Every watch in the salon is wound, set and checked against an atomic clock each morning.</p><span class="t" id="nyt">It’s --:-- on Madison Avenue.</span></div>
+  <svg class="dial" viewBox="0 0 400 400" role="img" aria-label="A watch face showing the current time in New York">
+   <defs>
+    <radialGradient id="st" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#f4f6f8"></stop><stop offset=".45" stop-color="#9aa1aa"></stop><stop offset=".7" stop-color="#5b6169"></stop><stop offset="1" stop-color="#d8dce0"></stop></radialGradient>
+    <radialGradient id="dl" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#1b2027"></stop><stop offset="1" stop-color="#07090b"></stop></radialGradient>
+    <linearGradient id="hd" x1="0" x2="1"><stop offset="0" stop-color="#9aa1aa"></stop><stop offset=".5" stop-color="#fff"></stop><stop offset="1" stop-color="#8a9099"></stop></linearGradient>
+   </defs>
+   <circle cx="200" cy="200" r="192" fill="url(#st)"></circle>
+   <circle cx="200" cy="200" r="172" fill="url(#dl)"></circle>
+   <g id="ticks"></g>
+   <g id="hh"><polygon points="196,212 200,108 204,212" fill="url(#hd)"></polygon></g>
+   <g id="mh"><polygon points="197,214 200,64 203,214" fill="url(#hd)"></polygon></g>
+   <g id="sh"><rect x="199" y="58" width="2" height="172" fill="#C0183A"></rect><circle cx="200" cy="232" r="7" fill="#C0183A"></circle></g>
+   <circle cx="200" cy="200" r="6" fill="#d8dce0"></circle><circle cx="200" cy="200" r="2.5" fill="#C0183A"></circle>
+  </svg>
+ </section>
+
+ <section class="coll" id="collection" aria-label="In the salon">
+  <h2>In the salon this week</h2>
+  <div class="grid">
+   <article class="w"><figure><img loading="lazy" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/4752f86b-4d4b-450d-aade-a23c2a5f2e2c.jpg" alt="A steel dive watch with a blue gradient dial and blue bezel"></figure><h3>Reef 300</h3><p class="s">Steel · 41 mm · Automatic · 300 m</p><div class="row"><b>$7,900</b><a href="#visit">Ask about it</a></div></article>
+   <article class="w"><figure><img loading="lazy" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/0ea3137b-b948-488f-84c9-95aaa667b9f6.jpg" alt="A rose gold dress watch with a cream enamel dial and brown leather strap"></figure><h3>Soirée Enamel</h3><p class="s">18k rose gold · 38 mm · Hand-wound</p><div class="row"><b>$24,500</b><a href="#visit">Ask about it</a></div></article>
+   <article class="w"><figure><img loading="lazy" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/ae4e8737-3c1d-451d-9ec5-c0c49daa203b.jpg" alt="A titanium chronograph with a grey dial and orange accents"></figure><h3>Pit Lane Chronograph</h3><p class="s">Titanium · 42 mm · Automatic chronograph</p><div class="row"><b>$11,200</b><a href="#visit">Ask about it</a></div></article>
+  </div>
+  <p class="note">Concept watches made for this demo.</p>
+ </section>
+
+ <section class="atelier" aria-label="The atelier">
+  <img loading="lazy" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/cde853b2-6f3e-4683-b4c5-3333a4c3fafb.jpg" alt="A watchmaker placing a tiny gear into an open movement with tweezers">
+  <div class="in">
+   <h2>Every service leaves the bench like new.</h2>
+   <ol class="steps">
+    <li><span>01</span><h3>Open and photograph</h3><p>We document the movement before anything is touched.</p></li>
+    <li><span>02</span><h3>Clean every part</h3><p>Each component comes apart and goes through the bath.</p></li>
+    <li><span>03</span><h3>Oil and regulate</h3><p>Reassembled, lubricated and timed in six positions.</p></li>
+    <li><span>04</span><h3>Test for seven days</h3><p>It sits on the winder for a week before it goes home.</p></li>
+   </ol>
+   <p class="price">A full service starts at $650 and takes about four weeks. You get the photos.</p>
+  </div>
+ </section>
+
+ <section class="visit" id="visit" aria-label="Book a private viewing">
+  <h2>Book a private viewing</h2>
+  <p class="l">Tell us how you’d like to meet. We’ll confirm a time and have the pieces you asked about on the tray.</p>
+  <div class="pick">
+   <div><h3>Where</h3><div class="chips" data-g=""><button aria-pressed="true">In the salon</button><button aria-pressed="false">By video</button></div></div>
+   <div><h3>When</h3><div class="chips" data-g=""><button aria-pressed="false">This week</button><button aria-pressed="true">Next week</button><button aria-pressed="false">Weekend</button></div></div>
+  </div>
+  <button class="go" onclick="this.textContent='Demo only, nothing booked';">Request a viewing</button>
+  <p class="addr">Madison Avenue, New York · By appointment</p>
+  <footer class="foot"><span>Calibre Room is a demo concept. The boutique, watches and prices are made up.</span><span>Website by <a href="../index.html">DLA</a></span></footer>
+ </section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+document.querySelectorAll('[data-g]').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));}));
+// live watch
+(function(){
+ const T=document.getElementById('ticks');let s='';
+ for(let i=0;i<60;i++){const a=i*6,big=i%5===0;s+=`<rect x="${big?197:199}" y="${big?36:38}" width="${big?6:2}" height="${big?24:9}" fill="${big?'#EDEAE4':'#6f757e'}" transform="rotate(${a} 200 200)"/>`;}
+ T.innerHTML=s;
+ const hh=document.getElementById('hh'),mh=document.getElementById('mh'),sh=document.getElementById('sh'),out=document.getElementById('nyt');
+ const fmt=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit',second:'2-digit',hour12:false});
+ const lab=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'});
+ function tick(){const d=new Date();const p=Object.fromEntries(fmt.formatToParts(d).map(x=>[x.type,x.value]));
+  const h=+p.hour%12,m=+p.minute,sec=+p.second+Math.floor(d.getMilliseconds()/125)/8;
+  sh.setAttribute('transform',`rotate(${sec*6} 200 200)`);mh.setAttribute('transform',`rotate(${(m+sec/60)*6} 200 200)`);hh.setAttribute('transform',`rotate(${(h+m/60)*30} 200 200)`);
+  out.textContent=`It’s ${lab.format(d)} on Madison Avenue.`;requestAnimationFrame(tick);}
+ tick();
+})();
+(function(){
+ /* Hero film: the clip is downloaded once into memory (so seeking is instant), then a rAF loop eases toward the
+    scroll position and paints each decoded frame onto a canvas through a light sharpening filter. */
+ const VIDEO='https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/81b7b79b-16ff-49d0-9849-68b525d5d762.mp4';
+ const NW=1344,NH=768;
+ const box=document.getElementById('vbox'),cv=document.getElementById('film'),ctx=cv.getContext('2d');
+ const hero=document.querySelector('.hero'),hbar=document.getElementById('hbar'),hload=document.getElementById('hload');
+ const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let v=null,cur=0,dirty=true,want=0;
+ function size(){const vw=innerWidth,vh=innerHeight;let w;if(vw<760)w=vw*1.65;else w=Math.max(vw*0.98,Math.min(vh*NW/NH,vw*1.1));
+  box.style.width=w+'px';box.style.height=(w*NH/NW)+'px';
+  const d=Math.min(devicePixelRatio||1,2);cv.width=Math.min(Math.round(w*d),NW*2);cv.height=Math.round(cv.width*NH/NW);dirty=true;}
+ size();addEventListener('resize',size);
+ function paint(){if(!v||v.readyState<2)return;ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+  ctx.filter='url(#sharp)';ctx.drawImage(v,0,0,cv.width,cv.height);ctx.filter='none';dirty=false;}
+ async function load(){
+  let url=VIDEO;
+  try{const r=await fetch(VIDEO);const tot=+r.headers.get('content-length')||0;const rd=r.body.getReader();const parts=[];let got=0;
+   for(;;){const {done,value}=await rd.read();if(done)break;parts.push(value);got+=value.length;hload.textContent='WINDING '+Math.round((tot?got/tot:.5)*100)+'%';}
+   url=URL.createObjectURL(new Blob(parts,{type:'video/mp4'}));}catch(e){}
+  const el=document.createElement('video');el.muted=true;el.playsInline=true;el.preload='auto';el.src=url;
+  el.setAttribute('aria-hidden','true');el.style.cssText='position:fixed;left:0;top:0;width:2px;height:2px;opacity:0;pointer-events:none';
+  document.body.appendChild(el);
+  await new Promise(res=>{el.addEventListener('loadeddata',res,{once:true});el.addEventListener('error',res,{once:true});el.load();setTimeout(res,15000);});
+  if(!el.duration)return;
+  el.addEventListener('seeked',paint);
+  v=el;window.__vids=[v];hload.style.opacity=0;
+  v.currentTime=0.01;
+ }
+ function heroP(){const r=hero.getBoundingClientRect();return Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));}
+ function loop(){requestAnimationFrame(loop);
+  const p=heroP();cur+=(p-cur)*(RM?1:.16);if(Math.abs(p-cur)<.0003)cur=p;
+  hbar.style.width=(cur*100)+'%';
+  if(!v||!v.duration)return;
+  if(!cv.classList.contains('on')&&v.readyState>=2){paint();cv.classList.add('on');}
+  want=Math.min(v.duration-0.04,Math.max(0,(cur-0.06)/0.56)*v.duration);
+  if(!v.seeking&&Math.abs(v.currentTime-want)>1/96)v.currentTime=want;
+  else if(dirty&&!v.seeking)paint();
+ }
+ requestAnimationFrame(loop);load();
+ if(RM||!window.gsap)return;
+ gsap.registerPlugin(ScrollTrigger);
+ gsap.set('.b1',{opacity:1});
+ gsap.from('.b1 h1',{y:40,opacity:0,duration:1.4,ease:'power3.out'});
+ gsap.from('.b1 p,.b1 small',{opacity:0,duration:1,delay:.6});
+ const tl=gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom bottom',scrub:.6}});
+ tl.to({},{duration:1},0)
+   .to('.b1',{opacity:0,y:-30,duration:.07},.04)
+   .to('#vbox',{scale:1.03,duration:.5,ease:'none'},.08)
+   .fromTo('.b2',{opacity:0,y:30},{opacity:1,y:0,duration:.06},.2)
+   .to('.b2',{opacity:0,y:-30,duration:.06},.44)
+   .to('.co',{opacity:1,duration:.05,stagger:.025},.6)
+   .from('.co b',{scaleY:0,duration:.05,stagger:.025},.6)
+   .fromTo('.b3',{opacity:0,y:30},{opacity:1,y:0,duration:.06},.66)
+   .to(['.co','.b3'],{opacity:0,duration:.05},.93)
+   .to('#vbox',{opacity:.25,duration:.07},.93);
+ gsap.from('.dial',{rotate:-25,scale:.8,opacity:0,ease:'power2.out',scrollTrigger:{trigger:'.live',start:'top 85%',end:'top 30%',scrub:true}});
+ gsap.from('.w',{y:90,opacity:0,stagger:.12,scrollTrigger:{trigger:'.grid',start:'top 90%',end:'top 40%',scrub:true}});
+ gsap.fromTo('.atelier>img',{yPercent:-12},{yPercent:0,ease:'none',scrollTrigger:{trigger:'.atelier',start:'top bottom',end:'bottom top',scrub:true}});
+ gsap.from('.steps li',{y:40,opacity:0,stagger:.1,scrollTrigger:{trigger:'.steps',start:'top 92%',end:'top 60%',scrub:true}});
+})();
+</script>
+<div class="fl-demo-flag" role="note" dir="ltr" style="position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2147483647;pointer-events:none;font:500 11px/1.35 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;letter-spacing:.02em;color:#f3efe6;background:rgba(10,10,12,.8);border:1px solid rgba(255,255,255,.2);padding:6px 13px;border-radius:999px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis;box-shadow:0 4px 18px rgba(0,0,0,.35)">Concept demo by DLA · Not a real business</div>
+</body></html>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NOCTURNE · Extrait de Parfum</title>
+<meta name="description" content="Concept demo by DLA. NOCTURNE is a fictional fragrance house. AI-generated film, scrubbed by scroll.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Jost:wght@200;300;400&amp;display=swap" rel="stylesheet">
+<style>
+:root{--noir:#060507;--cream:#ece5d8;--mute:#8d8273;--gold:#c6a15b;--champ:#eacf96;--disp:'Cormorant Garamond',serif;--sans:'Jost',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--noir);color:var(--cream);-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.65;overflow-x:hidden;letter-spacing:.01em}
+a{color:inherit}
+:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+.lbl{font:300 10px/1 var(--sans);letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.top{position:fixed;inset:0 0 auto;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px clamp(18px,3.5vw,52px);pointer-events:none}
+.top b{font-family:var(--disp);font-weight:400;font-size:17px;letter-spacing:.5em;margin-right:-.5em}
+.top span{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(236,229,216,.6);text-align:right}
+/* film */
+.story{position:relative;height:1200vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#000}
+#film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(130% 95% at 50% 48%,transparent 52%,rgba(0,0,0,.6)),linear-gradient(180deg,rgba(0,0,0,.4),transparent 24%,transparent 72%,rgba(0,0,0,.6))}
+.grain{position:absolute;inset:-50%;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:gr 1.2s steps(6) infinite}
+@keyframes gr{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}100%{transform:translate(0,0)}}
+.title{position:absolute;inset:0;display:grid;place-items:center;text-align:center;z-index:4;pointer-events:none;padding:0 16px}
+.title h1{font-family:var(--disp);font-weight:300;font-size:clamp(46px,9.5vw,150px);letter-spacing:.42em;margin-right:-.42em;line-height:1.1;color:var(--cream)}
+.title .rule{width:1px;height:52px;margin:26px auto 22px;background:linear-gradient(180deg,var(--gold),transparent)}
+.title p{margin:0 auto;max-width:40ch;color:var(--mute);font-size:clamp(13px,1.2vw,16px);letter-spacing:.22em;text-transform:uppercase}
+.cue{position:absolute;left:50%;bottom:clamp(26px,5vh,48px);transform:translateX(-50%);z-index:4;font:300 10px/1 var(--sans);letter-spacing:.4em;text-transform:uppercase;color:rgba(236,229,216,.55);display:flex;flex-direction:column;align-items:center;gap:14px;pointer-events:none}
+.cue i{width:1px;height:42px;background:linear-gradient(180deg,rgba(198,161,91,.95),transparent);animation:cue 2s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+/* centered chapters */
+.ch{position:absolute;inset:0;display:grid;place-items:center;text-align:center;z-index:4;pointer-events:none;padding:0 18px}
+.ch .in{max-width:760px}
+.ch .n{font:300 11px/1 var(--sans);letter-spacing:.5em;margin-right:-.5em;color:var(--gold);text-transform:uppercase}
+.ch h2{margin-top:20px;font-family:var(--disp);font-weight:300;font-size:clamp(34px,5.6vw,86px);line-height:1.12;letter-spacing:.02em}
+.ch h2 em{font-style:italic;color:var(--champ)}
+.ch p{margin:16px auto 0;color:rgba(236,229,216,.72);font-size:clamp(13px,1.1vw,15px);letter-spacing:.24em;text-transform:uppercase;max-width:46ch}
+.ch .w{display:inline-block;opacity:0;transform:translateY(.4em);filter:blur(7px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1),filter .8s}
+.ch.on .w{opacity:1;transform:none;filter:none}
+.ch .n,.ch p{opacity:0;transition:opacity .7s .2s}
+.ch.on .n,.ch.on p{opacity:1}
+.ch h2,.ch p{text-shadow:0 2px 30px rgba(0,0,0,.65),0 1px 4px rgba(0,0,0,.5)}
+/* side index */
+.idx{position:absolute;right:clamp(16px,3.4vw,48px);top:50%;transform:translateY(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:0;pointer-events:none;opacity:0;transition:opacity .5s}
+.idx.on{opacity:1}
+.idx .rn{font-family:var(--disp);font-weight:400;font-size:15px;letter-spacing:.1em;color:rgba(236,229,216,.35);padding:10px 0;transition:color .5s,text-shadow .5s}
+.idx .rn.a{color:var(--champ);text-shadow:0 0 18px rgba(234,207,150,.5)}
+.idx .ln{width:1px;height:34px;background:rgba(236,229,216,.18)}
+.prog{position:absolute;left:0;bottom:0;height:1px;background:var(--gold);z-index:5;width:0;box-shadow:0 0 10px rgba(198,161,91,.7)}
+.loader{position:absolute;inset:0;z-index:9;display:grid;place-items:center;background:#000;transition:opacity 1s}
+.loader .in{text-align:center}
+.loader .in b{display:block;font-family:var(--disp);font-weight:300;font-size:30px;letter-spacing:.5em;margin-right:-.5em}
+.loader .ln{margin:20px auto 0;width:180px;height:1px;background:rgba(236,229,216,.14);overflow:hidden}
+.loader .ln i{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+.loader .lt{margin-top:13px;font:300 10px/1 var(--sans);letter-spacing:.34em;color:var(--mute);text-transform:uppercase}
+.loader.done{opacity:0;pointer-events:none}
+/* sections */
+.sec{padding:clamp(100px,16vh,180px) clamp(18px,6vw,100px);position:relative;text-align:center}
+.sec h2{margin-top:22px;font-family:var(--disp);font-weight:300;font-size:clamp(36px,4.8vw,80px);line-height:1.1;letter-spacing:.02em;max-width:22ch;margin-left:auto;margin-right:auto}
+.sec h2 em{font-style:italic;color:var(--champ)}
+.lead{margin:22px auto 0;color:rgba(236,229,216,.75);max-width:56ch;font-size:clamp(15px,1.25vw,18px);font-weight:300}
+/* pyramid */
+.pyr{margin:clamp(50px,8vh,90px) auto 0;max-width:720px;text-align:center}
+.tier{padding:34px 0;border-top:1px solid rgba(236,229,216,.14)}
+.tier:last-child{border-bottom:1px solid rgba(236,229,216,.14)}
+.tier .t{font:300 10px/1 var(--sans);letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.tier .ns{margin-top:14px;font-family:var(--disp);font-weight:300;font-size:clamp(22px,2.6vw,34px);line-height:1.3}
+.tier .ns i{font-style:italic;color:var(--champ)}
+.tier .d{margin-top:8px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+/* specs */
+.strip{margin:clamp(46px,8vh,84px) auto 0;display:grid;grid-template-columns:repeat(4,1fr);max-width:980px}
+.strip div{padding:6px 10px}
+.strip div+div{border-left:1px solid rgba(236,229,216,.16)}
+.strip b{display:block;font-family:var(--disp);font-weight:300;font-size:clamp(36px,4.4vw,66px);line-height:1;color:var(--cream)}
+.strip small{display:block;margin-top:10px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--mute)}
+/* reserve */
+.res{position:relative;overflow:hidden}
+.res:before{content:"";position:absolute;left:50%;top:46%;width:110vw;height:80vh;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(198,161,91,.12),transparent);pointer-events:none}
+.wform{position:relative;margin:36px auto 0;display:flex;gap:0;max-width:480px;border:1px solid rgba(236,229,216,.3)}
+.wform input{flex:1;font:300 15px/1 var(--sans);letter-spacing:.06em;color:var(--cream);background:transparent;border:0;padding:17px 22px;outline:none}
+.wform input::placeholder{color:var(--mute)}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:400 12px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;padding:17px 28px;border:1px solid transparent;background:var(--gold);color:#140e04;cursor:pointer;text-decoration:none;transition:background .3s,color .3s,border-color .3s;white-space:nowrap}
+.btn:hover{background:var(--champ)}
+.btn.ghost{background:transparent;border-color:rgba(236,229,216,.35);color:var(--cream)}
+.btn.ghost:hover{border-color:var(--cream)}
+.wnote{position:relative;margin-top:18px;font-size:12px;letter-spacing:.1em;color:var(--mute)}
+.end{padding-bottom:140px}
+.end p.about{margin:22px auto 0;max-width:50ch;color:rgba(236,229,216,.75)}
+.btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+.fine{margin:70px auto 0;font-size:12px;letter-spacing:.06em;color:var(--mute);max-width:70ch}
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (max-width:860px){
+ .strip{grid-template-columns:1fr 1fr;row-gap:34px}
+ .strip div:nth-child(3){border-left:0}
+ .ch h2{font-size:clamp(30px,8.4vw,48px)}
+ .idx{right:12px}
+ .wform{flex-direction:column;border:0;gap:12px}
+ .wform input{border:1px solid rgba(236,229,216,.3)}
+ .wform .btn{width:100%}
+ .top span{max-width:52vw}}
+@media (prefers-reduced-motion:reduce){.grain,.cue i{animation:none}}
+</style>
+
+</head>
+<body>
+<header class="top"><b>NOCTURNE</b><span>Concept demo · not a real brand</span></header>
+<section class="story" id="story" aria-label="Scroll-driven film of a faceted perfume flacon emerging from darkness">
+  <div class="stage" id="stage">
+    <video id="film" muted="" playsinline="" preload="auto"></video>
+    <div class="vig"></div>
+    <div class="grain"></div>
+    <div class="title" id="title"><div><h1 id="h1">NOCTURNE</h1><div class="rule"></div><p>Extrait de parfum · for the hours after midnight</p></div></div>
+    <div class="cue" id="cue">Scroll into the dark<i></i></div>
+    <div class="ch" data-a="0.03" data-b="0.17"><div class="in"><div class="n">I · Noir</div><h2>Perfume begins where <em>the light ends.</em></h2><p>A flacon waiting in total darkness</p></div></div>
+    <div class="ch" data-a="0.26" data-b="0.42"><div class="in"><div class="n">II · Or liquide</div><h2>Amber caught <em>mid-burn.</em></h2><p>Faceted glass · liquid gold · smoke</p></div></div>
+    <div class="ch" data-a="0.52" data-b="0.68"><div class="in"><div class="n">III · Peau</div><h2>Close enough <em>to touch.</em></h2><p>Condensation on cold crystal · skin distance</p></div></div>
+    <div class="ch" data-a="0.78" data-b="0.95"><div class="in"><div class="n">IV · Révélation</div><h2>Worn after dark. <em>Remembered longer.</em></h2><p>Nocturne No. 001 · first flacon</p></div></div>
+    <div class="idx" id="idx"><span class="rn">I</span><span class="ln"></span><span class="rn">II</span><span class="ln"></span><span class="rn">III</span><span class="ln"></span><span class="rn">IV</span></div>
+    <div class="prog" id="prog"></div>
+    <div class="loader" id="loader"><div class="in"><b>NOCTURNE</b><div class="ln"><i id="lb"></i></div><div class="lt" id="lp">Pouring</div></div></div>
+  </div>
+</section>
+<section class="sec">
+  <div class="rv"><div class="lbl">La matière</div>
+  <h2>One bottle. Cut like <em>a dark jewel.</em></h2>
+  <p class="lead">NOCTURNE is an extrait de parfum held in hand-cut faceted crystal, sealed with a black stone cap. No label on the glass — the amber inside is the label. Smoke, resin and warmth, composed to open slowly over a long night.</p></div>
+</section>
+<section class="sec">
+  <div class="rv"><div class="lbl">The pyramid</div>
+  <h2>It opens in <em>three acts.</em></h2></div>
+  <div class="pyr rv">
+    <div class="tier"><div class="t">Tête · first minutes</div><div class="ns">Black pepper · Bergamot · <i>Smoked saffron</i></div><div class="d">A struck match in a cold room</div></div>
+    <div class="tier"><div class="t">Cœur · first hours</div><div class="ns">Orris butter · Rose noire · <i>Incense</i></div><div class="d">The velvet middle of the night</div></div>
+    <div class="tier"><div class="t">Fond · until morning</div><div class="ns">Amber · Oud · <i>Bourbon vanilla</i></div><div class="d">What stays on the collar</div></div>
+  </div>
+</section>
+<section class="sec">
+  <div class="rv"><div class="lbl">On paper</div>
+  <h2>Little bottle, <em>long shadow.</em></h2></div>
+  <div class="strip rv">
+    <div><b>32%</b><small>extrait concentration</small></div>
+    <div><b>50ml</b><small>hand-cut crystal flacon</small></div>
+    <div><b>12h</b><small>on skin, longer on cloth</small></div>
+    <div><b>No. 001</b><small>first numbered batch</small></div>
+  </div>
+</section>
+<section class="sec res" id="res">
+  <div class="rv"><div class="lbl">First pouring</div>
+  <h2>Reserve a <em>numbered flacon.</em></h2>
+  <p class="lead">The first pouring is 500 bottles, each engraved by number. Leave your email to claim yours before the list opens.</p>
+  <form class="wform" id="wf"><input type="email" placeholder="you@email.com" aria-label="Email" required=""><button class="btn" type="submit">Reserve</button></form>
+  <p class="wnote" id="wnote">Demo form — this page is a concept, nothing is collected.</p></div>
+</section>
+<section class="sec end">
+  <div class="rv"><div class="lbl">Made by DLA</div>
+  <h2>This perfume doesn't exist.<br><em>The website does.</em></h2>
+  <p class="about">NOCTURNE is a fictional fragrance house we invented to show what a launch page can feel like. The film is AI-generated from product stills — no studio, no shoot, no bottle. Launching a real product? We'll build this for yours.</p>
+  <div class="btns"><a class="btn" href="../index.html">Back to DLA</a><a class="btn ghost" href="../index.html#contact">Talk to us</a></div>
+  <p class="fine">NOCTURNE is a fictional demonstration brand. All footage on this page is AI-generated. Built as a portfolio concept by DLA.</p></div>
+</section>
+<script>window.NOCT_ASSETS={"duration":26.209,"desktop":{"url":"https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/58b39cf9-d6f0-4698-bb5c-2de57850b0ba.mp4"},"mobile":{"url":"https://d2ol7oe51mr4n9.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/c6189d35-96c7-4eff-8f3d-1abe1339de84.mp4"}};</script><script>
+const A=window.NOCT_ASSETS;
+const $=id=>document.getElementById(id);
+const story=$('story'),vid=$('film');
+const mob=innerWidth<760;
+const V=mob?A.mobile:A.desktop;
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),sm=(a,b,x)=>{x=clamp((x-a)/(b-a));return x*x*(3-2*x)};
+async function blobURL(url,onp){const r=await fetch(url);const tot=+r.headers.get('content-length')||0;const rd=r.body.getReader();let got=0,ch=[];for(;;){const {done,value}=await rd.read();if(done)break;ch.push(value);got+=value.length;onp&&onp(tot?got/tot:0)}return URL.createObjectURL(new Blob(ch))}
+const chs=[...document.querySelectorAll('.ch')];
+chs.forEach(c=>{const h=c.querySelector('h2');h.innerHTML=h.innerHTML.replace(/(<em>.*?<\/em>|[^<\s]+)(\s|$)/g,(m,w,sp)=>`<span class="w">${w}</span>${sp}`);[...h.querySelectorAll('.w')].forEach((w,i)=>w.style.transitionDelay=(i*80)+'ms')});
+function prog(){const r=story.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight))}
+let cur=0,lastT=-1,ready=false;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const wf=$('wf');if(wf)wf.addEventListener('submit',e=>{e.preventDefault();$('wnote').textContent='This is a demo page — but flacon No. 001 would have just been claimed.';wf.querySelector('input').value='';});
+const title=$('title'),cue=$('cue'),idx=$('idx'),progEl=$('prog');
+const rns=[...document.querySelectorAll('.idx .rn')];
+function frame(){
+ if(ready){const tgt=prog();cur+=(tgt-cur)*.16;if(Math.abs(tgt-cur)<.0002)cur=tgt;
+ const t=cur*A.duration;
+ if(Math.abs(t-lastT)>1/48&&vid.readyState>=2){vid.currentTime=Math.min(t,A.duration-.06);lastT=t;}
+ const ti=1-sm(0,.05,cur);title.style.opacity=ti;title.style.transform=`scale(${1+.05*(1-ti)})`;title.style.filter=`blur(${(1-ti)*9}px)`;cue.style.opacity=1-sm(0,.015,cur);
+ chs.forEach((c,i)=>{const on=cur>+c.dataset.a&&cur<+c.dataset.b;c.classList.toggle('on',on);rns[i].classList.toggle('a',on)});
+ idx.classList.toggle('on',cur>.04&&cur<.97);
+ progEl.style.width=(cur*100)+'%';}
+ requestAnimationFrame(frame);}
+(async()=>{
+ const set=(f,l)=>{$('lb').style.width=(f*100)+'%';$('lp').textContent=l};
+ const vurl=await blobURL(V.url,f=>set(f,'Pouring '+Math.round(f*100)+'%'));
+ vid.src=vurl;await new Promise(r=>{vid.onloadeddata=r;vid.load()});
+ ready=true;$('loader').classList.add('done');window.__ready=1;requestAnimationFrame(frame);
+})();
+</script><div class="fl-demo-flag" role="note" dir="ltr" style="position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2147483647;pointer-events:none;font:500 11px/1.35 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;letter-spacing:.02em;color:#f3efe6;background:rgba(10,10,12,.8);border:1px solid rgba(255,255,255,.2);padding:6px 13px;border-radius:999px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis;box-shadow:0 4px 18px rgba(0,0,0,.35)">Concept demo by DLA · Not a real business</div>
+</body></html>
