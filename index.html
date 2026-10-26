@@ -114,11 +114,27 @@ section{padding:88px 0}
 @media (max-width:560px){.work{grid-template-columns:1fr}}
 
 /* promise */
-.promise{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.promise{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
 .promise div{padding:26px;border-radius:var(--radius);background:#fff;border:1px solid var(--line)}
 .promise h3{margin:0 0 6px;font-size:20px}
 .promise p{margin:0;color:var(--muted);font-size:16px}
-@media (max-width:900px){.promise{grid-template-columns:1fr}}
+@media (max-width:1000px){.promise{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.promise{grid-template-columns:1fr}}
+
+/* calc */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.calc .in{display:grid;gap:16px;align-content:start}
+.cfield label{display:block;font-size:15px;color:var(--muted);margin-bottom:8px}
+.cwrap{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 16px}
+.cwrap input{flex:1;min-width:0;border:0;outline:none;font:inherit;font-size:22px;font-weight:700;padding:10px 0;background:transparent;color:var(--ink)}
+.cwrap span{color:var(--muted);font-size:17px}
+.cwrap:focus-within{border-color:var(--blue)}
+.calc .out{background:var(--ink);color:#fff;border-radius:var(--radius);padding:30px;display:grid;gap:10px;align-content:center}
+.calc .out small{color:#A3A3A3;font-size:15px}
+.calc .out .big{font-size:clamp(26px,3.2vw,40px);font-weight:800;line-height:1.2}
+.calc .out .big em{font-style:normal;color:#8AB4FF}
+.calc .out p{margin:0;color:#D4D4D4;font-size:16px}
+@media (max-width:900px){.calc{grid-template-columns:1fr}}
 
 /* contact */
 .contact{background:var(--ink);color:#fff;border-radius:28px;padding:clamp(32px,6vw,72px);display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
@@ -151,6 +167,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
         <li><a href="#services">שירותים</a></li>
         <li><a href="#process">איך זה עובד</a></li>
         <li><a href="#work">עבודות</a></li>
+        <li><a href="#calc">המחשבון</a></li>
         <li><a href="#contact">צור קשר</a></li>
       </ul>
     </nav>
@@ -225,8 +242,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
       <ol class="steps">
         <li class="reveal"><h3>שיחת היכרות</h3><p>מבינים את העסק, את הלקוח שלך ומה עובד היום.</p></li>
         <li class="reveal"><h3>עושים חשבון</h3><p>כמה שווה לך לקוח חדש, וכמה אפשר לשלם על פנייה ועדיין להרוויח.</p></li>
-        <li class="reveal"><h3>בונים ומעלים</h3><p>מודעות, שאלון סינון ודף נחיתה. אתה מאשר כל דבר לפני שהוא עולה.</p></li>
-        <li class="reveal"><h3>לידים ודוח שבועי</h3><p>פניות בוואטסאפ, ודוח קצר: כמה הוצאנו, כמה פניות, כמה עלתה כל אחת.</p></li>
+        <li class="reveal"><h3>פיילוט 30 יום</h3><p>מודעות, שאלון סינון ודף נחיתה עולים לאוויר לחודש ניסיון עם יעד ברור. אתה מאשר הכול לפני.</p></li>
+        <li class="reveal"><h3>לידים ועדכון כל שבוע</h3><p>פניות מסוננות ישר לוואטסאפ שלך, ועדכון שבועי קבוע: כמה פניות, כמה עברו סינון, כמה פגישות.</p></li>
       </ol>
     </div>
   </section>
@@ -265,6 +282,32 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
         <div class="reveal"><h3>מספרים, לא תחושות</h3><p>לפני שמוציאים שקל על פרסום, מחשבים כמה שווה לך לקוח ומה המחיר המקסימלי לפנייה.</p></div>
         <div class="reveal"><h3>הכול שקוף</h3><p>חשבון המודעות שלך, הנתונים שלך. רואים בדיוק לאן הולך כל שקל.</p></div>
         <div class="reveal"><h3>פניות איכותיות</h3><p>עדיף עשר פניות מסוננות מאשר מאה טלפונים של אנשים שרק שואלים מחיר.</p></div>
+        <div class="reveal"><h3>עדכון שבועי קבוע</h3><p>כל שבוע וואטסאפ מסודר: כמה פניות היו, כמה עברו סינון וכמה פגישות נקבעו. אתה תמיד יודע מה קורה.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calc" class="soft">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <p class="kicker">המחשבון</p>
+          <h2>כמה שווה לך לקוח חדש?</h2>
+        </div>
+      </div>
+      <p class="note" style="margin:0 0 24px">ככה אנחנו בודקים, עוד לפני שמוציאים שקל, אם שיווק ממומן משתלם לעסק שלך. שנה את המספרים לשל העסק שלך:</p>
+      <div class="calc reveal">
+        <div class="in">
+          <div class="cfield"><label for="cVal">כמה שווה לך עסקה ממוצעת (למשל מטבח אחד)</label><div class="cwrap"><input id="cVal" type="number" inputmode="numeric" value="70000" min="0"><span>₪</span></div></div>
+          <div class="cfield"><label for="cMar">אחוז הרווח הגולמי שלך</label><div class="cwrap"><input id="cMar" type="number" inputmode="numeric" value="40" min="1" max="95"><span>%</span></div></div>
+          <div class="cfield"><label for="cInv">השקעה חודשית בשיווק (ניהול + תקציב פרסום)</label><div class="cwrap"><input id="cInv" type="number" inputmode="numeric" value="6000" min="0"><span>₪</span></div></div>
+        </div>
+        <div class="out" aria-live="polite">
+          <small>כדי שההשקעה תחזיר את עצמה, מספיקה</small>
+          <div class="big" id="cBig"></div>
+          <p id="cSub"></p>
+          <p style="color:#A3A3A3;font-size:14px">כל עסקה מעבר לזה היא רווח נקי מהשיווק.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -308,6 +351,28 @@ else document.querySelectorAll('.js-mail').forEach(a => a.remove());
 document.getElementById('y').textContent = new Date().getFullYear();
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* calculator */
+(function(){
+  const V=document.getElementById('cVal'),M=document.getElementById('cMar'),I=document.getElementById('cInv');
+  if(!V)return;
+  const B=document.getElementById('cBig'),S=document.getElementById('cSub');
+  const nis=n=>'\u20aa'+Math.round(n).toLocaleString('he-IL');
+  function go(){
+    const v=+V.value||0,m=(+M.value||0)/100,inv=+I.value||0;
+    const perDeal=v*m;
+    if(!perDeal||!inv){B.textContent='\u05de\u05dc\u05d0\u05d5 \u05d0\u05ea \u05d4\u05de\u05e1\u05e4\u05e8\u05d9\u05dd';S.textContent='';return;}
+    const deals=inv/perDeal;
+    if(deals<=1){
+      const months=1/deals;
+      B.innerHTML='\u05e2\u05e1\u05e7\u05d4 \u05d0\u05d7\u05ea \u05db\u05dc <em>'+(months<1.05?'\u05d7\u05d5\u05d3\u05e9':(Math.round(months*10)/10)+' \u05d7\u05d5\u05d3\u05e9\u05d9\u05dd')+'</em>';
+    }else{
+      B.innerHTML='<em>'+(Math.round(deals*10)/10)+'</em> \u05e2\u05e1\u05e7\u05d0\u05d5\u05ea \u05d1\u05d7\u05d5\u05d3\u05e9';
+    }
+    S.textContent='\u05d4\u05e8\u05d5\u05d5\u05d7 \u05de\u05e2\u05e1\u05e7\u05d4 \u05d0\u05d7\u05ea \u05d0\u05e6\u05dc\u05da: '+nis(perDeal)+' \u00b7 \u05db\u05d3\u05d9 \u05dc\u05d0\u05d6\u05df '+nis(inv)+' \u05d1\u05d7\u05d5\u05d3\u05e9 \u05e6\u05e8\u05d9\u05da '+nis(inv/m)+' \u05de\u05db\u05d9\u05e8\u05d5\u05ea';
+  }
+  [V,M,I].forEach(el=>el.addEventListener('input',go));go();
+})();
 </script>
 </body>
 </html>
