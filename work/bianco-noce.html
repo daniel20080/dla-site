@@ -214,7 +214,10 @@ function paint(v){if(!v||v.readyState<2)return;const W=cv.width,H=cv.height,vw=v
  ctx.imageSmoothingQuality='high';ctx.filter='url(#sharp)';ctx.drawImage(v,(W-dw)/2,(H-dh)/2,dw,dh);ctx.filter='none';dirty=false;}
 function prog(){const r=story.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight));}
 function frame(){requestAnimationFrame(frame);
- const p=prog();cur+=(p-cur)*(RM?1:.15);if(Math.abs(p-cur)<.0003)cur=p;
+ const p=prog();
+ if(RM)cur=p;
+ else{let d=(p-cur)*.12;const MX=.0038;if(d>MX)d=MX;else if(d<-MX)d=-MX;cur+=d;}
+ if(Math.abs(p-cur)<.0003)cur=p;
  $('prog').style.width=(cur*100)+'%';
  const idx=cur<(SEG[0][1]+SEG[1][0])/2?0:1;const v=vids[idx];
  if(v&&v.duration){
