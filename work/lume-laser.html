@@ -3,11 +3,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>LUMÉ · סטודיו להסרת שיער בלייזר</title>
-<meta name="description" content="LUMÉ היא קליניקה דמיונית. אתר קונספט של DLA: מודעה שמובילה לוואטסאפ, עם 4 שאלות אוטומטיות שמביאות לקליניקה פניות מוכנות לקביעת תור.">
+<meta name="description" content="LUMÉ היא קליניקה דמיונית. אתר קונספט של DLA: דף נחיתה עם שאלון התאמה קצר שמביא לקליניקה פניות מוכנות לקביעת תור.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500&family=Assistant:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-/* Layout: split hero → areas & prices → how it works → click-to-WhatsApp chat demo with 4 auto questions with the clinic's view of the lead → FAQ → closing CTA */
+/* Layout: split hero → areas & prices → how it works → the 4-question match quiz (→ WhatsApp) with the clinic's view of the lead → FAQ → closing CTA */
 :root{
  --ivory:#f8f3ed; --sand:#ece2d6; --paper:#fffdfa; --ink:#2b2420; --mute:#857a70; --clay:#b07a66; --clay-d:#8f5d4b; --line:rgba(43,36,32,.12);
  --serif:'Frank Ruhl Libre','Times New Roman',serif; --sans:'Assistant',system-ui,Arial,sans-serif; --latin:'Cormorant Garamond',Georgia,serif;
@@ -103,33 +103,35 @@ section{padding:clamp(80px,11vw,140px) 0}
 #match h2{color:#fff}
 #match .lead{color:#c9bdb2}
 .qgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,56px);margin-top:54px;align-items:start}
-.phone{background:#0b141a;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;height:600px;box-shadow:0 30px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08)}
-.chead{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#202c33;color:#e9edef}
-.chead .av{flex:none;width:40px;height:40px;border-radius:50%;background:#d6a896;color:#2b2420;display:grid;place-items:center;font-family:var(--latin);font-size:22px}
-.chead b{display:block;font-size:16px;font-weight:600}
-.chead small{color:#8696a0;font-size:12.5px}
-.chead .restart{margin-inline-start:auto;color:#8696a0;font-size:13px;text-decoration:underline;text-underline-offset:3px}
-.cbody{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:8px;background:#0b141a}
-.adref{align-self:center;background:#182229;color:#8696a0;font-size:12.5px;border-radius:8px;padding:6px 12px;margin-bottom:6px;text-align:center}
-.m{max-width:84%;padding:8px 11px 6px;border-radius:10px;font-size:15px;line-height:1.5;color:#e9edef;white-space:pre-wrap;animation:pop .35s cubic-bezier(.2,.7,.2,1)}
-.m small{display:block;text-align:left;direction:ltr;color:#8696a0;font-size:10.5px;margin-top:2px}
-.m.in{background:#202c33;align-self:flex-start;border-top-right-radius:2px}
-.m.out{background:#005c4b;align-self:flex-end;border-top-left-radius:2px}
-.typing{align-self:flex-start;background:#202c33;border-radius:10px;padding:10px 14px;display:flex;gap:4px}
-.typing i{width:6px;height:6px;border-radius:50%;background:#8696a0;animation:blink 1s infinite}
-.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
-@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
-@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.cfoot{background:#202c33;padding:12px;display:flex;flex-wrap:wrap;gap:8px;min-height:66px;align-items:center}
-.chip{border:1px solid #2a3942;background:#111b21;color:#53bdeb;border-radius:999px;padding:9px 15px;font-size:14.5px;transition:background .2s,color .2s}
-.chip:hover{background:#182229}
-.chip[aria-pressed="true"]{background:#53bdeb;color:#0b141a;border-color:#53bdeb;font-weight:600}
-.chip.go{background:#00a884;border-color:#00a884;color:#0b141a;font-weight:600}
-.chip.go:disabled{opacity:.4;cursor:not-allowed}
-.cfoot input{flex:1;min-width:120px;font:inherit;font-size:15px;background:#2a3942;border:0;border-radius:999px;color:#e9edef;padding:10px 14px}
-.cfoot input::placeholder{color:#8696a0}
-.cfoot input:focus{outline:2px solid #00a884}
-.cfoot .note{color:#8696a0;font-size:13.5px;width:100%;text-align:center}
+.quiz{background:#352d28;border-radius:22px;padding:clamp(22px,3.4vw,40px);min-height:470px;display:flex;flex-direction:column}
+.qtop{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#b9ada2;margin-bottom:22px}
+.bar{height:3px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden;margin-bottom:28px}
+.bar i{display:block;height:100%;width:25%;background:#d6a896;transition:width .5s}
+.q{display:none;flex:1;flex-direction:column}
+.q.on{display:flex;animation:qin .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes qin{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.q h3{font-size:clamp(26px,2.8vw,36px);color:#fff;margin-bottom:8px}
+.q p.hint{color:#b9ada2;font-size:15px;margin-bottom:22px}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:12px 20px;font-size:16px;color:#efe6dd;transition:background .2s,border-color .2s,color .2s}
+.opt:hover{border-color:#d6a896}
+.opt[aria-pressed="true"]{background:#d6a896;border-color:#d6a896;color:#2b2420;font-weight:600}
+.fields{display:grid;gap:12px;max-width:420px}
+.fields label{font-size:14px;color:#b9ada2}
+.fields input{font:inherit;font-size:17px;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.3);color:#fff;padding:10px 2px;width:100%}
+.fields input:focus{outline:none;border-color:#d6a896}
+.qnav{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:30px}
+.qnav .back{color:#b9ada2;font-size:15px;text-decoration:underline;text-underline-offset:4px}
+.qnav .btn{background:#d6a896;color:#2b2420}
+.qnav .btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.done{display:none;flex:1;flex-direction:column}
+.done.on{display:flex;animation:qin .5s}
+.done h3{font-size:clamp(28px,3vw,40px);color:#fff;margin-bottom:10px}
+.done p{color:#c9bdb2}
+.wa{margin-top:24px;background:#0b141a;border-radius:16px;padding:16px;max-width:440px}
+.wa .bub{background:#005c4b;color:#e9edef;border-radius:10px 10px 2px 10px;padding:10px 12px;font-size:15px;line-height:1.5;white-space:pre-wrap;margin-right:auto;max-width:92%}
+.wa small{display:block;text-align:left;color:#8696a0;font-size:11px;margin-top:4px;direction:ltr}
+.done .btn{margin-top:22px;align-self:flex-start;background:#25d366;color:#0b141a}
 /* clinic-side view */
 .side{border:1px dashed rgba(255,255,255,.25);border-radius:22px;padding:clamp(22px,3vw,32px)}
 .side .eyebrow{display:block;margin-bottom:10px}
@@ -173,7 +175,7 @@ footer a{color:var(--ink)}
 <header class="nav" id="nav"><div class="wrap">
  <a class="logo" href="#top">LUMÉ<small>LASER STUDIO</small></a>
  <ul><li><a href="#areas">אזורים ומחירים</a></li><li><a href="#how">איך זה עובד</a></li><li><a href="#faq">שאלות</a></li></ul>
- <a class="btn solid" href="#match">לוואטסאפ</a>
+ <a class="btn solid" href="#match">בדיקת התאמה</a>
 </div></header>
 
 <main id="top">
@@ -183,7 +185,7 @@ footer a{color:var(--ink)}
   <h1>עור חלק.<br><em>בלי לחשוב</em> על זה שוב.</h1>
   <p class="lead">לייזר דיודה מתקדם, בסטודיו פרטי ושקט. טיפולים קצרים, תחושה נעימה, ותוכנית טיפול שמותאמת לגוון העור ולסוג השיער שלך.</p>
   <div class="row">
-   <a class="btn solid" href="#match">שיחה בוואטסאפ ב-30 שניות</a>
+   <a class="btn solid" href="#match">בדיקת התאמה ב-30 שניות</a>
    <a class="btn line" href="#areas">מחירון</a>
   </div>
   <div class="gift"><b>✦</b>טיפול היכרות באזור קטן, במתנה למצטרפות החודש</div>
@@ -219,7 +221,7 @@ footer a{color:var(--ink)}
 <section id="how"><div class="wrap">
  <div class="reveal"><span class="eyebrow">איך זה עובד</span><h2>שלושה צעדים, בלי הפתעות</h2></div>
  <div class="steps">
-  <div class="step reveal"><i>01</i><h3>4 שאלות בוואטסאפ</h3><p>שולחים לנו הודעה, עונים בכמה לחיצות, ומקבלים תוכנית ומחיר מדויק.</p></div>
+  <div class="step reveal"><i>01</i><h3>התאמה קצרה</h3><p>עונים על 4 שאלות כאן באתר, ואנחנו חוזרות אלייך בוואטסאפ עם תוכנית ומחיר מדויק.</p></div>
   <div class="step reveal"><i>02</i><h3>טיפול ראשון</h3><p>בדיקת רגישות, הסבר קצר, וטיפול של 15–40 דקות בחדר פרטי.</p></div>
   <div class="step reveal"><i>03</i><h3>סדרה ומעקב</h3><p>תזכורת לכל טיפול בוואטסאפ, ובדיקת התקדמות אחרי הטיפול השלישי.</p></div>
  </div>
@@ -239,18 +241,46 @@ footer a{color:var(--ink)}
 </div></section>
 
 <section id="match"><div class="wrap">
- <div class="reveal"><span class="eyebrow">ישר לוואטסאפ</span><h2>לוחצים על המודעה, ועונים על 4 שאלות בצ׳אט</h2><p class="lead">בלי טופס ובלי לחכות לטלפון. הלקוחה עונה בוואטסאפ בכמה לחיצות, והקליניקה מקבלת פנייה מסוננת ומוכנה לתור. נסו בעצמכם:</p></div>
+ <div class="reveal"><span class="eyebrow">בדיקת התאמה</span><h2>4 שאלות, ונחזור אלייך עם תוכנית</h2><p class="lead">בלי טופס ארוך ובלי שיחת מכירה. עונים, ואנחנו שולחות לך בוואטסאפ את מספר הטיפולים והמחיר.</p></div>
  <div class="qgrid">
-  <div class="phone reveal" aria-label="הדגמה: שיחת וואטסאפ עם LUMÉ">
-   <div class="chead"><span class="av">L</span><div><b>LUMÉ Laser Studio</b><small>חשבון עסקי · עונה מיד</small></div><button class="restart" type="button" id="restart">התחלה מחדש</button></div>
-   <div class="cbody" id="cbody" aria-live="polite"></div>
-   <div class="cfoot" id="cfoot"></div>
+  <div class="quiz reveal" id="quiz" aria-live="polite">
+   <div class="qtop"><span id="qcount">שאלה 1 מתוך 4</span><span>~30 שניות</span></div>
+   <div class="bar"><i id="qbar"></i></div>
+
+   <div class="q on" data-q="area" data-multi>
+    <h3>איזה אזור תרצי לטפל?</h3><p class="hint">אפשר לבחור כמה</p>
+    <div class="opts"><button class="opt" type="button">בית שחי</button><button class="opt" type="button">פנים</button><button class="opt" type="button">ביקיני</button><button class="opt" type="button">רגליים</button><button class="opt" type="button">זרועות</button><button class="opt" type="button">גב וכתפיים</button></div>
+   </div>
+   <div class="q" data-q="before">
+    <h3>עשית לייזר בעבר?</h3><p class="hint">זה עוזר לנו לדעת מאיפה מתחילים</p>
+    <div class="opts"><button class="opt" type="button">לא, פעם ראשונה</button><button class="opt" type="button">כן, ולא סיימתי</button><button class="opt" type="button">כן, צריך חיזוק</button></div>
+   </div>
+   <div class="q" data-q="when">
+    <h3>מתי תרצי להתחיל?</h3><p class="hint">יש תורים פנויים גם השבוע</p>
+    <div class="opts"><button class="opt" type="button">כבר השבוע</button><button class="opt" type="button">במהלך החודש</button><button class="opt" type="button">רק בודקת מחירים</button></div>
+   </div>
+   <div class="q" data-q="contact">
+    <h3>לאן לשלוח את התוכנית?</h3><p class="hint">נחזור אלייך בוואטסאפ, בדרך כלל תוך שעה</p>
+    <div class="fields">
+     <label for="fname">שם</label><input id="fname" autocomplete="given-name" placeholder="איך קוראים לך?">
+     <label for="fcity">עיר</label><input id="fcity" autocomplete="address-level2" placeholder="למשל: רמת גן">
+    </div>
+   </div>
+
+   <div class="done" id="done">
+    <h3>מעולה, הכל מוכן ✓</h3>
+    <p>ככה תיראה ההודעה שתגיע לקליניקה בוואטסאפ:</p>
+    <div class="wa"><div class="bub" id="wamsg"></div><small id="watime"></small></div>
+    <a class="btn" id="wabtn" href="#" target="_blank" rel="noopener">שליחה בוואטסאפ</a>
+   </div>
+
+   <div class="qnav" id="qnav"><button class="back" type="button" id="qback" hidden>חזרה</button><button class="btn" type="button" id="qnext" disabled>המשך</button></div>
   </div>
 
   <aside class="side reveal">
    <span class="eyebrow">מה הקליניקה רואה</span>
    <h3>פנייה שמוכנה לקביעת תור</h3>
-   <p>כל שיחה מגיעה לוואטסאפ של הקליניקה עם כל התשובות, ומסומנת לפי כמה היא מוכנה להתחיל.</p>
+   <p>כל מי שעונה על השאלון מגיעה לוואטסאפ של הקליניקה עם כל הפרטים, ומסומנת לפי כמה היא מוכנה להתחיל.</p>
    <div class="card">
     <div class="top"><b id="cName">נועה</b><span class="badge hot" id="cBadge">חמה · השבוע</span></div>
     <dl>
@@ -283,14 +313,14 @@ footer a{color:var(--ink)}
 <section class="close"><div class="wrap reveal">
  <span class="eyebrow">LUMÉ LASER STUDIO</span>
  <h2>הקיץ הבא מתחיל מהטיפול הראשון</h2>
- <p class="lead">4 שאלות קצרות בוואטסאפ, ותוכנית מלאה מחכה לך.</p>
- <a class="btn solid" href="#match">להתחלת שיחה</a>
+ <p class="lead">30 שניות של שאלות, ותוכנית מלאה מחכה לך בוואטסאפ.</p>
+ <a class="btn solid" href="#match">לבדיקת התאמה</a>
 </div></section>
 </main>
 
 <footer><div class="wrap">
  <span>© LUMÉ Laser Studio · קליניקה דמיונית</span>
- <span>קמפיינים ואוטומציה לוואטסאפ: <a href="https://dlaleads.com">DLA – Digital Leads Agency</a></span>
+ <span>עיצוב, שאלון וקמפיינים: <a href="https://dlaleads.com">DLA – Digital Leads Agency</a></span>
 </div></footer>
 
 <script>
@@ -299,45 +329,34 @@ footer a{color:var(--ink)}
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
  const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>10),{passive:true});
 
- const $=id=>document.getElementById(id),body=$('cbody'),foot=$('cfoot');
- const ans={area:[],before:'',when:'',name:'',city:''};let run=0;
- const t=()=>{const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};
- const wait=ms=>new Promise(r=>setTimeout(r,ms));
+ const qs=[...document.querySelectorAll('.q')],next=document.getElementById('qnext'),back=document.getElementById('qback'),
+  bar=document.getElementById('qbar'),cnt=document.getElementById('qcount'),done=document.getElementById('done'),qnav=document.getElementById('qnav');
+ const ans={area:[],before:'',when:'',name:'',city:''};let i=0;
+ const $=id=>document.getElementById(id);
+ function valid(){const q=qs[i].dataset.q;if(q==='area')return ans.area.length>0;if(q==='contact')return $('fname').value.trim()&&$('fcity').value.trim();return !!ans[q];}
  function card(){
   $('cName').textContent=ans.name||'נועה';$('cArea').textContent=ans.area.length?ans.area.join(', '):'בית שחי, רגליים';
   $('cBefore').textContent=ans.before||'פעם ראשונה';$('cWhen').textContent=ans.when||'כבר השבוע';$('cCity').textContent=ans.city||'רמת גן';
   const w=ans.when||'כבר השבוע',b=$('cBadge');
   if(w==='כבר השבוע'){b.textContent='חמה · השבוע';b.className='badge hot'}else if(w==='במהלך החודש'){b.textContent='פושרת · החודש';b.className='badge hot'}else{b.textContent='בודקת מחירים';b.className='badge'}
  }
- function msg(txt,dir){const m=document.createElement('div');m.className='m '+dir;m.textContent=txt;const s=document.createElement('small');s.textContent=t()+(dir==='out'?' ✓✓':'');m.appendChild(s);body.appendChild(m);body.scrollTop=body.scrollHeight;}
- async function bot(txt,r){const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';body.appendChild(ty);body.scrollTop=body.scrollHeight;await wait(900);if(r!==run)return false;ty.remove();msg(txt,'in');return true;}
- function chips(opts,multi){return new Promise(res=>{foot.innerHTML='';const sel=new Set();
-  opts.forEach(o=>{const c=document.createElement('button');c.type='button';c.className='chip';c.textContent=o;
-   c.onclick=()=>{if(multi){sel.has(o)?sel.delete(o):sel.add(o);c.setAttribute('aria-pressed',sel.has(o));go.disabled=!sel.size}else{foot.innerHTML='';res(o)}};foot.appendChild(c)});
-  let go;if(multi){go=document.createElement('button');go.type='button';go.className='chip go';go.textContent='שליחה ✓';go.disabled=true;go.onclick=()=>{foot.innerHTML='';res([...sel])};foot.appendChild(go)}
- })}
- function field(ph,ac){return new Promise(res=>{foot.innerHTML='';const i=document.createElement('input');i.placeholder=ph;i.autocomplete=ac;i.setAttribute('aria-label',ph);
-  const g=document.createElement('button');g.type='button';g.className='chip go';g.textContent='שליחה';g.disabled=true;
-  i.oninput=()=>g.disabled=!i.value.trim();const send=()=>{if(i.value.trim()){const v=i.value.trim();foot.innerHTML='';res(v)}};
-  g.onclick=send;i.onkeydown=e=>{if(e.key==='Enter')send()};foot.append(i,g);})}
- async function start(){const r=++run;Object.assign(ans,{area:[],before:'',when:'',name:'',city:''});card();body.innerHTML='';foot.innerHTML='<span class="note">מתחילים…</span>';
-  const ref=document.createElement('div');ref.className='adref';ref.textContent='הגעת מהמודעה של LUMÉ באינסטגרם';body.appendChild(ref);
-  await wait(400);if(r!==run)return;msg('היי, ראיתי את המודעה ואשמח לפרטים 🙂','out');
-  if(!await bot('היי! כאן LUMÉ ✨\nכדי שנשלח לך מחיר ותוכנית מדויקים, 4 שאלות קצרות (30 שניות).\n\nאיזה אזור תרצי לטפל? אפשר לבחור כמה',r))return;
-  const a=await chips(['בית שחי','פנים','ביקיני','רגליים','זרועות','גב וכתפיים'],true);if(r!==run)return;ans.area=a;card();msg(a.join(', '),'out');
-  if(!await bot('עשית לייזר בעבר?',r))return;
-  const b=await chips(['לא, פעם ראשונה','כן, ולא סיימתי','כן, צריך חיזוק']);if(r!==run)return;ans.before=b;card();msg(b,'out');
-  if(!await bot('מתי תרצי להתחיל? יש תורים פנויים גם השבוע',r))return;
-  const w=await chips(['כבר השבוע','במהלך החודש','רק בודקת מחירים']);if(r!==run)return;ans.when=w;card();msg(w,'out');
-  if(!await bot('ואיך קוראים לך?',r))return;
-  const n=await field('השם שלך','given-name');if(r!==run)return;ans.name=n;card();msg(n,'out');
-  if(!await bot('נעים מאוד '+n+'! מאיזו עיר?',r))return;
-  const c=await field('למשל: רמת גן','address-level2');if(r!==run)return;ans.city=c;card();msg(c,'out');
-  const end=w==='רק בודקת מחירים'?'תודה '+n+'! שולחות לך עכשיו את המחירון המלא לאזורים שבחרת 🙂':'תודה '+n+'! יועצת של LUMÉ חוזרת אלייך היום עם תוכנית, מחיר ותור פנוי 🙂';
-  if(!await bot(end,r))return;foot.innerHTML='<span class="note">ככה זה נראה אצל הלקוחה. בכרטיס: מה הקליניקה מקבלת</span>';}
- $('restart').onclick=start;
- let started=false;new IntersectionObserver((es,o)=>{if(es[0].isIntersecting&&!started){started=true;start();o.disconnect()}},{threshold:.3}).observe($('cbody'));
- card();
+ function show(){qs.forEach((q,k)=>q.classList.toggle('on',k===i));cnt.textContent='שאלה '+(i+1)+' מתוך 4';bar.style.width=((i+1)*25)+'%';back.hidden=i===0;next.disabled=!valid();next.textContent=i===3?'לקבלת התוכנית':'המשך';}
+ qs.forEach(q=>{const key=q.dataset.q,multi=q.hasAttribute('data-multi');
+  q.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{
+   const v=o.textContent.trim();
+   if(multi){const on=o.getAttribute('aria-pressed')==='true';o.setAttribute('aria-pressed',!on);ans[key]=on?ans[key].filter(x=>x!==v):[...ans[key],v];}
+   else{q.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',x===o));ans[key]=v;setTimeout(()=>{if(i<3){i++;show()}},260);}
+   next.disabled=!valid();card();
+  }));
+ });
+ ['fname','fcity'].forEach(id=>$(id).addEventListener('input',()=>{ans.name=$('fname').value.trim();ans.city=$('fcity').value.trim();next.disabled=!valid();card();}));
+ next.addEventListener('click',()=>{if(!valid())return;if(i<3){i++;show();return}
+  const msg='היי LUMÉ, אני '+ans.name+' מ'+ans.city+' 🙂\nרוצה להתחיל טיפולי לייזר.\n\nאזורים: '+ans.area.join(', ')+'\nניסיון קודם: '+ans.before+'\nמתי: '+ans.when;
+  $('wamsg').textContent=msg;const d=new Date();$('watime').textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' ✓✓';
+  $('wabtn').href='https://wa.me/?text='+encodeURIComponent(msg);
+  qs.forEach(q=>q.classList.remove('on'));qnav.style.display='none';done.classList.add('on');bar.style.width='100%';cnt.textContent='הושלם';});
+ back.addEventListener('click',()=>{if(i>0){i--;show()}});
+ show();card();
 })();
 </script>
 </body></html>
