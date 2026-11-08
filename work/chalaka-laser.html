@@ -145,7 +145,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <div><span class="big" id="hours">26</span> <span class="unit">שעות בשנה</span></div>
   <ul>
    <li><span>זה בערך</span><b id="eps">52 פרקים של סדרה</b></li>
-   <li><span>על סכינים וקצף</span><b id="money">~520 ₪ בשנה</b></li>
+   <li><span>על סכינים וקצף</span><b id="money">כ-520 ₪ בשנה</b></li>
    <li><span>אחרי סדרת לייזר</span><b>כמעט 0</b></li>
   </ul>
  </div>
@@ -188,7 +188,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
  const out=()=>{const T=+t.value,M=+m.value,h=Math.round(T*M*52/60);
   document.getElementById('tOut').textContent=T;document.getElementById('mOut').textContent=M;
   document.getElementById('hours').textContent=h;document.getElementById('eps').textContent=Math.round(h*2)+' פרקים של סדרה';
-  document.getElementById('money').textContent='~'+(Math.round(T*52*3.3/10)*10).toLocaleString('he-IL')+' ₪ בשנה'};
+  document.getElementById('money').textContent='כ-'+(Math.round(T*52*3.3/10)*10).toLocaleString('he-IL')+' ₪ בשנה'};
  [t,m].forEach(i=>i.addEventListener('input',out));out();
 
  const ans={area:[],when:''};

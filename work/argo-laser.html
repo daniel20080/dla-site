@@ -56,7 +56,8 @@ header nav a{text-decoration:none}
 .word[aria-pressed="true"]{color:var(--char)}
 .word[aria-pressed="true"]::after{content:"";position:absolute;inset-inline-start:0;bottom:.08em;width:100%;height:.06em;background:var(--rust)}
 .read{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #D2CBBB}
-.read div{padding:18px 0;border-inline-end:1px solid #D2CBBB;padding-inline-end:18px}
+.read div{padding:18px;border-inline-end:1px solid #D2CBBB}
+.read div:first-child{padding-inline-start:0}
 .read div:last-child{border:0}
 .read small{display:block;color:#6E6A60;font-size:14px}
 .read b{font-family:var(--disp);font-size:46px;line-height:1}
