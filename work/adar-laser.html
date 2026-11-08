@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>אדר · מרפאה לאסתטיקה ולייזר</title>
+<meta name="description" content="אדר היא מרפאה דמיונית. אתר קונספט של DLA: דף נחיתה עם מפת גוף אינטראקטיבית ושאלון התאמה שמביא פניות מוכנות לקביעת תור.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Noto+Sans+Hebrew:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ADAR — clinical trust. Signature: interactive body map that prices the plan and feeds the match quiz. */
+:root{
+ --paper:#F6F8F7; --white:#FFFFFF; --ink:#0F3A40; --ink-2:#3F5F64; --mint:#9ED9CF; --mint-d:#2E8F82; --steel:#6E8388; --coral:#E5674F; --line:rgba(15,58,64,.12);
+ --head:'Rubik',system-ui,sans-serif; --body:'Noto Sans Hebrew','Rubik',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+.wrap>*,.planner>*,.quiz>*,.box>*,.row>*,.razors>*{min-width:0}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mint-d);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-left,0px))}
+h1,h2,h3{font-family:var(--head);font-weight:700;line-height:1.15;letter-spacing:-.01em}
+h2{font-size:clamp(30px,4vw,46px)}
+.lead{color:var(--ink-2);font-size:clamp(17px,1.4vw,19px);max-width:52ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:15px 24px;font-weight:600;font-family:var(--head);text-decoration:none;transition:background .2s,transform .2s}
+.btn.main{background:var(--ink);color:#fff}
+.btn.main:hover{background:var(--mint-d)}
+.btn.ghost{border:1.5px solid var(--ink)}
+.ribbon{background:var(--ink);color:#DDEDEA;font-size:13px;text-align:center;padding:8px 16px}
+.ribbon a{color:var(--mint)}
+
+/* nav */
+.nav{background:var(--white);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--head);font-weight:700;font-size:22px}
+.logo svg{width:30px;height:30px}
+.nav ul{display:flex;gap:28px;list-style:none;font-size:15px}
+.nav ul a{text-decoration:none;color:var(--ink-2)}
+@media(max-width:820px){.nav ul{display:none}}
+
+/* hero */
+.hero{background:var(--white)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-top:64px;padding-bottom:72px}
+.hero h1{font-size:clamp(40px,5.6vw,68px);margin:18px 0 20px}
+.cred{display:inline-flex;align-items:center;gap:10px;background:#E6F4F1;color:var(--mint-d);font-weight:600;font-size:14px;border-radius:999px;padding:6px 14px}
+.cred svg{width:16px;height:16px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.facts{display:grid;grid-template-columns:repeat(3,auto);gap:28px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line);justify-content:start}
+.facts b{display:block;font-family:var(--head);font-size:26px}
+.facts span{font-size:14px;color:var(--steel)}
+.hero figure{position:relative}
+.hero figure img{border-radius:20px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.hero figure figcaption{position:absolute;inset-inline-start:-24px;bottom:28px;background:var(--white);border-radius:14px;padding:14px 18px;box-shadow:0 14px 40px rgba(15,58,64,.14);font-size:14px;max-width:240px}
+.hero figure figcaption b{display:block;font-family:var(--head);font-size:15px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--coral);margin-inline-end:6px;vertical-align:middle}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero figure{max-width:440px}.hero figure figcaption{inset-inline-start:12px}.facts{grid-template-columns:repeat(3,1fr);gap:12px}}
+
+/* body map */
+#plan{padding:96px 0}
+#plan .head{max-width:640px;margin-bottom:44px}
+.planner{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;background:var(--white);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,3vw,36px)}
+.map{display:flex;justify-content:center;align-items:center;background:linear-gradient(#EEF6F4,#F7FBFA);border-radius:18px;padding:20px}
+.map svg{width:100%;max-width:300px;height:auto}
+.zone{fill:#D7E6E3;stroke:#fff;stroke-width:2;cursor:pointer;transition:fill .2s}
+.zone:hover{fill:#BFDCD6}
+.zone.on{fill:var(--mint-d)}
+.zone:focus-visible{outline:none;stroke:var(--ink);stroke-width:3}
+.base{fill:#E8F0EE}
+.side h3{font-size:22px;margin-bottom:6px}
+.side .hint{color:var(--steel);font-size:15px;margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;font-size:15px;transition:all .2s}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.sum{border-top:1px solid var(--line);padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sum div{background:var(--paper);border-radius:12px;padding:14px}
+.sum small{display:block;color:var(--steel);font-size:13px}
+.sum b{font-family:var(--head);font-size:24px}
+.sum .wide{grid-column:1/-1;font-size:14px;color:var(--ink-2);background:none;padding:0}
+@media(max-width:900px){.planner{grid-template-columns:1fr}.map svg{max-width:220px}}
+
+/* quiz */
+.quiz{margin-top:28px;background:var(--ink);color:#fff;border-radius:24px;padding:clamp(22px,3.4vw,40px);display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.quiz h3{font-size:26px;margin-bottom:8px}
+.quiz p{color:#BFD5D2;font-size:15px}
+.steps{display:grid;gap:22px}
+.q label.t{display:block;font-family:var(--head);font-weight:500;margin-bottom:10px}
+.q .opts{display:flex;flex-wrap:wrap;gap:8px}
+.q .opt{border:1.5px solid rgba(255,255,255,.25);border-radius:10px;padding:9px 14px;font-size:15px;color:#E3EFED}
+.q .opt[aria-pressed="true"]{background:var(--mint);border-color:var(--mint);color:var(--ink);font-weight:600}
+.q input{width:100%;font:inherit;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:11px 14px;color:#fff}
+.q input::placeholder{color:#8FAFAB}
+.q .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.send{background:var(--mint);color:var(--ink);font-family:var(--head);font-weight:700;border-radius:12px;padding:15px 22px;justify-self:start}
+.send:disabled{opacity:.4;cursor:not-allowed}
+.wa{background:#0B141A;border-radius:16px;padding:16px;align-self:start}
+.wa .top{color:#8696A0;font-size:12px;margin-bottom:10px}
+.bub{background:#005C4B;color:#E9EDEF;border-radius:10px 10px 2px 10px;padding:10px 12px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;min-height:120px}
+.bub.empty{color:#8FB8AE}
+@media(max-width:900px){.quiz{grid-template-columns:1fr}}
+
+/* team + tech */
+.trust{padding:24px 0 96px}
+.trust .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.trust img{border-radius:20px;aspect-ratio:3/2;object-fit:cover;width:100%}
+.spec{width:100%;border-collapse:collapse;margin-top:22px;font-size:15px}
+.spec th{text-align:start;font-weight:500;color:var(--steel);padding:12px 0;border-bottom:1px solid var(--line);width:42%}
+.spec td{padding:12px 0;border-bottom:1px solid var(--line);font-weight:500}
+@media(max-width:900px){.trust .wrap{grid-template-columns:1fr}}
+
+/* faq */
+.faq{background:var(--white);padding:88px 0}
+.faq .wrap{max-width:820px}
+.faq h2{margin-bottom:28px}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-family:var(--head);font-weight:500;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--mint-d);font-size:22px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{color:var(--ink-2);margin-top:10px}
+
+footer{padding:28px 0;font-size:14px;color:var(--steel)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="ribbon">אתר קונספט של DLA · "אדר" היא מרפאה דמיונית שנבנתה להדגמה · <a href="https://dlaleads.com">חזרה ל-DLA</a></div>
+
+<header class="nav"><div class="wrap">
+ <a class="logo" href="#" aria-label="אדר"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#0F3A40"/><path d="M9 21 16 9l7 12" fill="none" stroke="#9ED9CF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>אדר</a>
+ <ul><li><a href="#plan">בניית תוכנית</a></li><li><a href="#trust">הצוות והמכשיר</a></li><li><a href="#faq">שאלות</a></li></ul>
+ <a class="btn main" href="#plan">לבדיקת התאמה</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+ <div>
+  <span class="cred"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2 3.5v4C2 11 4.6 14 8 15c3.4-1 6-4 6-7.5v-4Z" fill="currentColor"/></svg>בפיקוח רופאה · טכנאיות מוסמכות</span>
+  <h1>הסרת שיער בלייזר, בתוכנית שבנויה לפי הגוף שלך</h1>
+  <p class="lead">מסמנים על המפה את האזורים שמפריעים לך, ומקבלים מיד כמה טיפולים צריך ומאיזה מחיר מתחילים. בלי שיחת מכירה.</p>
+  <div class="cta"><a class="btn main" href="#plan">לבנות תוכנית אישית</a><a class="btn ghost" href="#trust">איך זה עובד</a></div>
+  <div class="facts">
+   <div><b>6–8</b><span>טיפולים בממוצע</span></div>
+   <div><b>15 דק'</b><span>לבית שחי</span></div>
+   <div><b>כל גווני העור</b><span>גם בקיץ</span></div>
+  </div>
+ </div>
+ <figure>
+  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261108_181013_a4fc9d68-785b-4673-9a74-a607f6c4adeb.png" alt="חדר טיפולים לבן ונקי עם מכשיר לייזר דיודה" width="900" height="1125">
+  <figcaption><b><span class="dot"></span>4 תורים פנויים השבוע</b>רמת החייל, תל אביב · חניה בבניין</figcaption>
+ </figure>
+</div></section>
+
+<section id="plan"><div class="wrap">
+ <div class="head">
+  <h2>איזה אזור מפריע לך?</h2>
+  <p class="lead">לוחצים על אזור במפה או ברשימה. אפשר לבחור כמה. המחיר מתעדכן לפי מה שבחרת.</p>
+ </div>
+
+ <div class="planner">
+  <div class="map">
+   <svg viewBox="0 0 200 420" role="group" aria-label="מפת גוף לבחירת אזורי טיפול">
+    <ellipse class="base" cx="100" cy="40" rx="26" ry="32"/>
+    <rect class="base" x="90" y="68" width="20" height="16" rx="6"/>
+    <path class="base" d="M60 86h80l10 120H50Z"/>
+    <path class="zone" data-z="face" tabindex="0" role="button" aria-label="פנים" d="M80 46c4 14 12 22 20 22s16-8 20-22c-4 6-12 9-20 9s-16-3-20-9Z"/>
+    <path class="zone" data-z="arms" tabindex="0" role="button" aria-label="זרועות" d="M58 88 38 104l-14 92 14 4 18-84ZM142 88l20 16 14 92-14 4-18-84Z"/>
+    <path class="zone" data-z="underarm" tabindex="0" role="button" aria-label="בית שחי" d="M56 96c4 10 6 22 6 30l-12-6 2-22ZM144 96c-4 10-6 22-6 30l12-6-2-22Z"/>
+    <path class="zone" data-z="belly" tabindex="0" role="button" aria-label="בטן" d="M68 150h64l6 52H62Z"/>
+    <path class="zone" data-z="bikini" tabindex="0" role="button" aria-label="ביקיני" d="M62 206h76l-10 30-28 12-28-12Z"/>
+    <path class="zone" data-z="legs" tabindex="0" role="button" aria-label="רגליים" d="M66 242l32 14-4 154H74ZM134 242l-32 14 4 154h20Z"/>
+   </svg>
+  </div>
+  <div class="side">
+   <h3>התוכנית שלך</h3>
+   <p class="hint">בחירה במפה או כאן:</p>
+   <div class="chips" id="chips"></div>
+   <div class="sum">
+    <div><small>טיפולים מומלצים</small><b id="sSessions">—</b></div>
+    <div><small>מחיר לטיפול, מ-</small><b id="sPrice">—</b></div>
+    <p class="wide" id="sNote">שלושה אזורים ומעלה: 20% הנחה על כל הטיפולים.</p>
+   </div>
+  </div>
+ </div>
+
+ <div class="quiz" id="quiz">
+  <div class="steps">
+   <div><h3>עוד שלוש שאלות, וזהו</h3><p>אנחנו חוזרות אלייך בוואטסאפ עם תוכנית מסודרת ותור פנוי.</p></div>
+   <div class="q"><label class="t">עשית לייזר בעבר?</label><div class="opts" data-k="before"><button class="opt" type="button">פעם ראשונה</button><button class="opt" type="button">כן, לא סיימתי</button><button class="opt" type="button">צריכה חיזוק</button></div></div>
+   <div class="q"><label class="t">מתי תרצי להתחיל?</label><div class="opts" data-k="when"><button class="opt" type="button">השבוע</button><button class="opt" type="button">החודש</button><button class="opt" type="button">רק בודקת</button></div></div>
+   <div class="q"><label class="t" for="nm">פרטים לחזרה</label><div class="two"><input id="nm" placeholder="שם" autocomplete="given-name"><input id="ct" placeholder="עיר" autocomplete="address-level2" aria-label="עיר"></div></div>
+   <button class="send" id="send" type="button" disabled>שליחה בוואטסאפ</button>
+  </div>
+  <div class="wa" aria-live="polite"><div class="top">כך תיראה ההודעה שתגיע למרפאה</div><div class="bub empty" id="bub">בוחרים אזורים במפה ועונים על השאלות, וההודעה נכתבת כאן.</div></div>
+ </div>
+</div></section>
+
+<section class="trust" id="trust"><div class="wrap">
+ <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261108_181013_fbca60c8-dbc7-4336-b67f-ca9ec023d44a.png" alt="טכנאית מחזיקה ראש טיפול מקורר על הרגל" width="1200" height="800" loading="lazy">
+ <div>
+  <h2>מי מטפל בך, ובמה</h2>
+  <p class="lead">כל טיפול ניתן בידי טכנאית לייזר מוסמכת, תחת פיקוח של רופאה מהמרפאה. לפני הטיפול הראשון יש בדיקת עור ובדיקת רגישות.</p>
+  <table class="spec">
+   <tr><th>מכשיר</th><td>לייזר דיודה, שלושה אורכי גל</td></tr>
+   <tr><th>קירור</th><td>ראש טיפול מקורר במגע, 5°</td></tr>
+   <tr><th>מתאים ל</th><td>כל גווני העור, כולל עור כהה ושזוף</td></tr>
+   <tr><th>הפרש בין טיפולים</th><td>4–6 שבועות</td></tr>
+   <tr><th>היגיינה</th><td>חד-פעמיים וחיטוי בין לקוחות</td></tr>
+  </table>
+ </div>
+</div></section>
+
+<section class="faq" id="faq"><div class="wrap">
+ <h2>שאלות שעולות לפני הטיפול הראשון</h2>
+ <details><summary>זה כואב?</summary><p>רוב המטופלות מתארות חום קל או עקיצה קטנה. ראש הטיפול מקורר, ואפשר להוריד עוצמה תוך כדי.</p></details>
+ <details><summary>אפשר לעשות לייזר בקיץ?</summary><p>כן, עם הגנה מהשמש על האזור המטופל. מכשיר הדיודה מתאים גם לעור שזוף.</p></details>
+ <details><summary>מה עושים יום לפני?</summary><p>מגלחים את האזור. ארבעה שבועות לפני לא משתמשים בשעווה או בפינצטה.</p></details>
+ <details><summary>חייבים לקנות סדרה מראש?</summary><p>לא. משלמים לפי טיפול. מי שמשלבת שלושה אזורים ומעלה מקבלת 20% הנחה.</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© אדר · מרפאה דמיונית</span><span>דף נחיתה, שאלון וקמפיינים: <a href="https://dlaleads.com">DLA</a></span></div></footer>
+
+<script>
+(()=>{
+ const Z={face:['פנים',200,8],underarm:['בית שחי',150,6],arms:['זרועות',290,7],belly:['בטן',220,7],bikini:['ביקיני',240,7],legs:['רגליים',420,7]};
+ const sel=new Set(),ans={before:'',when:''};
+ const chips=document.getElementById('chips');
+ Object.entries(Z).forEach(([k,v])=>{const b=document.createElement('button');b.className='chip';b.type='button';b.dataset.z=k;b.textContent=v[0];b.setAttribute('aria-pressed','false');chips.appendChild(b)});
+ function toggle(k){sel.has(k)?sel.delete(k):sel.add(k);render()}
+ document.querySelectorAll('[data-z]').forEach(el=>{el.addEventListener('click',()=>toggle(el.dataset.z));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(el.dataset.z)}})});
+ function render(){
+  document.querySelectorAll('.zone').forEach(z=>z.classList.toggle('on',sel.has(z.dataset.z)));
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',sel.has(c.dataset.z)));
+  const list=[...sel].map(k=>Z[k]);
+  if(!list.length){sS.textContent='—';sP.textContent='—'}else{
+   const sessions=Math.max(...list.map(v=>v[2]));let price=list.reduce((a,v)=>a+v[1],0);if(list.length>=3)price=Math.round(price*.8);
+   sS.textContent=(sessions-1)+'–'+(sessions+1);sP.textContent=price.toLocaleString('he-IL')+' ₪'}
+  msg();
+ }
+ const sS=document.getElementById('sSessions'),sP=document.getElementById('sPrice');
+ document.querySelectorAll('.q .opts').forEach(g=>g.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{g.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',x===o));ans[g.dataset.k]=o.textContent;msg()})));
+ const nm=document.getElementById('nm'),ct=document.getElementById('ct'),send=document.getElementById('send'),bub=document.getElementById('bub');
+ [nm,ct].forEach(i=>i.addEventListener('input',msg));
+ let text='';
+ function msg(){
+  const ok=sel.size&&ans.before&&ans.when&&nm.value.trim()&&ct.value.trim();
+  send.disabled=!ok;
+  if(!sel.size&&!ans.before&&!nm.value){bub.classList.add('empty');bub.textContent='בוחרים אזורים במפה ועונים על השאלות, וההודעה נכתבת כאן.';return}
+  bub.classList.remove('empty');
+  text='היי אדר, אני '+(nm.value.trim()||'…')+(ct.value.trim()?' מ'+ct.value.trim():'')+' 🙂\nאזורים: '+([...sel].map(k=>Z[k][0]).join(', ')||'…')+'\nניסיון קודם: '+(ans.before||'…')+'\nמתי: '+(ans.when||'…');
+  bub.textContent=text;
+ }
+ send.addEventListener('click',()=>{if(!send.disabled)window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener')});
+ render();
+})();
+</script>
+</body></html>

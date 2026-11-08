@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ARGO · הסרת שיער בלייזר לגברים</title>
+<meta name="description" content="ARGO היא קליניקה דמיונית. אתר קונספט של DLA: דף נחיתה להסרת שיער בלייזר לגברים, עם בחירת אזורים ושאלון התאמה שמביא פניות לוואטסאפ.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ARGO — men's laser. Barbershop calm, not gym aggression. Signature: the giant condensed area words that are also the selector. */
+:root{
+ --char:#1E2124; --char-2:#2A2E32; --sand:#D8C7A3; --olive:#66744A; --bone:#F1EDE4; --rust:#B4643A; --mute:#9A968C;
+ --disp:'Karantina',system-ui,sans-serif; --body:'Heebo',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--char);color:var(--bone);font-family:var(--body);font-weight:300;font-size:17px;line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+.wrap>*,.planner>*,.quiz>*,.box>*,.row>*,.razors>*{min-width:0}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sand);outline-offset:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-left,0px))}
+h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:.9}
+.ribbon{background:var(--sand);color:var(--char);text-align:center;font-size:13px;font-weight:500;padding:8px 16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 28px;border-radius:4px;font-weight:500;text-decoration:none;transition:background .2s,color .2s}
+.btn.sand{background:var(--sand);color:var(--char)}
+.btn.sand:hover{background:var(--bone)}
+.btn.line{border:1px solid rgba(241,237,228,.4)}
+
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:76px;border-bottom:1px solid rgba(241,237,228,.1)}
+.logo{font-family:var(--disp);font-size:40px;letter-spacing:.08em;text-decoration:none}
+header nav{display:flex;gap:26px;font-size:15px;color:var(--mute)}
+header nav a{text-decoration:none}
+@media(max-width:760px){header nav{display:none}}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;padding-top:56px;padding-bottom:80px;align-items:end}
+.hero h1{font-size:clamp(84px,14vw,190px);color:var(--sand)}
+.hero h1 span{display:block;color:var(--bone)}
+.hero p{font-size:clamp(18px,1.6vw,21px);max-width:38ch;margin:26px 0 30px;color:#D9D4C8}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;filter:saturate(.9)}
+.promise{display:flex;gap:28px;margin-top:38px;flex-wrap:wrap;font-size:15px;color:var(--mute)}
+.promise b{display:block;color:var(--bone);font-weight:500;font-size:16px}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero img{max-width:420px}}
+
+/* area selector */
+.areas{background:var(--bone);color:var(--char);padding:90px 0}
+.areas .top{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+.areas h2{font-size:clamp(56px,7vw,96px)}
+.areas .top p{max-width:36ch;color:#4A4A45}
+.words{display:flex;flex-wrap:wrap;gap:4px 26px}
+.word{font-family:var(--disp);font-weight:700;font-size:clamp(64px,10vw,140px);line-height:.95;color:#C9C2B3;transition:color .2s;position:relative}
+.word:hover{color:#8E8676}
+.word[aria-pressed="true"]{color:var(--char)}
+.word[aria-pressed="true"]::after{content:"";position:absolute;inset-inline-start:0;bottom:.08em;width:100%;height:.06em;background:var(--rust)}
+.read{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #D2CBBB}
+.read div{padding:18px 0;border-inline-end:1px solid #D2CBBB;padding-inline-end:18px}
+.read div:last-child{border:0}
+.read small{display:block;color:#6E6A60;font-size:14px}
+.read b{font-family:var(--disp);font-size:46px;line-height:1}
+@media(max-width:700px){.read{grid-template-columns:1fr}.read div{border-inline-end:0;border-bottom:1px solid #D2CBBB}}
+
+/* privacy */
+.priv{padding:96px 0}
+.priv .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.priv img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:4px}
+.priv h2{font-size:clamp(52px,6vw,84px);color:var(--sand)}
+.priv ul{list-style:none;margin-top:24px;display:grid;gap:16px}
+.priv li{display:grid;grid-template-columns:28px 1fr;gap:10px}
+.priv li svg{width:22px;height:22px;margin-top:4px;color:var(--olive)}
+.priv li b{font-weight:500;color:var(--bone)}
+@media(max-width:860px){.priv .wrap{grid-template-columns:1fr}}
+
+/* faq */
+.faq{border-top:1px solid rgba(241,237,228,.1);padding:90px 0}
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.faq h2{font-size:clamp(52px,6vw,84px)}
+.faq aside p{color:var(--mute);margin-top:14px}
+.faq aside img{margin-top:28px;width:200px;aspect-ratio:1;object-fit:cover;border-radius:50%}
+details{border-bottom:1px solid rgba(241,237,228,.12);padding:20px 0}
+summary{cursor:pointer;list-style:none;font-weight:500;font-size:19px;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--sand)}
+details[open] summary::after{content:"−"}
+details p{color:#C9C4B8;margin-top:10px}
+@media(max-width:860px){.faq .wrap{grid-template-columns:1fr}.faq aside img{display:none}}
+
+/* quiz */
+.book{background:var(--char-2);padding:90px 0}
+.book .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.book h2{font-size:clamp(56px,7vw,96px);color:var(--sand)}
+.book .sub{color:#C9C4B8;margin:12px 0 28px}
+.q{margin-bottom:22px}
+.q .t{display:block;font-weight:500;margin-bottom:10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:1px solid rgba(241,237,228,.3);border-radius:4px;padding:9px 16px;font-size:15px}
+.opt[aria-pressed="true"]{background:var(--sand);color:var(--char);border-color:var(--sand);font-weight:500}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two input{font:inherit;background:transparent;border:0;border-bottom:1px solid rgba(241,237,228,.35);color:var(--bone);padding:10px 2px;width:100%}
+.two input:focus{outline:none;border-color:var(--sand)}
+#send:disabled{opacity:.35;cursor:not-allowed}
+.phone{background:#0B141A;border-radius:14px;padding:18px;align-self:start}
+.phone .top{color:#8696A0;font-size:13px;margin-bottom:10px}
+.bub{background:#005C4B;color:#E9EDEF;border-radius:10px 10px 2px 10px;padding:12px 14px;white-space:pre-wrap;font-size:15px;min-height:130px}
+.bub.empty{color:#8FB8AE}
+@media(max-width:860px){.book .wrap{grid-template-columns:1fr}}
+
+footer{padding:26px 0 36px;font-size:14px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="ribbon">אתר קונספט של DLA · ARGO היא קליניקה דמיונית שנבנתה להדגמה · <a href="https://dlaleads.com">חזרה ל-DLA</a></div>
+
+<header><div class="wrap">
+ <a class="logo" href="#">ARGO</a>
+ <nav><a href="#areas">אזורים</a><a href="#priv">פרטיות</a><a href="#faq">שאלות</a></nav>
+ <a class="btn sand" href="#book">לקבוע תור</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+ <div>
+  <h1>גב נקי.<span>בלי לבקש מאף אחד.</span></h1>
+  <p>הסרת שיער בלייזר לגברים: גב, חזה, עורף וקו זקן. כניסה פרטית, תורים עד 22:00, וטכנאי גבר אם מעדיפים.</p>
+  <div class="cta"><a class="btn sand" href="#book">לבדוק התאמה, 30 שניות</a><a class="btn line" href="#faq">שאלות שלא נעים לשאול</a></div>
+  <div class="promise">
+   <div><b>תורים עד 22:00</b>ראשון עד חמישי</div>
+   <div><b>כניסה פרטית</b>בלי חדר המתנה משותף</div>
+   <div><b>גב מלא ב-35 דק'</b>כולל קירור</div>
+  </div>
+ </div>
+ <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261108_181014_040c5ba5-3c5a-45aa-a479-d4e7531f572d.png" alt="גבר עם גב חלק בחדר טיפולים חמים" width="896" height="1120">
+</div></section>
+
+<section class="areas" id="areas"><div class="wrap">
+ <div class="top">
+  <h2>מה מפריע לך?</h2>
+  <p>לוחצים על המילה. אפשר כמה. רואים מיד כמה טיפולים וכמה זה עולה.</p>
+ </div>
+ <div class="words" role="group" aria-label="בחירת אזורי טיפול">
+  <button class="word" type="button" data-a="גב" aria-pressed="false">גב</button>
+  <button class="word" type="button" data-a="כתפיים" aria-pressed="false">כתפיים</button>
+  <button class="word" type="button" data-a="חזה" aria-pressed="false">חזה</button>
+  <button class="word" type="button" data-a="בטן" aria-pressed="false">בטן</button>
+  <button class="word" type="button" data-a="עורף" aria-pressed="false">עורף</button>
+  <button class="word" type="button" data-a="קו זקן" aria-pressed="false">קו זקן</button>
+ </div>
+ <div class="read" aria-live="polite">
+  <div><small>טיפולים</small><b id="rS">—</b></div>
+  <div><small>לטיפול, מ-</small><b id="rP">—</b></div>
+  <div><small>זמן בכיסא</small><b id="rT">—</b></div>
+ </div>
+</div></section>
+
+<section class="priv" id="priv"><div class="wrap">
+ <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261108_181013_0ee3565f-bc8d-4dfb-9701-6695c4df37f3.png" alt="חדר טיפולים פרטי עם תאורה חמה" width="1200" height="800" loading="lazy">
+ <div>
+  <h2>נכנסים, מטפלים, יוצאים.</h2>
+  <ul>
+   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg><div><b>כניסה פרטית מהחניה.</b> לא עוברים ליד אף אחד בדרך לחדר.</div></li>
+   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg><div><b>טכנאי או טכנאית, לבחירתך.</b> מסמנים בשאלון ומתאמים לפי זה.</div></li>
+   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg><div><b>מכשיר דיודה עם קירור.</b> מתאים לשיער גברי עבה ולעור כהה.</div></li>
+   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg><div><b>מחיר סגור מראש.</b> בלי "בוא נראה כשתגיע".</div></li>
+  </ul>
+ </div>
+</div></section>
+
+<section class="faq" id="faq"><div class="wrap">
+ <aside>
+  <h2>שאלות שלא נעים לשאול</h2>
+  <p>אז שאלנו בשבילך.</p>
+  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261108_181012_66c48b98-8c4e-43f3-ba23-a0361e832d78.png" alt="קו צוואר נקי מתחת לזקן" width="1024" height="1024" loading="lazy">
+ </aside>
+ <div>
+  <details><summary>זה כואב יותר לגברים?</summary><p>על שיער עבה מרגישים קצת יותר בטיפולים הראשונים. ראש הטיפול מקורר, ומהטיפול השלישי השיער דליל והתחושה קלה בהרבה.</p></details>
+  <details><summary>אפשר לדלל ולא להוריד הכל?</summary><p>כן. בחזה ובבטן אפשר לדלל בהדרגה במקום להוריד הכל, לפי מה שנראה לך טבעי.</p></details>
+  <details><summary>זה יפגע לי בזקן?</summary><p>לא. בקו זקן מטפלים רק מתחת לקו שסימנת, בצוואר ובלחיים העליונות. הזקן עצמו נשאר.</p></details>
+  <details><summary>מה עושים לפני הטיפול?</summary><p>מגלחים יום לפני, לא משתזפים חזק שבועיים לפני, ובאים. זהו.</p></details>
+  <details><summary>כמה זמן עד שרואים תוצאה?</summary><p>רוב הגברים מרגישים הבדל אחרי 2–3 טיפולים. סדרה מלאה היא 6–8 טיפולים, אחד כל 4–6 שבועות.</p></details>
+ </div>
+</div></section>
+
+<section class="book" id="book"><div class="wrap">
+ <div>
+  <h2>30 שניות, ונחזור אליך</h2>
+  <p class="sub">בוואטסאפ, בדיסקרטיות, עם תור פנוי השבוע.</p>
+  <div class="q"><span class="t">איזה אזור?</span><div class="opts" id="qArea"></div></div>
+  <div class="q"><span class="t">מי מטפל?</span><div class="opts" data-k="who"><button class="opt" type="button">טכנאי</button><button class="opt" type="button">טכנאית</button><button class="opt" type="button">לא משנה לי</button></div></div>
+  <div class="q"><span class="t">מתי?</span><div class="opts" data-k="when"><button class="opt" type="button">השבוע</button><button class="opt" type="button">החודש</button><button class="opt" type="button">רק בודק</button></div></div>
+  <div class="q"><span class="t">פרטים</span><div class="two"><input id="nm" placeholder="שם" autocomplete="given-name" aria-label="שם"><input id="ct" placeholder="עיר" autocomplete="address-level2" aria-label="עיר"></div></div>
+  <button class="btn sand" id="send" type="button" disabled>שליחה בוואטסאפ</button>
+ </div>
+ <div class="phone" aria-live="polite"><div class="top">ההודעה שתגיע לקליניקה</div><div class="bub empty" id="bub">בוחרים אזור ועונים, וההודעה נכתבת כאן.</div></div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© ARGO · קליניקה דמיונית</span><span>דף נחיתה, שאלון וקמפיינים: <a href="https://dlaleads.com">DLA</a></span></div></footer>
+
+<script>
+(()=>{
+ const A={'גב':[390,8,35],'כתפיים':[220,7,15],'חזה':[290,7,20],'בטן':[250,7,15],'עורף':[150,6,10],'קו זקן':[180,8,15]};
+ const sel=new Set(),ans={who:'',when:''};
+ const qArea=document.getElementById('qArea');
+ Object.keys(A).forEach(k=>{const b=document.createElement('button');b.className='opt';b.type='button';b.dataset.a=k;b.textContent=k;b.setAttribute('aria-pressed','false');qArea.appendChild(b)});
+ document.querySelectorAll('[data-a]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.a;sel.has(k)?sel.delete(k):sel.add(k);render()}));
+ const rS=document.getElementById('rS'),rP=document.getElementById('rP'),rT=document.getElementById('rT');
+ function render(){
+  document.querySelectorAll('[data-a]').forEach(b=>b.setAttribute('aria-pressed',sel.has(b.dataset.a)));
+  const L=[...sel].map(k=>A[k]);
+  if(!L.length){rS.textContent=rP.textContent=rT.textContent='—'}
+  else{const s=Math.max(...L.map(v=>v[1]));let p=L.reduce((a,v)=>a+v[0],0);if(L.length>=2)p=Math.round(p*.85);
+   rS.textContent=(s-1)+'–'+(s+1);rP.textContent=p.toLocaleString('he-IL')+' ₪';rT.textContent=L.reduce((a,v)=>a+v[2],0)+" דק'"}
+  msg()}
+ document.querySelectorAll('.opts[data-k]').forEach(g=>g.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{g.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',x===o));ans[g.dataset.k]=o.textContent;msg()})));
+ const nm=document.getElementById('nm'),ct=document.getElementById('ct'),send=document.getElementById('send'),bub=document.getElementById('bub');
+ [nm,ct].forEach(i=>i.addEventListener('input',msg));
+ let text='';
+ function msg(){
+  send.disabled=!(sel.size&&ans.who&&ans.when&&nm.value.trim()&&ct.value.trim());
+  if(!sel.size&&!ans.who&&!ans.when&&!nm.value){bub.classList.add('empty');bub.textContent='בוחרים אזור ועונים, וההודעה נכתבת כאן.';return}
+  bub.classList.remove('empty');
+  text='היי ARGO, זה '+(nm.value.trim()||'…')+(ct.value.trim()?' מ'+ct.value.trim():'')+'.\nאזורים: '+([...sel].join(', ')||'…')+'\nמעדיף: '+(ans.who||'…')+'\nמתי: '+(ans.when||'…');
+  bub.textContent=text}
+ send.addEventListener('click',()=>{if(!send.disabled)window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener')});
+ render();
+})();
+</script>
+</body></html>

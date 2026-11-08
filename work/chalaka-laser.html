@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>חלקה. · סטודיו לייזר</title>
+<meta name="description" content="חלקה היא סטודיו דמיוני. אתר קונספט של DLA: דף נחיתה צעיר עם מחשבון גילוח, מנוי חודשי ושאלון התאמה שמביא פניות לוואטסאפ.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* חלקה — loud, young, funny. Signature: the "how much of your life goes to shaving" calculator. */
+:root{
+ --lilac:#EDE6FF; --lilac-2:#DCCFFF; --plum:#2B1650; --pink:#FF4F9A; --butter:#FFE27A; --white:#FFFFFF;
+ --disp:'Secular One',system-ui,sans-serif; --body:'Heebo',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--lilac);color:var(--plum);font-family:var(--body);font-size:17px;line-height:1.65;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+.wrap>*,.planner>*,.quiz>*,.box>*,.row>*,.razors>*{min-width:0}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-left,0px))}
+h1,h2,h3{font-family:var(--disp);font-weight:400;line-height:1.02}
+.ribbon{background:var(--plum);color:#E4DAFF;text-align:center;font-size:13px;padding:8px 16px}
+.ribbon a{color:var(--butter)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:16px 28px;font-family:var(--disp);font-size:19px;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:rotate(-2deg) scale(1.03)}
+.btn.pink{background:var(--pink);color:#fff;box-shadow:4px 4px 0 var(--plum)}
+.btn.line{border:2.5px solid var(--plum)}
+
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{font-family:var(--disp);font-size:34px;text-decoration:none}
+.logo i{font-style:normal;color:var(--pink)}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:20px;padding-bottom:70px}
+.hero h1{font-size:clamp(54px,9vw,118px);letter-spacing:-.02em}
+.hero h1 .strike{position:relative;display:inline-block}
+.hero h1 .strike::after{content:"";position:absolute;inset-inline:-4%;top:52%;height:.12em;background:var(--pink);transform:rotate(-4deg);border-radius:6px}
+.hero p{font-size:clamp(18px,1.6vw,21px);max-width:34ch;margin:22px 0 30px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.photo{position:relative}
+.photo img{border-radius:28px;border:3px solid var(--plum);aspect-ratio:4/5;object-fit:cover;width:100%;box-shadow:10px 10px 0 var(--plum)}
+.sticker{position:absolute;background:var(--butter);border:2.5px solid var(--plum);border-radius:50%;width:132px;height:132px;display:grid;place-items:center;text-align:center;font-family:var(--disp);font-size:18px;line-height:1.1;transform:rotate(-12deg);inset-inline-start:-34px;bottom:34px}
+.sticker b{display:block;font-size:34px}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.photo{max-width:420px;margin-inline:auto}.sticker{inset-inline-start:-6px;width:110px;height:110px;font-size:15px}.sticker b{font-size:28px}}
+
+/* shaving calculator */
+.calc{background:var(--plum);color:#fff;padding:90px 0}
+.calc .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.calc h2{font-size:clamp(38px,5vw,62px)}
+.calc p.s{color:#CDBEF5;margin-top:12px;max-width:40ch}
+.slider{margin-top:32px}
+.slider label{display:flex;justify-content:space-between;font-weight:500;margin-bottom:10px}
+.slider label b{font-family:var(--disp);font-size:22px;color:var(--butter)}
+input[type=range]{width:100%;accent-color:var(--pink);height:6px}
+.board{background:var(--pink);border-radius:28px;padding:34px;transform:rotate(1.5deg);box-shadow:8px 8px 0 var(--butter)}
+.board .big{font-family:var(--disp);font-size:clamp(70px,10vw,120px);line-height:1}
+.board .unit{font-family:var(--disp);font-size:26px}
+.board ul{list-style:none;margin-top:22px;display:grid;gap:8px;font-size:18px}
+.board li{display:flex;justify-content:space-between;border-top:2px dashed rgba(255,255,255,.45);padding-top:8px}
+.board li b{font-family:var(--disp);font-size:22px}
+@media(max-width:860px){.calc .wrap{grid-template-columns:1fr}}
+
+/* plans */
+.plans{padding:96px 0}
+.plans h2{font-size:clamp(38px,5vw,62px);max-width:16ch}
+.plans .sub{font-size:19px;margin:14px 0 40px;max-width:44ch}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.plan{background:var(--white);border:2.5px solid var(--plum);border-radius:22px;padding:28px}
+.plan h3{font-size:30px}
+.plan .price{font-family:var(--disp);font-size:46px;margin:10px 0 2px}
+.plan .price small{font-size:18px}
+.plan .what{color:#5B4A80;font-size:15px;margin-bottom:16px}
+.plan ul{list-style:none;display:grid;gap:8px;font-size:16px}
+.plan li::before{content:"✓";color:var(--pink);font-weight:700;margin-inline-end:8px}
+.plan.hot{background:var(--butter);transform:rotate(-1.5deg) translateY(-10px);box-shadow:8px 8px 0 var(--plum)}
+.plan.hot .tag{display:inline-block;background:var(--pink);color:#fff;font-family:var(--disp);border-radius:999px;padding:4px 14px;margin-bottom:10px}
+.razors{margin-top:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:36px;align-items:center}
+.razors img{border-radius:24px;border:3px solid var(--plum);aspect-ratio:3/2;object-fit:cover;width:100%}
+.razors h3{font-size:clamp(30px,3.6vw,44px)}
+.razors p{font-size:18px;margin-top:10px;max-width:40ch}
+@media(max-width:860px){.row{grid-template-columns:1fr}.plan.hot{transform:none}.razors{grid-template-columns:1fr}}
+
+/* quiz */
+.go{padding:0 0 100px}
+.box{background:var(--white);border:3px solid var(--plum);border-radius:30px;padding:clamp(22px,4vw,48px);display:grid;grid-template-columns:1.1fr .9fr;gap:40px;box-shadow:10px 10px 0 var(--pink)}
+.box h2{font-size:clamp(36px,4.6vw,56px)}
+.box .sub{margin:10px 0 26px;font-size:18px}
+.q{margin-bottom:22px}
+.q .t{font-family:var(--disp);font-size:21px;display:block;margin-bottom:10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:2px solid var(--plum);border-radius:999px;padding:8px 16px;font-weight:500}
+.opt[aria-pressed="true"]{background:var(--plum);color:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two input{font:inherit;border:2px solid var(--plum);border-radius:14px;padding:12px 14px;background:var(--lilac);color:var(--plum);width:100%}
+#send:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.phone{background:#0B141A;border-radius:22px;padding:18px;align-self:start}
+.phone .top{color:#8696A0;font-size:13px;margin-bottom:10px}
+.bub{background:#005C4B;color:#E9EDEF;border-radius:12px 12px 2px 12px;padding:12px 14px;white-space:pre-wrap;font-size:15px;min-height:140px}
+.bub.empty{color:#8FB8AE}
+@media(max-width:860px){.box{grid-template-columns:1fr}}
+
+footer{padding:26px 0 36px;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="ribbon">אתר קונספט של DLA · "חלקה" הוא סטודיו דמיוני שנבנה להדגמה · <a href="https://dlaleads.com">חזרה ל-DLA</a></div>
+
+<header><div class="wrap">
+ <a class="logo" href="#">חלקה<i>.</i></a>
+ <a class="btn line" href="#go">אני בפנים</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+ <div>
+  <h1>נמאס <span class="strike">לגלח</span>.<br>סיימנו עם זה.</h1>
+  <p>סטודיו לייזר בפלורנטין. טיפול בבית שחי לוקח 10 דקות, פחות מהפסקת קפה.</p>
+  <div class="cta"><a class="btn pink" href="#go">לבדוק אם זה מתאים לי</a><a class="btn line" href="#calc">כמה זמן אני מבזבזת?</a></div>
+ </div>
+ <div class="photo">
+  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261108_181013_4038f163-5ecb-42dc-83ab-23a23cf1285c.png" alt="בחורה צוחקת עם ידיים מורמות על רקע לילך" width="896" height="1120">
+  <div class="sticker"><span><b>99 ₪</b>טיפול ראשון</span></div>
+ </div>
+</div></section>
+
+<section class="calc" id="calc"><div class="wrap">
+ <div>
+  <h2>כמה מהחיים שלך הולכים על גילוח?</h2>
+  <p class="s">תזיזי את הסליידר. אנחנו לא שופטות.</p>
+  <div class="slider">
+   <label for="times"><span>כמה פעמים בשבוע את מגלחת?</span><b id="tOut">3</b></label>
+   <input id="times" type="range" min="1" max="7" value="3">
+  </div>
+  <div class="slider">
+   <label for="mins"><span>כמה דקות כל פעם?</span><b id="mOut">10</b></label>
+   <input id="mins" type="range" min="3" max="30" step="1" value="10">
+  </div>
+ </div>
+ <div class="board" aria-live="polite">
+  <div><span class="big" id="hours">26</span> <span class="unit">שעות בשנה</span></div>
+  <ul>
+   <li><span>זה בערך</span><b id="eps">52 פרקים של סדרה</b></li>
+   <li><span>על סכינים וקצף</span><b id="money">~520 ₪ בשנה</b></li>
+   <li><span>אחרי סדרת לייזר</span><b>כמעט 0</b></li>
+  </ul>
+ </div>
+</div></section>
+
+<section class="plans"><div class="wrap">
+ <h2>משלמים כמו מנוי לחדר כושר</h2>
+ <p class="sub">בלי לשלם על כל הסדרה מראש. מנוי חודשי, וכשהשיער נגמר מבטלים.</p>
+ <div class="row">
+  <div class="plan"><h3>קטן</h3><div class="price">149 ₪<small> / חודש</small></div><p class="what">אזור אחד</p><ul><li>בית שחי, שפם או סנטר</li><li>טיפול כל 4–6 שבועות</li><li>ביטול מתי שרוצים</li></ul></div>
+  <div class="plan hot"><span class="tag">הכי לוקחות</span><h3>קיץ</h3><div class="price">249 ₪<small> / חודש</small></div><p class="what">שלושה אזורים</p><ul><li>בית שחי, ביקיני ושוקיים</li><li>טיפול כל 4–6 שבועות</li><li>תיקון חינם אם משהו מפספס</li></ul></div>
+  <div class="plan"><h3>הכל</h3><div class="price">349 ₪<small> / חודש</small></div><p class="what">גוף מלא</p><ul><li>כל האזורים בכל טיפול</li><li>תור קבוע בשעה שנוחה לך</li><li>ביטול מתי שרוצים</li></ul></div>
+ </div>
+ <div class="razors">
+  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261108_181012_e26be5fc-dcdc-482d-a752-a97716b2a736.png" alt="פח מלא סכיני גילוח ורודים וקצף" width="1200" height="800" loading="lazy">
+  <div><h3>ככה זה נראה אחרי חצי שנה איתנו</h3><p>בממוצע 6–8 טיפולים, עם מכשיר דיודה מקורר שמתאים לכל גוון עור. רוב הלקוחות מרגישות הבדל כבר אחרי הטיפול השני.</p></div>
+ </div>
+</div></section>
+
+<section class="go" id="go"><div class="wrap">
+ <div class="box">
+  <div>
+   <h2>שלוש שאלות, ואת בפנים</h2>
+   <p class="sub">נחזור אלייך בוואטסאפ עם תור לטיפול הראשון ב-99 ₪.</p>
+   <div class="q"><span class="t">מה הכי מעצבן אותך לגלח?</span><div class="opts" data-k="area" data-multi><button class="opt" type="button">בית שחי</button><button class="opt" type="button">ביקיני</button><button class="opt" type="button">רגליים</button><button class="opt" type="button">פנים</button><button class="opt" type="button">הכל</button></div></div>
+   <div class="q"><span class="t">מתי בא לך להתחיל?</span><div class="opts" data-k="when"><button class="opt" type="button">אתמול</button><button class="opt" type="button">החודש</button><button class="opt" type="button">רק מסתכלת</button></div></div>
+   <div class="q"><span class="t">איך קוראים לך?</span><div class="two"><input id="nm" placeholder="שם" autocomplete="given-name" aria-label="שם"><input id="ct" placeholder="עיר" autocomplete="address-level2" aria-label="עיר"></div></div>
+   <button class="btn pink" id="send" type="button" disabled>שולחת בוואטסאפ</button>
+  </div>
+  <div class="phone" aria-live="polite"><div class="top">ההודעה שתגיע לסטודיו</div><div class="bub empty" id="bub">עונים על השאלות, וההודעה נכתבת כאן.</div></div>
+ </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© חלקה. · סטודיו דמיוני</span><span>דף נחיתה, שאלון וקמפיינים: <a href="https://dlaleads.com">DLA</a></span></div></footer>
+
+<script>
+(()=>{
+ const t=document.getElementById('times'),m=document.getElementById('mins');
+ const out=()=>{const T=+t.value,M=+m.value,h=Math.round(T*M*52/60);
+  document.getElementById('tOut').textContent=T;document.getElementById('mOut').textContent=M;
+  document.getElementById('hours').textContent=h;document.getElementById('eps').textContent=Math.round(h*2)+' פרקים של סדרה';
+  document.getElementById('money').textContent='~'+(Math.round(T*52*3.3/10)*10).toLocaleString('he-IL')+' ₪ בשנה'};
+ [t,m].forEach(i=>i.addEventListener('input',out));out();
+
+ const ans={area:[],when:''};
+ document.querySelectorAll('.opts').forEach(g=>{const multi=g.hasAttribute('data-multi');g.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{
+  const v=o.textContent;
+  if(multi){const on=o.getAttribute('aria-pressed')==='true';o.setAttribute('aria-pressed',!on);ans.area=on?ans.area.filter(x=>x!==v):[...ans.area,v]}
+  else{g.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',x===o));ans[g.dataset.k]=v}
+  msg()}))});
+ const nm=document.getElementById('nm'),ct=document.getElementById('ct'),send=document.getElementById('send'),bub=document.getElementById('bub');
+ [nm,ct].forEach(i=>i.addEventListener('input',msg));
+ let text='';
+ function msg(){
+  send.disabled=!(ans.area.length&&ans.when&&nm.value.trim()&&ct.value.trim());
+  if(!ans.area.length&&!ans.when&&!nm.value){bub.classList.add('empty');bub.textContent='עונים על השאלות, וההודעה נכתבת כאן.';return}
+  bub.classList.remove('empty');
+  text='היי חלקה! אני '+(nm.value.trim()||'…')+(ct.value.trim()?' מ'+ct.value.trim():'')+' ✌️\nנמאס לי לגלח: '+(ans.area.join(', ')||'…')+'\nמתי להתחיל: '+(ans.when||'…')+'\nאשמח לתור לטיפול הראשון ב-99 ₪';
+  bub.textContent=text}
+ send.addEventListener('click',()=>{if(!send.disabled)window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener')});
+})();
+</script>
+</body></html>
