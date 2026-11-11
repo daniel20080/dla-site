@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>מעלה העננים · וילה בגליל העליון</title>
+<meta name="description" content="מעלה העננים היא וילה דמיונית. אתר קונספט של DLA לוילות וצימרים.">
+<meta property="og:title" content="מעלה העננים · אתר דמו של DLA">
+<meta property="og:description" content="וילה דמיונית בגליל העליון: גוללים מהשקיעה אל הלילה, בוחרים תאריכים ורואים מחיר.">
+<meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261111_095723_fda89710-f08b-4d67-94c2-b9e7ce4c31c2.png">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+ --night:#0e1822; --basalt:#171a1b; --stone:#ece6da; --mist:#a7b0b4; --olive:#97a273; --ember:#e9a24c; --line:rgba(236,230,218,.16);
+ --display:'Bellefair',Georgia,serif; --body:'Assistant',system-ui,-apple-system,'Segoe UI',sans-serif;
+ color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--stone);font-family:var(--body);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+.bar{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:18px 24px;pointer-events:none}
+.bar>*{pointer-events:auto}
+.mark{font-family:var(--display);font-size:24px;letter-spacing:.02em;text-decoration:none}
+.mark small{display:block;font-family:var(--body);font-size:12px;color:var(--mist);letter-spacing:.04em;margin-top:-4px}
+.bar .cta{font-weight:600;font-size:15px;text-decoration:none;padding:10px 18px;border-radius:999px;background:rgba(14,24,34,.55);border:1px solid var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.bar .cta:hover{border-color:var(--ember)}
+
+/* dusk: pinned scroll from sunset to night */
+.dusk{position:relative;height:320vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:1200px}
+.layer{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;will-change:transform,opacity}
+.night{opacity:0}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,24,34,.55) 0%,rgba(14,24,34,0) 30%,rgba(14,24,34,0) 55%,rgba(14,24,34,.85) 100%)}
+.copy{position:absolute;inset:auto 0 0 0;padding:0 24px calc(48px + env(safe-area-inset-bottom));max-width:1180px;margin:0 auto}
+.lines{position:relative;min-height:3.2em;font-family:var(--display);font-size:clamp(40px,7.4vw,96px);line-height:1.02;letter-spacing:-.005em}
+.lines p{position:absolute;inset:auto 0 0 0;opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;text-wrap:balance;max-width:14em}
+.lines p.on{opacity:1;transform:none}
+.meta{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;margin-top:22px;color:var(--mist);font-size:16px}
+.clock{font-variant-numeric:tabular-nums;color:var(--stone);font-weight:600;font-size:18px}
+.clock i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--ember);margin-inline-end:8px;box-shadow:0 0 12px var(--ember);vertical-align:1px;transition:background .4s,box-shadow .4s}
+.hint{position:absolute;left:24px;bottom:calc(52px + env(safe-area-inset-bottom));color:var(--mist);font-size:14px;writing-mode:vertical-rl;letter-spacing:.08em}
+.hint::after{content:"";display:block;width:1px;height:48px;background:var(--mist);margin:10px auto 0;animation:drip 2.2s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* sections */
+section{padding:120px 0}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,4.6vw,58px);line-height:1.08;margin-bottom:22px;text-wrap:balance}
+.lead{color:var(--mist);max-width:38em;font-size:19px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;border-top:1px solid var(--line)}
+.facts div{padding:26px 0 0;border-inline-start:1px solid var(--line);padding-inline-start:22px}
+.facts div:first-child{border-inline-start:0;padding-inline-start:0}
+.facts b{display:block;font-family:var(--display);font-weight:400;font-size:44px;line-height:1}
+.facts span{color:var(--mist);font-size:16px}
+
+/* rooms strip */
+.rooms{background:var(--basalt)}
+.strip{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:18px;margin-top:48px}
+.strip figure{position:relative;overflow:hidden;border-radius:6px;background:#222}
+.strip figure:first-child{grid-row:span 2}
+.strip img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5;transition:transform 1.2s ease}
+.strip figure:hover img{transform:scale(1.04)}
+.strip figcaption{position:absolute;inset:auto 0 0 0;padding:44px 18px 16px;background:linear-gradient(transparent,rgba(10,12,13,.82));font-size:16px}
+.strip figcaption b{display:block;font-family:var(--display);font-weight:400;font-size:24px}
+.strip .note{grid-column:2/4;align-self:end;color:var(--mist);font-size:17px;padding:8px 2px}
+
+/* booking */
+.book{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;margin-top:48px;align-items:start}
+.cal{border:1px solid var(--line);border-radius:10px;padding:22px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cal-head b{font-family:var(--display);font-weight:400;font-size:26px}
+.cal-head button{background:none;border:1px solid var(--line);color:var(--stone);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px}
+.cal-head button:disabled{opacity:.3;cursor:default}
+.dow,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.dow span{font-size:13px;color:var(--mist);padding-bottom:6px}
+.days button{aspect-ratio:1;border:0;border-radius:8px;background:transparent;color:var(--stone);font:600 16px/1 var(--body);cursor:pointer;position:relative}
+.days button:hover:not(:disabled){background:rgba(236,230,218,.08)}
+.days button:disabled{color:rgba(167,176,180,.35);cursor:default;text-decoration:line-through}
+.days button.we::after{content:"";position:absolute;bottom:6px;left:50%;width:4px;height:4px;border-radius:50%;background:var(--olive);transform:translateX(-50%)}
+.days button.in{background:rgba(233,162,76,.18);border-radius:0}
+.days button.edge{background:var(--ember);color:var(--night)}
+.legend{display:flex;gap:18px;margin-top:14px;color:var(--mist);font-size:14px;flex-wrap:wrap}
+.legend i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--olive);margin-inline-end:6px}
+.sum{position:sticky;top:90px;border:1px solid var(--line);border-radius:10px;padding:26px;background:rgba(23,26,27,.6)}
+.sum h3{font-family:var(--display);font-weight:400;font-size:28px;margin-bottom:6px}
+.sum .when{color:var(--mist);min-height:1.6em;margin-bottom:18px}
+.row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:17px;font-variant-numeric:tabular-nums}
+.row.save{color:var(--olive)}
+.row.tot{border:0;font-size:22px;font-weight:700;padding-top:14px}
+label.g{display:flex;justify-content:space-between;align-items:center;margin:4px 0 14px;font-size:17px}
+select{background:var(--night);color:var(--stone);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit}
+.go{width:100%;margin-top:18px;padding:16px;border:0;border-radius:999px;background:var(--ember);color:var(--night);font:700 18px var(--body);cursor:pointer}
+.go:disabled{opacity:.4;cursor:default}
+.small{color:var(--mist);font-size:14px;margin-top:12px}
+.wa{display:none;margin-top:18px;border-radius:10px;overflow:hidden;background:#0b141a;border:1px solid #1f2c33}
+.wa.on{display:block}
+.wa .top{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#1f2c33;font-size:15px}
+.wa .top span{width:30px;height:30px;border-radius:50%;background:var(--olive);color:var(--night);display:grid;place-items:center;font-weight:700;font-size:13px}
+.wa .bubble{margin:14px;padding:10px 12px;background:#005c4b;border-radius:8px 0 8px 8px;font-size:15px;line-height:1.5;white-space:pre-line;color:#e9edef}
+
+/* area */
+.area{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.area img{border-radius:6px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.dist{list-style:none;margin-top:28px;border-top:1px solid var(--line)}
+.dist li{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);font-size:18px}
+.dist li span{color:var(--mist);font-variant-numeric:tabular-nums}
+
+footer{padding:48px 0 96px;border-top:1px solid var(--line);color:var(--mist);font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.pill{position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;pointer-events:none;font:600 12px/1.35 var(--body);color:#f3efe6;background:rgba(10,10,12,.8);border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:999px;white-space:nowrap}
+
+@media (max-width:900px){
+ body{font-size:17px}
+ section{padding:84px 0}
+ .facts{grid-template-columns:1fr 1fr;row-gap:28px}
+ .facts div:nth-child(3){border-inline-start:0;padding-inline-start:0}
+ .strip{grid-template-columns:1fr 1fr}
+ .strip figure:first-child{grid-column:1/3;grid-row:auto}
+ .strip figure:first-child img{aspect-ratio:16/11}
+ .strip .note{grid-column:1/3}
+ .book,.area{grid-template-columns:1fr}
+ .sum{position:static}
+ .hint{display:none}
+}
+@media (max-width:520px){
+ .wrap{padding:0 16px}
+ .bar{padding:14px 16px}
+ .copy{padding:0 16px calc(56px + env(safe-area-inset-bottom))}
+ .cal{padding:14px}
+ .days button{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .lines p{transition:none}
+ .hint::after{animation:none}
+ .strip img{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+ <a class="mark" href="#top">מעלה העננים<small>וילה בגליל העליון</small></a>
+ <a class="cta" href="#book">בדיקת תאריכים</a>
+</header>
+
+<main id="top">
+<section class="dusk" id="dusk" aria-label="הוילה מהשקיעה אל הלילה" style="padding:0">
+ <div class="stage" id="stage">
+  <img class="layer day" id="day" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261111_095723_fda89710-f08b-4d67-94c2-b9e7ce4c31c2.png" alt="וילת אבן עם בריכת אינסוף מעל עמק בגליל העליון בשקיעה" fetchpriority="high">
+  <img class="layer night" id="night" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261111_095811_902ab603-eb55-4719-969e-c978beabe310.png" alt="אותה וילה בלילה, הבריכה מוארת ואורות העמק למטה">
+  <div class="shade"></div>
+  <div class="copy">
+   <div class="lines" aria-live="polite">
+    <p class="on">השקיעה כאן קורית מתחת לעננים.</p>
+    <p>האבן עוד חמה כשהבריכה נדלקת.</p>
+    <p>ובלילה נשארים רק העמק, הכוכבים והג׳קוזי.</p>
+   </div>
+   <div class="meta">
+    <span class="clock"><i id="dot"></i><span id="clk">17:05</span></span>
+    <span>920 מטר מעל הים · 10 דקות מצפת</span>
+   </div>
+  </div>
+  <span class="hint" aria-hidden="true">גללו</span>
+ </div>
+</section>
+
+<section id="house">
+ <div class="wrap">
+  <h2>בית אחד על ראש הגבעה, רק בשבילכם.</h2>
+  <p class="lead">ארבע סוויטות, בריכת אינסוף מחוממת וג׳קוזי על מרפסת אבן שמשקיפה לעמק החולה. הבית מושכר בשלמותו, למשפחה אחת או לחבורה אחת בכל פעם.</p>
+  <div class="facts">
+   <div><b>4</b><span>סוויטות עם מקלחת צמודה</span></div>
+   <div><b>10</b><span>אורחים לכל היותר</span></div>
+   <div><b>28°</b><span>בריכה מחוממת, כל השנה</span></div>
+   <div><b>14:00</b><span>צ׳ק אין, וצ׳ק אאוט ב־12:00</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="rooms" id="rooms">
+ <div class="wrap">
+  <h2>אבן, עץ אלון וחלון בגודל של קיר.</h2>
+  <div class="strip">
+   <figure><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261111_095721_c0727426-16f1-4e0a-8b18-d37ceee4094b.png" alt="סלון עם קיר אבן, אח בוערת וחלון גדול אל הגבעות"><figcaption><b>הסלון</b>אח עצים וחלון שנפתח לעמק</figcaption></figure>
+   <figure><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261111_095723_f1a46ecf-bca5-4786-aff3-dc68f824e7ea.png" alt="סוויטה עם מיטה לבנה ונוף לעמק בערפל"><figcaption><b>סוויטת הזריחה</b>מתעוררים מעל הערפל</figcaption></figure>
+   <figure><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261111_095723_d6a2f248-8b16-4813-bae4-e9291204f455.png" alt="ג׳קוזי במרפסת אבן ומדורה בערב"><figcaption><b>המרפסת</b>ג׳קוזי ומדורה מתחת לשמיים</figcaption></figure>
+   <p class="note">מצעים מכותנה מצרית, מטבח שף מאובזר, עמדת קפה, טלוויזיה בכל סוויטה וחניה לשלושה רכבים. חימום תת רצפתי לחורף.</p>
+  </div>
+ </div>
+</section>
+
+<section id="book">
+ <div class="wrap">
+  <h2>בוחרים תאריכים, רואים מחיר.</h2>
+  <p class="lead">בלחיצה על תאריך כניסה ותאריך יציאה המחיר מתעדכן מיד. הזמנה ישירה מאיתנו זולה ב־5% מהמחיר באתרי ההזמנות.</p>
+  <div class="book">
+   <div class="cal">
+    <div class="cal-head">
+     <button type="button" id="prev" aria-label="החודש הקודם">›</button>
+     <b id="mon"></b>
+     <button type="button" id="next" aria-label="החודש הבא">‹</button>
+    </div>
+    <div class="dow" aria-hidden="true"><span>א</span><span>ב</span><span>ג</span><span>ד</span><span>ה</span><span>ו</span><span>ש</span></div>
+    <div class="days" id="days" role="grid" aria-label="לוח זמינות"></div>
+    <div class="legend"><span><i></i>לילות סוף שבוע</span><span>תאריכים מחוקים כבר תפוסים</span></div>
+   </div>
+   <aside class="sum" aria-live="polite">
+    <h3>ההזמנה שלכם</h3>
+    <p class="when" id="when">בחרו תאריך כניסה בלוח.</p>
+    <label class="g">אורחים
+     <select id="guests"><option>2</option><option>4</option><option selected>6</option><option>8</option><option>10</option></select>
+    </label>
+    <div id="lines"></div>
+    <button class="go" id="go" type="button" disabled>שליחת בקשה בוואטסאפ</button>
+    <p class="small">מינימום שני לילות. חמישי ושישי בתעריף סוף שבוע.</p>
+    <div class="wa" id="wa"><div class="top"><span>מה</span>מעלה העננים · בקשות</div><div class="bubble" id="bubble"></div></div>
+    <p class="small" id="waNote" hidden>ככה הבקשה מגיעה לבעל הוילה, ישר לוואטסאפ, עם התאריכים והמחיר. באתר אמיתי היא נשלחת בלחיצה.</p>
+   </aside>
+  </div>
+ </div>
+</section>
+
+<section class="rooms" id="area">
+ <div class="wrap area">
+  <div>
+   <h2>הגליל מתחיל ליד השער.</h2>
+   <p class="lead">מסלולי מים, יקבים קטנים וסמטאות צפת. ממליצים על הכול בהודעה ששולחים לכם יום לפני ההגעה.</p>
+   <ul class="dist">
+    <li>העיר העתיקה בצפת<span>10 דק׳</span></li>
+    <li>שמורת הר מירון<span>15 דק׳</span></li>
+    <li>נחל עמוד, מסלול מים<span>20 דק׳</span></li>
+    <li>חוף הכנרת<span>35 דק׳</span></li>
+   </ul>
+  </div>
+  <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261111_095723_f1a46ecf-bca5-4786-aff3-dc68f824e7ea.png" alt="נוף העמק מחלון הסוויטה" id="areaImg">
+ </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>מעלה העננים היא וילה דמיונית. אתר קונספט של DLA, שום הזמנה כאן לא נשלחת.</span><a href="../websites.html">אתרים לוילות וצימרים מאת DLA</a></div></footer>
+<div class="pill" role="note">אתר דמו של DLA · עסק בדיוני</div>
+
+<script>
+/* ---- dusk scroll: crossfade day to night, clock 17:05 -> 21:40 ---- */
+const dusk=document.getElementById('dusk'),day=document.getElementById('day'),night=document.getElementById('night');
+const clk=document.getElementById('clk'),dot=document.getElementById('dot'),lines=[...document.querySelectorAll('.lines p')];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let mx=0,my=0,tx=0,ty=0,p=0,cur=-1;
+const ss=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)};
+function progress(){const r=dusk.getBoundingClientRect();return Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)))}
+function frame(){
+ p=progress();
+ const n=ss(.22,.78,p);
+ night.style.opacity=n;
+ day.style.filter='brightness('+(1-.35*n)+') saturate('+(1-.25*n)+')';
+ const mins=17*60+5+Math.round(p*275);
+ clk.textContent=String(Math.floor(mins/60)).padStart(2,'0')+':'+String(mins%60).padStart(2,'0');
+ dot.style.background=n>.5?'#cfd9e6':'';dot.style.boxShadow=n>.5?'0 0 12px #cfd9e6':'';
+ const i=p<.34?0:p<.68?1:2;
+ if(i!==cur){lines.forEach((l,k)=>l.classList.toggle('on',k===i));cur=i}
+ if(!reduce){
+  tx+=(mx-tx)*.06;ty+=(my-ty)*.06;
+  const z=1+p*.06;
+  const t='translate3d('+(tx*-14)+'px,'+(ty*-10)+'px,0) scale('+z+')';
+  day.style.transform=t;night.style.transform=t;
+ }
+ requestAnimationFrame(frame);
+}
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+requestAnimationFrame(frame);
+
+/* ---- booking calendar ---- */
+const WEEKDAY=2400,WEEKEND=3400,CLEAN=450,DIRECT=.05;
+const MONTHS=['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+const today=new Date();today.setHours(0,0,0,0);
+let view=new Date(today.getFullYear(),today.getMonth(),1),cin=null,cout=null;
+const key=d=>d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+/* a believable set of taken nights: most weekends near today, a few midweek runs */
+function taken(d){
+ const k=key(d),h=(k*2654435761>>>0)%100,w=d.getDay(),days=(d-today)/864e5;
+ if(w===4||w===5) return days<45? h<70 : h<35;
+ return h<9;
+}
+const price=d=>(d.getDay()===4||d.getDay()===5)?WEEKEND:WEEKDAY;
+const fmt=n=>'₪'+n.toLocaleString('he-IL');
+const dname=d=>d.getDate()+' ב'+MONTHS[d.getMonth()];
+function rangeFree(a,b){for(let d=new Date(a);d<b;d.setDate(d.getDate()+1)) if(taken(d)) return false;return true}
+function draw(){
+ document.getElementById('mon').textContent=MONTHS[view.getMonth()]+' '+view.getFullYear();
+ document.getElementById('prev').disabled=view<=new Date(today.getFullYear(),today.getMonth(),1);
+ const box=document.getElementById('days');box.innerHTML='';
+ const first=new Date(view);for(let i=0;i<first.getDay();i++) box.appendChild(document.createElement('span'));
+ const last=new Date(view.getFullYear(),view.getMonth()+1,0).getDate();
+ for(let n=1;n<=last;n++){
+  const d=new Date(view.getFullYear(),view.getMonth(),n),b=document.createElement('button');
+  b.type='button';b.textContent=n;
+  const past=d<today,tk=taken(d);
+  if(d.getDay()===4||d.getDay()===5) b.classList.add('we');
+  const isOut=cout&&+d===+cout,isIn=cin&&+d===+cin;
+  b.disabled=past||(tk&&!isOut&&!(cin&&!cout&&d>cin&&rangeFree(cin,d)));
+  if(isIn||isOut) b.classList.add('edge');
+  else if(cin&&cout&&d>cin&&d<cout) b.classList.add('in');
+  b.setAttribute('aria-label',dname(d)+(tk?' (תפוס)':'')+', '+fmt(price(d))+' ללילה');
+  b.addEventListener('click',()=>pick(d));
+  box.appendChild(b);
+ }
+}
+function pick(d){
+ if(!cin||cout||d<=cin){ if(taken(d)) return; cin=d;cout=null; }
+ else if(rangeFree(cin,d)&&(d-cin)/864e5>=2){ cout=d; }
+ else if((d-cin)/864e5<2){ cin=d;cout=null; if(taken(d)) cin=null; }
+ draw();sum();
+}
+function sum(){
+ const when=document.getElementById('when'),L=document.getElementById('lines'),go=document.getElementById('go');
+ document.getElementById('wa').classList.remove('on');document.getElementById('waNote').hidden=true;
+ if(!cin){when.textContent='בחרו תאריך כניסה בלוח.';L.innerHTML='';go.disabled=true;return}
+ if(!cout){when.textContent='כניסה '+dname(cin)+'. עכשיו בחרו יציאה.';L.innerHTML='';go.disabled=true;return}
+ let nights=0,we=0,sub=0;for(let d=new Date(cin);d<cout;d.setDate(d.getDate()+1)){nights++;sub+=price(d);if(price(d)===WEEKEND)we++}
+ const disc=Math.round((sub+CLEAN)*DIRECT),tot=sub+CLEAN-disc;
+ when.textContent=dname(cin)+' עד '+dname(cout)+' · '+nights+' לילות';
+ L.innerHTML='<div class="row"><span>'+(nights-we)+' לילות אמצע שבוע'+(we?' + '+we+' סופ״ש':'')+'</span><span>'+fmt(sub)+'</span></div>'+
+  '<div class="row"><span>ניקיון</span><span>'+fmt(CLEAN)+'</span></div>'+
+  '<div class="row save"><span>הנחת הזמנה ישירה 5%</span><span>−'+fmt(disc)+'</span></div>'+
+  '<div class="row tot"><span>סה״כ</span><span>'+fmt(tot)+'</span></div>';
+ go.disabled=false;go.dataset.msg='היי, אשמח להזמין את מעלה העננים\n'+dname(cin)+' עד '+dname(cout)+' ('+nights+' לילות)\n'+document.getElementById('guests').value+' אורחים\nמחיר באתר: '+fmt(tot);
+}
+document.getElementById('guests').addEventListener('change',sum);
+document.getElementById('go').addEventListener('click',e=>{
+ document.getElementById('bubble').textContent=e.currentTarget.dataset.msg;
+ document.getElementById('wa').classList.add('on');document.getElementById('waNote').hidden=false;
+});
+document.getElementById('next').addEventListener('click',()=>{view=new Date(view.getFullYear(),view.getMonth()+1,1);draw()});
+document.getElementById('prev').addEventListener('click',()=>{view=new Date(view.getFullYear(),view.getMonth()-1,1);draw()});
+draw();
+</script>
+</body>
+</html>
