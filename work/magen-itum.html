@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>מגן איטום · גגות, מרפסות וקירות</title>
+<meta name="description" content="מגן איטום היא חברה דמיונית. אתר קונספט של DLA לעסקי איטום.">
+<meta property="og:title" content="מגן איטום · אתר דמו של DLA">
+<meta property="og:description" content="חברת איטום דמיונית: שירותים, אזורי שירות, אחריות ושליחת תמונה של הנזילה בוואטסאפ.">
+<meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104852_f4802fbd-8e74-4e7a-bea0-9e1716162e83.png">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#123058;--navy-2:#1d4377;--sky:#e9f1fb;--yel:#ffcc29;--ink:#1b2430;--soft:#5b6675;--line:#dde4ee;--bg:#ffffff;--f:'Rubik',system-ui,-apple-system,'Segoe UI',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yel);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3{line-height:1.15;text-wrap:balance}
+h2{font-size:clamp(28px,3.6vw,42px);font-weight:800;color:var(--navy);margin-bottom:12px}
+.sub{color:var(--soft);max-width:38em}
+section{padding:88px 0}
+.btn{display:inline-flex;align-items:center;gap:10px;justify-content:center;background:var(--yel);color:var(--ink);font:700 17px var(--f);border:0;border-radius:10px;padding:14px 22px;text-decoration:none;cursor:pointer}
+.btn.line{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6)}
+.btn svg{width:20px;height:20px}
+
+/* top strip + nav */
+.strip{background:var(--navy);color:#dbe6f5;font-size:15px}
+.strip .wrap{display:flex;justify-content:space-between;gap:12px;padding-top:8px;padding-bottom:8px}
+.strip a{font-weight:700;color:#fff;text-decoration:none;direction:ltr}
+nav{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:22px;color:var(--navy)}
+.logo svg{width:34px;height:34px}
+nav ul{display:flex;gap:26px;list-style:none;font-weight:500;font-size:16px}
+nav ul a{text-decoration:none}nav ul a:hover{color:var(--navy-2)}
+
+/* hero */
+.hero{position:relative;color:#fff;background:var(--navy)}
+.hero .wrap{position:relative;z-index:1;padding-top:96px;padding-bottom:120px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,rgba(18,48,88,.96) 30%,rgba(18,48,88,.55))}
+.hero h1{font-size:clamp(36px,5vw,62px);font-weight:800}
+.hero p{font-size:20px;margin:18px 0 30px;color:#dbe6f5;max-width:30em}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap}
+.badges{display:grid;gap:12px}
+.badge{display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:16px 18px}
+.badge b{font-size:30px;font-weight:800;color:var(--yel);min-width:84px}
+.badge span{font-size:16px;color:#e5edf8}
+
+/* services */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
+.card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.card img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.card .in{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-size:22px;color:var(--navy)}
+.card p{color:var(--soft);font-size:16px}
+.card ul{list-style:none;margin-top:4px;font-size:15px}
+.card li{padding-right:22px;position:relative;margin-bottom:4px}
+.card li::before{content:"";position:absolute;right:0;top:.55em;width:10px;height:10px;border-radius:2px;background:var(--yel)}
+
+/* signs */
+.signs{background:var(--sky)}
+.sgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+.sgrid img{border-radius:16px;aspect-ratio:4/5;object-fit:cover;width:100%;max-height:560px}
+.checks{list-style:none;margin-top:22px;display:grid;gap:12px}
+.checks li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:12px;padding:14px 16px;font-size:17px}
+.checks li i{flex:none;width:28px;height:28px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:15px}
+
+/* process */
+.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px;counter-reset:s}
+.proc div{border-top:4px solid var(--navy);padding-top:16px}
+.proc div::before{counter-increment:s;content:counter(s);display:block;font-weight:800;font-size:34px;color:var(--yel);-webkit-text-stroke:1px var(--navy)}
+.proc h3{font-size:20px;margin:6px 0;color:var(--navy)}
+.proc p{font-size:16px;color:var(--soft)}
+
+/* areas */
+.areas{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chips span{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:16px}
+.areas img{border-radius:16px;aspect-ratio:16/10;object-fit:cover;width:100%}
+
+/* faq */
+.faq{max-width:800px;margin-top:24px}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:700;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:16px;color:var(--navy)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:24px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{color:var(--soft);margin-top:8px}
+
+/* send photo */
+.send{background:var(--navy);color:#fff}
+.send h2{color:#fff}
+.send .sub{color:#c9d7ea}
+.sform{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:32px;align-items:start}
+.f{display:grid;gap:14px}
+.f label{display:grid;gap:6px;font-weight:500;font-size:16px}
+.f input,.f select{font:400 17px var(--f);padding:12px 14px;border-radius:10px;border:0;background:#fff;color:var(--ink)}
+.drop{border:2px dashed rgba(255,255,255,.45);border-radius:12px;padding:20px;text-align:center;color:#dbe6f5;cursor:pointer}
+.drop.has{border-style:solid;border-color:var(--yel);color:#fff}
+.wa{display:none;border-radius:12px;overflow:hidden;background:#efeae2;color:var(--ink)}
+.wa.on{display:block}
+.wa .top{background:#075e54;color:#fff;padding:10px 14px;font-weight:500;font-size:15px}
+.wa .bubble{margin:12px;padding:10px 12px;background:#d9fdd3;border-radius:8px 0 8px 8px;font-size:15px;line-height:1.5;white-space:pre-line}
+.wa .pic{margin:0 12px 12px auto;width:58%;border-radius:8px;overflow:hidden;border:4px solid #d9fdd3}
+.wa .pic img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.wnote{font-size:14px;color:#c9d7ea;margin-top:10px}
+
+footer{background:#0c213d;color:#9fb2cc;padding:40px 0 100px;font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.mbar{display:none}
+.pill{position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;pointer-events:none;font:600 12px/1.35 var(--f);color:#f3efe6;background:rgba(10,10,12,.82);border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:999px;white-space:nowrap}
+
+@media (max-width:900px){
+ nav ul{display:none}
+ .hero .wrap{grid-template-columns:1fr;padding-top:64px;padding-bottom:72px}
+ .cards{grid-template-columns:1fr}
+ .sgrid,.areas,.sform{grid-template-columns:1fr}
+ .proc{grid-template-columns:1fr 1fr}
+ section{padding:68px 0}
+ .mbar{display:flex;position:fixed;inset:auto 0 0 0;z-index:40;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line)}
+ .mbar .btn{flex:1;padding:12px}
+ .mbar .btn.call{background:var(--navy);color:#fff}
+ .pill{bottom:calc(74px + env(safe-area-inset-bottom))}
+ .strip .hide{display:none}
+}
+@media (max-width:520px){.wrap{padding:0 16px}.proc{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><span class="hide">גגות · מרפסות · קירות חיצוניים · בדיקות רטיבות</span><span>מוקד נזילות: <a href="#send">050-000-0000</a></span></div></div>
+<nav><div class="wrap">
+ <a class="logo" href="#top" aria-label="מגן איטום, לראש העמוד"><svg viewBox="0 0 34 34" aria-hidden="true"><path d="M17 2l13 5v9c0 8-5.6 13.6-13 16C9.6 29.6 4 24 4 16V7z" fill="#123058"/><path d="M17 9c3 4 5 6.6 5 9a5 5 0 0 1-10 0c0-2.4 2-5 5-9z" fill="#ffcc29"/></svg>מגן איטום</a>
+ <ul><li><a href="#services">שירותים</a></li><li><a href="#how">איך זה עובד</a></li><li><a href="#areas">אזורי שירות</a></li><li><a href="#faq">שאלות</a></li></ul>
+ <a class="btn" href="#send">שלחו תמונה</a>
+</div></nav>
+
+<main id="top">
+<header class="hero">
+ <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104852_f4802fbd-8e74-4e7a-bea0-9e1716162e83.png" alt="" fetchpriority="high">
+ <div class="wrap">
+  <div>
+   <h1>נוזל לכם מהתקרה? נגיע תוך 48 שעות.</h1>
+   <p>איטום גגות, מרפסות וקירות בשרון ובמרכז. בודקים, מסבירים מה הבעיה, ונותנים מחיר סגור לפני שמתחילים.</p>
+   <div class="acts">
+    <a class="btn" href="#send"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>שלחו תמונה של הנזילה</a>
+    <a class="btn line" href="#services">מה אנחנו אוטמים</a>
+   </div>
+  </div>
+  <div class="badges">
+   <div class="badge"><b>10 שנים</b><span>אחריות בכתב על איטום גגות</span></div>
+   <div class="badge"><b>48 שעות</b><span>מהפנייה ועד בדיקה בבית שלכם</span></div>
+   <div class="badge"><b>₪0</b><span>על הבדיקה, אם עושים איתנו את העבודה</span></div>
+  </div>
+ </div>
+</header>
+
+<section id="services"><div class="wrap">
+ <h2>מה אנחנו אוטמים</h2>
+ <p class="sub">שלושה סוגי עבודות, כל אחד עם החומרים והשיטה שמתאימים לו.</p>
+ <div class="cards">
+  <article class="card"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104345_1741f50e-3370-4f9e-81d9-0008314eb844.png" alt="גג בטון מצופה לבן אחרי איטום" loading="lazy"><div class="in"><h3>איטום גגות</h3><p>גגות בטון שטוחים, עם יריעות ביטומניות או ציפוי פוליאוריתן.</p><ul><li>פירוק יריעות ישנות</li><li>ציפוי לבן מחזיר קרינה</li><li>אחריות 10 שנים</li></ul></div></article>
+  <article class="card"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104849_722b2d36-1562-4e5a-a852-b0b552423534.png" alt="מרפסת בתהליך איטום צמנטי" loading="lazy"><div class="in"><h3>איטום מרפסות</h3><p>כשהמים מהמרפסת יורדים לשכנים או לקירות הבית.</p><ul><li>איטום צמנטי מתחת לריצוף</li><li>טיפול בפינות ובניקוזים</li><li>בדיקת הצפה בסוף</li></ul></div></article>
+  <article class="card"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104850_f08194e2-0100-4876-a6a1-689e45db08d7.png" alt="טכנאי בודק רטיבות בגג עם מד לחות" loading="lazy"><div class="in"><h3>בדיקות רטיבות</h3><p>מוצאים מאיפה המים מגיעים לפני שמתחילים לפרק.</p><ul><li>מצלמה תרמית ומד לחות</li><li>דוח מסודר עם תמונות</li><li>מתאים גם לביטוח</li></ul></div></article>
+ </div>
+</div></section>
+
+<section class="signs"><div class="wrap sgrid">
+ <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104852_0f681ac7-b2fe-49e8-8548-f7f2aba62e42.png" alt="כתם רטיבות חום בפינת תקרה" loading="lazy">
+ <div>
+  <h2>סימנים שהגג כבר לא אטום</h2>
+  <p class="sub">רוב הנזילות מתחילות בקטן. כשמזהים אותן מוקדם, התיקון זול בהרבה.</p>
+  <ul class="checks">
+   <li><i>1</i>כתם חום או צהוב בתקרה שגדל אחרי כל גשם</li>
+   <li><i>2</i>צבע מתקלף או בועות בקיר החיצוני</li>
+   <li><i>3</i>ריח של עובש בחדר העליון</li>
+   <li><i>4</i>שלוליות שנשארות על הגג יומיים אחרי הגשם</li>
+   <li><i>5</i>היריעות על הגג סדוקות או מתנפחות</li>
+  </ul>
+ </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+ <h2>איך זה עובד</h2>
+ <div class="proc">
+  <div><h3>שולחים תמונה</h3><p>תמונה של הנזילה או של הגג בוואטסאפ, ומקבלים הערכה ראשונית באותו יום.</p></div>
+  <div><h3>בדיקה בבית</h3><p>מגיעים תוך 48 שעות, מאתרים את מקור הבעיה ומסבירים מה צריך.</p></div>
+  <div><h3>מחיר סגור</h3><p>הצעה בכתב עם השיטה, החומרים ולוח זמנים. בלי תוספות באמצע.</p></div>
+  <div><h3>עבודה ואחריות</h3><p>מבצעים, בודקים הצפה, ומשאירים לכם תעודת אחריות.</p></div>
+ </div>
+</div></section>
+
+<section id="areas" style="background:var(--sky)"><div class="wrap areas">
+ <div>
+  <h2>אזורי שירות</h2>
+  <p class="sub">צוותים קבועים בשרון ובמרכז. מחוץ לאזורים האלה, שאלו אותנו ונגיד בכנות אם אנחנו מגיעים.</p>
+  <div class="chips"><span>נתניה</span><span>חדרה</span><span>פרדס חנה כרכור</span><span>כפר סבא</span><span>רעננה</span><span>הרצליה</span><span>הוד השרון</span><span>פתח תקווה</span><span>רמת גן</span><span>תל אביב</span></div>
+ </div>
+ <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104852_9f0d9a7e-7469-4d04-b96c-43790c0c4144.png" alt="איש צוות מלחים יריעת איטום על גג" loading="lazy">
+</div></section>
+
+<section id="faq"><div class="wrap">
+ <h2>שאלות נפוצות</h2>
+ <div class="faq">
+  <details><summary>אפשר לאטום גג בחורף?</summary><p>כן, בימים יבשים. אם יש נזילה פעילה, עדיף לא לחכות לקיץ: מבצעים תיקון נקודתי עכשיו ואיטום מלא בחלון של כמה ימים בלי גשם.</p></details>
+  <details><summary>כמה זמן לוקחת עבודה על גג רגיל?</summary><p>גג של עד 120 מ״ר נגמר בדרך כלל ביום אחד. ציפוי פוליאוריתן צריך עוד יום לייבוש.</p></details>
+  <details><summary>צריך לפרק את היריעות הישנות?</summary><p>לא תמיד. אם השכבה הישנה מחוברת טוב, אפשר לאטום מעליה. נבדוק ונגיד לכם לפני שמחליטים.</p></details>
+  <details><summary>מה האחריות כוללת?</summary><p>אם תהיה נזילה מהאזור שאטמנו בתקופת האחריות, נחזור ונתקן בלי עלות. האחריות ניתנת בכתב, עם מספר תעודה.</p></details>
+ </div>
+</div></section>
+
+<section class="send" id="send"><div class="wrap">
+ <h2>שלחו תמונה, קבלו הערכה היום</h2>
+ <p class="sub">לא צריך לדעת מה הבעיה. תמונה של הכתם בתקרה או של הגג מספיקה כדי שנגיד לכם מה כנראה קורה ומה הצעד הבא.</p>
+ <div class="sform">
+  <form class="f" id="f">
+   <label>שם<input id="nm" value="יוסי" autocomplete="off"></label>
+   <label>עיר<select id="city"><option>נתניה</option><option>חדרה</option><option>פרדס חנה כרכור</option><option>כפר סבא</option><option>רעננה</option><option>תל אביב</option></select></label>
+   <label>מה צריך?<select id="what"><option>יש נזילה מהתקרה</option><option>איטום גג לפני החורף</option><option>המרפסת מטפטפת לשכנים</option><option>בדיקת רטיבות</option></select></label>
+   <div class="drop" id="drop" role="button" tabindex="0">צירוף תמונה (בדמו נצרפת תמונה לדוגמה)</div>
+   <button class="btn" type="submit">שליחה בוואטסאפ</button>
+  </form>
+  <div>
+   <div class="wa" id="wa"><div class="top">מגן איטום · פניות</div><div class="bubble" id="bubble"></div><div class="pic"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104852_0f681ac7-b2fe-49e8-8548-f7f2aba62e42.png" alt="תמונה מצורפת של כתם רטיבות"></div></div>
+   <p class="wnote" id="wnote" hidden>ככה הפנייה מגיעה לבעל העסק בוואטסאפ, עם התמונה. באתר אמיתי היא נשלחת בלחיצה.</p>
+  </div>
+ </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>מגן איטום היא חברה דמיונית. אתר קונספט של DLA, שום פנייה כאן לא נשלחת.</span><a href="../websites.html" style="color:#fff">אתרים לעסקי איטום ושיפוצים מאת DLA</a></div></footer>
+<div class="mbar"><a class="btn" href="#send">שלחו תמונה</a><a class="btn call" href="#send">חייגו</a></div>
+<div class="pill" role="note">אתר דמו של DLA · עסק בדיוני</div>
+
+<script>
+const drop=document.getElementById('drop');let attached=false;
+function attach(){attached=true;drop.classList.add('has');drop.textContent='✓ צורפה תמונה של התקרה'}
+drop.addEventListener('click',attach);drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();attach()}});
+document.getElementById('f').addEventListener('submit',e=>{
+ e.preventDefault();if(!attached)attach();
+ document.getElementById('bubble').textContent='היי, אני '+document.getElementById('nm').value+' מ'+document.getElementById('city').value+'.\n'+document.getElementById('what').value+'. מצרף תמונה.';
+ document.getElementById('wa').classList.add('on');document.getElementById('wnote').hidden=false;
+});
+</script>
+</body>
+</html>
