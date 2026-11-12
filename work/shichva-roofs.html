@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>שכבה · איטום גגות</title>
+<meta name="description" content="שכבה היא חברת איטום דמיונית. אתר קונספט של DLA לעסקי איטום.">
+<meta property="og:title" content="שכבה · אתר דמו של DLA">
+<meta property="og:description" content="חברת איטום דמיונית: הגשם מפסיק לחלחל שכבה אחרי שכבה, ומחשבון הצעת מחיר.">
+<meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104345_1741f50e-3370-4f9e-81d9-0008314eb844.png">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+ --storm:#1c2329; --storm-2:#27313a; --concrete:#e6e4df; --paper:#f4f3f0; --ink:#15191c; --soft:#5d6468;
+ --line:rgba(21,25,28,.14); --water:#2f7fd8; --tape:#f2c230; --membrane:#121314; --white:#fbfbf9;
+ --f:'IBM Plex Sans Hebrew',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--water);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-weight:700;line-height:1.1;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:clamp(32px,4.4vw,54px);margin-bottom:18px}
+.lead{color:var(--soft);font-size:19px;max-width:36em}
+section{padding:110px 0}
+
+/* top bar */
+.bar{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;color:#fff;transition:background .3s,color .3s}
+.bar.solid{background:rgba(244,243,240,.94);color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px;text-decoration:none}
+.logo i{display:grid;gap:2px;width:26px}
+.logo i b{display:block;height:5px;border-radius:2px;background:currentColor}
+.logo i b:nth-child(2){opacity:.65}.logo i b:nth-child(3){opacity:.35}
+.bar .cta{background:var(--tape);color:var(--ink);font-weight:700;text-decoration:none;padding:10px 18px;border-radius:8px;font-size:16px}
+
+/* storm → dry pinned hero */
+.storm{position:relative;height:340vh;background:var(--storm)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;color:#fff;background:linear-gradient(180deg,var(--storm) 0%,var(--storm-2) 100%);transition:background 0s}
+#sky{position:absolute;inset:0;background:linear-gradient(180deg,#8ec5ee 0%,#d9ecf7 70%);opacity:0}
+#rain{position:absolute;inset:0;width:100%;height:100%}
+.copy{position:absolute;top:96px;right:0;left:0;padding:0 24px;max-width:1180px;margin:0 auto}
+.copy h1{font-size:clamp(38px,6vw,82px);max-width:11em}
+.copy p{margin-top:16px;font-size:20px;opacity:.85;max-width:30em}
+/* roof section drawing */
+.roof{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(1100px,94vw)}
+.layers{position:relative;height:150px}
+.ly{position:absolute;left:0;right:0;transform-origin:center bottom;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.ly.off{opacity:0;transform:translateY(-60px)}
+.slab{bottom:0;height:70px;background:repeating-linear-gradient(90deg,#9a9d9b 0 2px,#a7aaa7 2px 40px),#a5a8a5;border-top:2px solid #8b8e8c}
+.slab::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 40%,rgba(0,0,0,.18) 0 2px,transparent 3px),radial-gradient(circle at 70% 60%,rgba(0,0,0,.14) 0 2px,transparent 3px);background-size:38px 26px}
+.crack{position:absolute;bottom:20px;width:3px;height:52px;background:#2d3033;transform:skewX(-12deg);transition:opacity .5s}
+.l1{bottom:70px;height:6px;background:#6c4a2a}
+.l2{bottom:76px;height:20px;background:linear-gradient(180deg,#26282a,#121314);border-radius:2px}
+.l2::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 180px,rgba(255,255,255,.08) 180px 184px)}
+.l3{bottom:96px;height:10px;background:var(--white);box-shadow:0 -6px 22px rgba(255,255,255,.35)}
+.ceiling{position:relative;height:56px;background:#e9e6e0;color:var(--ink);overflow:hidden}
+.drip{position:absolute;top:0;width:6px;height:10px;border-radius:0 0 4px 4px;background:var(--water);opacity:0}
+.stain{position:absolute;top:0;width:140px;height:40px;border-radius:0 0 50% 50%;background:radial-gradient(ellipse at top,rgba(126,93,48,.45),transparent 70%);transition:opacity .6s}
+/* stage readout */
+.steps{position:absolute;left:24px;top:50%;transform:translateY(-62%);width:300px;list-style:none;display:grid;gap:8px}
+.steps li{padding:12px 14px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);opacity:.45;transition:opacity .4s,background .4s,color .4s,border-color .4s;font-size:15px;line-height:1.4}
+.steps li b{display:block;font-size:16px}
+.steps li.on{opacity:1;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.35)}
+.dry .steps li{color:var(--ink);background:rgba(255,255,255,.55);border-color:var(--line)}
+.dry .steps li.on{background:#fff}
+.status{position:absolute;right:24px;bottom:240px;display:flex;gap:10px;align-items:center;font-weight:500;font-size:16px;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.35)}
+.status i{width:10px;height:10px;border-radius:50%;background:#e2483b;box-shadow:0 0 10px #e2483b;transition:background .4s,box-shadow .4s}
+.dry .status{background:rgba(255,255,255,.7);color:var(--ink)}
+.dry .status i{background:#2bb673;box-shadow:0 0 10px #2bb673}
+.stage.dry{color:var(--ink)}
+
+/* proof: before/after */
+.ba{position:relative;margin-top:44px;border-radius:14px;overflow:hidden;aspect-ratio:4/3;max-width:900px;user-select:none;touch-action:pan-y;background:#ccc}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba .after{clip-path:inset(0 0 0 var(--cut,50%))}
+.ba .knob{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:3px;background:#fff;transform:translateX(-50%);pointer-events:none}
+.ba .knob::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:20px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.ba .tag{position:absolute;top:14px;padding:6px 12px;border-radius:6px;font-weight:700;font-size:14px;background:rgba(0,0,0,.6);color:#fff}
+.ba .t1{left:14px}.ba .t2{right:14px;background:var(--tape);color:var(--ink)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize}
+.proof{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end}
+.facts{list-style:none;border-top:1px solid var(--line)}
+.facts li{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.facts li span{color:var(--soft)}
+
+/* calculator */
+.calc{background:var(--storm);color:#fff}
+.calc .lead{color:#b7c0c6}
+.cgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;margin-top:40px;align-items:start}
+.field{margin-bottom:28px}
+.field>label,.field>span{display:block;font-weight:500;margin-bottom:10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:10px 14px;font:500 16px var(--f);cursor:pointer;text-align:right}
+.opts button small{display:block;color:#9aa6ad;font-size:13px}
+.opts button[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
+.opts button[aria-pressed="true"] small{color:var(--soft)}
+input[type=range]{width:100%;accent-color:var(--tape);height:28px}
+.area{display:flex;justify-content:space-between;align-items:baseline}
+.area output{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums}
+.res{background:#fff;color:var(--ink);border-radius:14px;padding:28px;position:sticky;top:90px}
+.res small{color:var(--soft);font-size:15px}
+.range{font-size:clamp(34px,4vw,46px);font-weight:700;margin:6px 0 4px;font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+.rows{margin:18px 0;border-top:1px solid var(--line)}
+.rows div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:16px}
+.rows div span{color:var(--soft)}
+.go{width:100%;border:0;border-radius:10px;background:var(--tape);color:var(--ink);font:700 18px var(--f);padding:15px;cursor:pointer}
+.wa{display:none;margin-top:16px;border-radius:10px;overflow:hidden;background:#efeae2;border:1px solid var(--line)}
+.wa.on{display:block}
+.wa .top{background:#075e54;color:#fff;padding:10px 14px;font-weight:500;font-size:15px}
+.wa .bubble{margin:12px;padding:10px 12px;background:#d9fdd3;border-radius:8px 0 8px 8px;font-size:15px;line-height:1.5;white-space:pre-line}
+.wa .pic{margin:0 12px 12px auto;width:62%;border-radius:8px;overflow:hidden;border:4px solid #d9fdd3}
+.wa .pic img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.note{font-size:14px;color:var(--soft);margin-top:10px}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:44px;border-top:2px solid var(--ink)}
+.svc article{padding:26px 22px 26px 0;border-inline-start:1px solid var(--line);padding-inline-start:22px}
+.svc article:first-child{border:0;padding-inline-start:0}
+.svc h3{font-size:22px;margin-bottom:8px}
+.svc p{color:var(--soft);font-size:16px}
+.svc .p{margin-top:14px;font-weight:700;font-variant-numeric:tabular-nums}
+.crew{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.crew img{border-radius:14px;width:100%;aspect-ratio:16/10;object-fit:cover}
+.warranty{display:flex;gap:18px;align-items:center;margin-top:28px;padding:18px;border:2px dashed var(--ink);border-radius:12px}
+.warranty b{font-size:44px;line-height:1}
+footer{background:var(--ink);color:#c6cbce;padding:44px 0 100px;font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.pill{position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;pointer-events:none;font:600 12px/1.35 var(--f);color:#f3efe6;background:rgba(10,10,12,.82);border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:999px;white-space:nowrap}
+
+@media (max-width:900px){
+ section{padding:80px 0}
+ .steps{position:absolute;left:16px;right:16px;top:auto;bottom:250px;transform:none;width:auto;grid-template-columns:1fr 1fr;gap:6px}
+ .steps li{padding:8px 10px;font-size:13px}.steps li b{font-size:14px}
+ .status{bottom:auto;top:auto;right:16px;bottom:212px;font-size:14px}
+ .copy{top:84px}
+ .proof,.cgrid,.crew{grid-template-columns:1fr}
+ .svc{grid-template-columns:1fr 1fr}
+ .svc article:nth-child(3){border:0;padding-inline-start:0}
+ .res{position:static}
+}
+@media (max-width:520px){
+ .wrap{padding:0 16px}.bar{padding:12px 16px}.copy{padding:0 16px}
+ .copy p{font-size:17px}
+ .layers{height:120px}.slab{height:56px}.l1{bottom:56px}.l2{bottom:62px;height:16px}.l3{bottom:78px}
+ .svc{grid-template-columns:1fr}.svc article{border:0;padding-inline-start:0;border-top:1px solid var(--line)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ly{transition:none}}
+</style>
+</head>
+<body>
+<header class="bar" id="bar">
+ <a class="logo" href="#top"><i aria-hidden="true"><b></b><b></b><b></b></i>שכבה</a>
+ <a class="cta" href="#calc">הצעת מחיר</a>
+</header>
+
+<main id="top">
+<section class="storm" id="storm" style="padding:0" aria-label="הגג שלכם מהגשם ועד היובש">
+ <div class="stage" id="stage">
+  <div id="sky"></div>
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="copy">
+   <h1 id="h1">הגשם הראשון כבר מצא את הסדק.</h1>
+   <p id="sub">גללו למטה ותראו איך גג נאטם, שכבה אחרי שכבה.</p>
+  </div>
+  <ol class="steps" id="steps">
+   <li><b>1. ניקוי ותיקון סדקים</b>ממלאים כל סדק לפני שמתחילים</li>
+   <li><b>2. פריימר ביטומני</b>שכבת הדבקה שנספגת בבטון</li>
+   <li><b>3. יריעה 4 מ״מ</b>מולחמת בחפיפה של 10 ס״מ</li>
+   <li><b>4. ציפוי לבן מחזיר</b>מוריד את חום הגג בקיץ</li>
+  </ol>
+  <div class="status" id="status"><i></i><span id="statusTxt">מים חודרים לתקרה</span></div>
+  <div class="roof" aria-hidden="true">
+   <div class="layers">
+    <div class="ly slab"><span class="crack" style="right:22%"></span><span class="crack" style="right:61%;height:40px"></span></div>
+    <div class="ly l1 off" data-s="1"></div>
+    <div class="ly l2 off" data-s="2"></div>
+    <div class="ly l3 off" data-s="3"></div>
+   </div>
+   <div class="ceiling" id="ceiling">
+    <span class="stain" style="right:18%"></span><span class="stain" style="right:57%"></span>
+    <span class="drip" style="right:22.5%"></span><span class="drip" style="right:61.3%"></span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="proof">
+ <div class="wrap proof">
+  <div>
+   <h2>אותו גג, חודש אחרי.</h2>
+   <p class="lead">גררו את הקו כדי לראות את ההבדל. כל עבודה מתועדת בתמונות לפני ואחרי, ונשמרת אצלכם יחד עם תעודת האחריות.</p>
+   <div class="ba" id="ba">
+    <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104850_215ab1cf-d12e-48ef-8dfb-8d957200bb3c.png" alt="גג בטון עם יריעות ישנות סדוקות ושלוליות" loading="lazy">
+    <img class="after" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104345_1741f50e-3370-4f9e-81d9-0008314eb844.png" alt="אותו גג אחרי איטום, מצופה לבן ונקי" loading="lazy">
+    <span class="tag t1">לפני</span><span class="tag t2">אחרי</span>
+    <span class="knob"></span>
+    <input type="range" min="0" max="100" value="50" aria-label="השוואת לפני ואחרי">
+   </div>
+  </div>
+  <ul class="facts">
+   <li>שנות אחריות בכתב<span>10</span></li>
+   <li>גגות שאטמנו בגוש דן והשרון<span>1,400+</span></li>
+   <li>זמן הגעה לבדיקה<span>עד 48 שעות</span></li>
+   <li>בדיקת הצפה בסוף כל עבודה<span>24 שעות</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="calc" id="calc">
+ <div class="wrap">
+  <h2>כמה זה יעלה לכם?</h2>
+  <p class="lead">שלוש שאלות ומקבלים טווח מחיר. המחיר הסופי נקבע אחרי בדיקה בגג, בלי עלות.</p>
+  <div class="cgrid">
+   <div>
+    <div class="field">
+     <div class="area"><label for="m2">שטח הגג</label><output id="m2o">100 מ״ר</output></div>
+     <input type="range" id="m2" min="20" max="400" step="5" value="100">
+    </div>
+    <div class="field"><span>שיטת איטום</span>
+     <div class="opts" id="method">
+      <button type="button" data-v="bit" aria-pressed="true">יריעות ביטומניות<small>הכי נפוץ בגגות בטון</small></button>
+      <button type="button" data-v="pu" aria-pressed="false">פוליאוריתן<small>ציפוי רציף בלי תפרים</small></button>
+      <button type="button" data-v="acr" aria-pressed="false">ציפוי אקרילי לבן<small>חידוש לגג תקין</small></button>
+     </div>
+    </div>
+    <div class="field"><span>מה המצב היום?</span>
+     <div class="opts" id="state">
+      <button type="button" data-v="ok" aria-pressed="false">גג תקין, רוצים למנוע</button>
+      <button type="button" data-v="leak" aria-pressed="true">יש נזילה בתקרה</button>
+      <button type="button" data-v="old" aria-pressed="false">יריעות ישנות שצריך לפרק</button>
+     </div>
+    </div>
+   </div>
+   <div class="res" aria-live="polite">
+    <small>הערכת מחיר כולל מע״מ</small>
+    <div class="range" id="range">₪10,500 – ₪13,200</div>
+    <small id="dur">עבודה של יום אחד</small>
+    <div class="rows" id="rows"></div>
+    <button class="go" type="button" id="go">שליחת תמונה של הגג בוואטסאפ</button>
+    <div class="wa" id="wa"><div class="top">שכבה · הצעות מחיר</div><div class="bubble" id="bubble"></div><div class="pic"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104852_0f681ac7-b2fe-49e8-8548-f7f2aba62e42.png" alt="תמונה של כתם רטיבות בתקרה"></div></div>
+    <p class="note" id="note" hidden>ככה הפנייה מגיעה לבעל העסק: עם השטח, השיטה, המצב ותמונה. באתר אמיתי היא נשלחת בלחיצה.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="services">
+ <div class="wrap">
+  <h2>מה אנחנו אוטמים.</h2>
+  <div class="svc">
+   <article><h3>גגות בטון</h3><p>יריעות ביטומניות או פוליאוריתן, כולל תיקון מעקות ומרזבים.</p><div class="p">מ־₪95 למ״ר</div></article>
+   <article><h3>מרפסות</h3><p>איטום צמנטי מתחת לריצוף, בלי לפרק את כל המרפסת.</p><div class="p">מ־₪3,200</div></article>
+   <article><h3>קירות חיצוניים</h3><p>חומרים שקופים לאבן ולטיח שלא משנים את המראה של הבית.</p><div class="p">מ־₪60 למ״ר</div></article>
+   <article><h3>בדיקת רטיבות</h3><p>מצלמה תרמית ומד לחות, ודוח מסודר עם מקור הנזילה.</p><div class="p">₪450, מתקזז מהעבודה</div></article>
+  </div>
+ </div>
+</section>
+
+<section style="background:var(--concrete)">
+ <div class="wrap crew">
+  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Lux5IGsvfkuyNSW4ReXvlXtQjL/hf_20261112_104852_9f0d9a7e-7469-4d04-b96c-43790c0c4144.png" alt="איש צוות מלחים יריעת איטום על גג" loading="lazy">
+  <div>
+   <h2>אותו צוות, מהבדיקה ועד בדיקת ההצפה.</h2>
+   <p class="lead">לא מעבירים את העבודה לקבלני משנה. מי שבדק את הגג שלכם הוא מי שאוטם אותו, ומי שחוזר אם משהו לא בסדר.</p>
+   <div class="warranty"><b>10</b><span>שנות אחריות בכתב על כל גג, עם מספר תעודה שאפשר לבדוק כאן באתר.</span></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>שכבה היא חברת איטום דמיונית. אתר קונספט של DLA, שום פנייה כאן לא נשלחת.</span><a href="../websites.html">אתרים לעסקי איטום ושיפוצים מאת DLA</a></div></footer>
+<div class="pill" role="note">אתר דמו של DLA · עסק בדיוני</div>
+
+<script>
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* ---------- storm hero ---------- */
+const storm=document.getElementById('storm'),stage=document.getElementById('stage'),sky=document.getElementById('sky');
+const cv=document.getElementById('rain'),ctx=cv.getContext('2d');
+const lys=[...document.querySelectorAll('.ly[data-s]')],steps=[...document.querySelectorAll('#steps li')];
+const cracks=[...document.querySelectorAll('.crack')],stains=[...document.querySelectorAll('.stain')],drips=[...document.querySelectorAll('.drip')];
+const h1=document.getElementById('h1'),sub=document.getElementById('sub'),st=document.getElementById('statusTxt'),bar=document.getElementById('bar');
+const TXT=[
+ ['הגשם הראשון כבר מצא את הסדק.','גללו למטה ותראו איך גג נאטם, שכבה אחרי שכבה.','מים חודרים לתקרה'],
+ ['קודם סוגרים כל סדק.','בלי זה, שום יריעה לא תחזיק.','מים חודרים לתקרה'],
+ ['פריימר שנספג בבטון.','השכבה שגורמת ליריעה להידבק לתמיד.','עדיין חודרים מים'],
+ ['יריעה של 4 מ״מ.','מולחמת בחפיפה, בלי תפר אחד פתוח.','המים כבר לא נכנסים'],
+ ['ומעל, ציפוי לבן.','מחזיר את השמש ומוריד את חום הדירה בקיץ.','הגג יבש']
+];
+let W,H,drops=[],stage_i=-1,p=0;
+function size(){W=cv.width=cv.clientWidth*devicePixelRatio;H=cv.height=cv.clientHeight*devicePixelRatio;drops=Array.from({length:Math.round(W/9)},()=>({x:Math.random()*W,y:Math.random()*H,v:(8+Math.random()*8)*devicePixelRatio,l:(10+Math.random()*16)*devicePixelRatio}))}
+addEventListener('resize',size);size();
+function prog(){const r=storm.getBoundingClientRect();return Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)))}
+function roofY(){const r=document.querySelector('.layers').getBoundingClientRect(),s=stage.getBoundingClientRect();return (r.bottom-s.top-70-Math.min(3,stage_i)*10)*devicePixelRatio}
+function frame(){
+ p=prog();
+ const i=p<.14?0:p<.34?1:p<.54?2:p<.76?3:4;
+ if(i!==stage_i){
+  stage_i=i;
+  h1.textContent=TXT[i][0];sub.textContent=TXT[i][1];st.textContent=TXT[i][2];
+  lys.forEach(l=>l.classList.toggle('off',+l.dataset.s>i-1));
+  steps.forEach((s,k)=>s.classList.toggle('on',k<i));
+  cracks.forEach(c=>c.style.opacity=i>=1?0:1);
+  stains.forEach(s=>s.style.opacity=i>=3?0:1);
+  stage.classList.toggle('dry',i===4);
+ }
+ const clear=Math.max(0,(p-.76)/.2);
+ sky.style.opacity=Math.min(1,clear);
+ const rainAmt=1-Math.min(1,clear*1.3);
+ ctx.clearRect(0,0,W,H);
+ if(rainAmt>0.01){
+  const ry=roofY(),leaking=stage_i<3;
+  ctx.strokeStyle='rgba(190,215,235,'+(0.55*rainAmt)+')';ctx.lineWidth=1.2*devicePixelRatio;ctx.beginPath();
+  for(const d of drops){
+   if(!reduce){d.y+=d.v;d.x-=d.v*.12}
+   if(d.y>ry){ // hit the roof
+    if(!leaking){ctx.moveTo(d.x,ry);ctx.lineTo(d.x+6*devicePixelRatio,ry-4*devicePixelRatio)}
+    d.y=-Math.random()*H*.3;d.x=Math.random()*W*1.1;
+   }
+   ctx.moveTo(d.x,d.y);ctx.lineTo(d.x+d.l*.12,d.y-d.l);
+  }
+  ctx.stroke();
+ }
+ const t=performance.now()/600;
+ drips.forEach((d,k)=>{const on=stage_i<3&&rainAmt>.1;const ph=(t+k*.7)%1;d.style.opacity=on?(1-ph):0;d.style.transform='translateY('+(on?ph*40:0)+'px)'});
+ bar.classList.toggle('solid',scrollY>storm.offsetTop+storm.offsetHeight-80);
+ requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* ---------- before / after ---------- */
+const ba=document.getElementById('ba');
+ba.querySelector('input').addEventListener('input',e=>ba.style.setProperty('--cut',(100-e.target.value)+'%'));
+
+/* ---------- calculator ---------- */
+const RATE={bit:[95,120],pu:[110,150],acr:[45,70]},NAME={bit:'יריעות ביטומניות',pu:'פוליאוריתן',acr:'ציפוי אקרילי לבן'};
+const EXTRA={ok:[0,0],leak:[600,1500],old:[20,30]},SNAME={ok:'מניעה',leak:'נזילה פעילה',old:'פירוק יריעות ישנות'};
+let method='bit',state='leak';
+function money(n){return '₪'+(Math.round(n/50)*50).toLocaleString('he-IL')}
+function pick(groupId,set){const g=document.getElementById(groupId);g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;[...g.children].forEach(x=>x.setAttribute('aria-pressed',x===b));set(b.dataset.v);calc()})}
+pick('method',v=>method=v);pick('state',v=>state=v);
+const m2=document.getElementById('m2');m2.addEventListener('input',calc);
+function calc(){
+ const a=+m2.value;document.getElementById('m2o').textContent=a+' מ״ר';
+ let lo=a*RATE[method][0],hi=a*RATE[method][1],xlo=0,xhi=0;
+ if(state==='old'){xlo=a*EXTRA.old[0];xhi=a*EXTRA.old[1]}
+ if(state==='leak'){xlo=EXTRA.leak[0];xhi=EXTRA.leak[1]}
+ lo=Math.max(lo+xlo,2500);hi=Math.max(hi+xhi,3200);
+ document.getElementById('range').textContent=money(lo)+' – '+money(hi);
+ const days=Math.max(1,Math.ceil(a/(method==='acr'?250:120)));
+ document.getElementById('dur').textContent='עבודה של '+(days===1?'יום אחד':days+' ימים')+(method==='pu'?', ועוד יום ייבוש':'');
+ document.getElementById('rows').innerHTML=
+  '<div><span>שיטה</span>'+NAME[method]+'</div>'+
+  '<div><span>מחיר למ״ר</span>₪'+RATE[method][0]+'–'+RATE[method][1]+'</div>'+
+  (state==='old'?'<div><span>פירוק יריעות ישנות</span>₪'+EXTRA.old[0]+'–'+EXTRA.old[1]+' למ״ר</div>':'')+
+  (state==='leak'?'<div><span>איתור מקור הנזילה</span>'+money(xlo)+'–'+money(xhi)+'</div>':'')+
+  '<div><span>אחריות</span>'+(method==='acr'?'5 שנים':'10 שנים')+'</div>';
+ document.getElementById('wa').classList.remove('on');document.getElementById('note').hidden=true;
+ document.getElementById('go').dataset.msg='היי, אשמח להצעת מחיר לאיטום\nשטח: '+a+' מ״ר\nשיטה: '+NAME[method]+'\nמצב: '+SNAME[state]+'\nטווח באתר: '+money(lo)+' – '+money(hi);
+}
+document.getElementById('go').addEventListener('click',e=>{document.getElementById('bubble').textContent=e.currentTarget.dataset.msg;document.getElementById('wa').classList.add('on');document.getElementById('note').hidden=false});
+calc();
+</script>
+</body>
+</html>
