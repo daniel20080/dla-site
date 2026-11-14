@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DLA – שיווק דיגיטלי, לידים ואתרים לעסקים</title>
-<meta name="description" content="DLA היא חברת שיווק דיגיטלי: קמפיינים באינסטגרם ובפייסבוק, דפי נחיתה, שאלוני התאמה ואתרים שמביאים לעסקים פניות של אנשים שבאמת רוצים לקנות.">
-<meta property="og:title" content="DLA – שיווק דיגיטלי, לידים ואתרים לעסקים">
-<meta property="og:description" content="קמפיינים, דפי נחיתה, שאלוני התאמה ואתרים לעסקים.">
+<title>DLA – האם ChatGPT ממליץ על העסק שלכם? נראות ב-AI לעסקים</title>
+<meta name="description" content="DLA בודקת אם ChatGPT, Gemini ו-Perplexity ממליצים על העסק שלכם, ומתקנת את מה שגורם להם לדלג עליכם. בדיקה חינם בוואטסאפ.">
+<meta property="og:title" content="DLA – האם ChatGPT ממליץ על העסק שלכם?">
+<meta property="og:description" content="בדיקה חינם: שולחים שם עסק ועיר, ומקבלים צילומי מסך של מה ש-ChatGPT ממליץ.">
 <meta property="og:image" content="assets/DLA-profile.png">
 <link rel="icon" href="assets/DLA-profile.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,6 +155,49 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* GEO additions */
+.chat{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 30px 60px -30px rgba(10,10,10,.25);overflow:hidden}
+.chat .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}
+.chat .bar b{color:var(--ink);font-weight:700}
+.chat .tagx{font-size:12px;font-weight:700;color:var(--muted);background:var(--soft);border-radius:999px;padding:3px 10px}
+.chat .body{padding:18px;display:grid;gap:14px}
+.chat .q{justify-self:start;background:var(--soft);border-radius:18px 18px 18px 6px;padding:12px 16px;font-size:16px;max-width:92%}
+.chat .a{font-size:15px;color:var(--ink-2)}
+.chat .a ol{margin:8px 0 0;padding:0 20px 0 0;display:grid;gap:6px}
+.chat .a li span{color:var(--muted);font-size:13px;margin-right:6px}
+.chat .you{display:flex;align-items:center;gap:10px;background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;border-radius:14px;padding:12px 14px;font-weight:700;font-size:15px}
+.chat .you i{width:10px;height:10px;border-radius:50%;background:#DC2626;flex:none}
+.stat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.stat div{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.stat b{display:block;font-family:var(--brand);font-weight:400;font-size:clamp(40px,5vw,60px);line-height:1;color:var(--blue);direction:ltr;text-align:right}
+.stat p{margin:10px 0 0;color:var(--ink-2);font-size:17px}
+.stat small{display:block;margin-top:8px;color:var(--muted);font-size:13px}
+@media (max-width:900px){.stat{grid-template-columns:1fr}}
+.price{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:stretch}
+.plan{border:1px solid var(--line);border-radius:var(--radius);padding:32px;background:#fff;display:flex;flex-direction:column;gap:14px}
+.plan.main{background:var(--ink);color:#fff;border-color:var(--ink)}
+.plan h3{margin:0;font-size:24px}
+.plan .amt{font-family:var(--brand);font-weight:400;font-size:clamp(40px,5vw,56px);line-height:1;direction:ltr;text-align:right}
+.plan .amt small{font-family:var(--he);font-size:16px;font-weight:500;color:var(--muted);margin-right:6px}
+.plan.main .amt small,.plan.main p,.plan.main li{color:#D4D4D4}
+.plan p{margin:0;color:var(--muted)}
+.plan ul{margin:0;padding:0 18px 0 0;display:grid;gap:8px;font-size:16px}
+.plan .btn{margin-top:auto;align-self:flex-start}
+@media (max-width:900px){.price{grid-template-columns:1fr}}
+.honest{margin-top:22px;padding:18px 20px;border-radius:14px;background:var(--blue-soft);color:var(--ink-2);font-size:16px}
+.faq{max-width:860px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 2px;font-weight:700;font-size:20px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:26px;color:var(--blue);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 22px;color:var(--muted);max-width:64ch}
+.also{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.also a{display:flex;flex-direction:column;gap:6px;text-decoration:none;border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:#fff}
+.also a:hover{border-color:var(--blue)}
+.also b{font-size:20px}.also span{color:var(--muted);font-size:16px}
+@media (max-width:700px){.also{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -165,15 +208,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <a class="logo" href="#top" aria-label="DLA – לראש הדף"><b>DLA</b><i aria-hidden="true"></i></a>
     <nav aria-label="תפריט ראשי">
       <ul>
-        <li><a href="#services">שירותים</a></li>
+        <li><a href="#why">למה עכשיו</a></li>
+        <li><a href="#fix">מה מתקנים</a></li>
         <li><a href="#process">איך זה עובד</a></li>
-        <li><a href="#work">עבודות</a></li>
+        <li><a href="#price">מחיר</a></li>
+        <li><a href="#faq">שאלות</a></li>
         <li><a href="websites.html">בניית אתרים</a></li>
-        <li><a href="#calc">המחשבון</a></li>
-        <li><a href="#contact">צור קשר</a></li>
       </ul>
     </nav>
-    <a class="btn btn-dark js-wa" href="#contact">בואו נדבר</a>
+    <a class="btn btn-dark js-wa" href="#contact">בדיקה חינם</a>
   </div>
 </header>
 
@@ -181,146 +224,123 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   <div id="top" class="wrap hero">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow"><i aria-hidden="true"></i>שיווק דיגיטלי, לידים ואתרים</span>
-        <h1>לקוחות חדשים <span>מאינסטגרם ופייסבוק.</span></h1>
-        <p class="lead">DLA בונה לעסק דף נחיתה עם שאלון התאמה ומריצה קמפיין שמביא פניות של מי שבאמת רוצה לקנות, ומסנן את כל השאר.</p>
+        <span class="eyebrow"><i aria-hidden="true"></i>נראות ב-AI לעסקים מקומיים</span>
+        <h1>כשלקוחות שואלים את ChatGPT, <span>הוא ממליץ עליכם?</span></h1>
+        <p class="lead">יותר ויותר אנשים לא מחפשים בגוגל. הם שואלים את ChatGPT, Gemini ו-Perplexity "איפה מומלץ באזור שלי". DLA בודקת אם ה-AI ממליץ על העסק שלכם, ומתקנת את מה שגורם לו לדלג עליכם.</p>
         <div class="ctas">
-          <a class="btn btn-blue js-wa" href="#contact">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.4-.3Z"/></svg>
-            לשיחת היכרות בוואטסאפ
-          </a>
-          <a class="btn btn-line" href="#work">לראות עבודות</a>
+          <a class="btn btn-blue js-wa" href="#contact"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.4-.3Z"/></svg>לבדיקה חינם בוואטסאפ</a>
+          <a class="btn btn-line" href="#process">איך זה עובד</a>
         </div>
       </div>
-      <aside class="flow reveal" aria-label="איך ליד מגיע אליך">
-        <h2>הדרך של ליד אצלנו</h2>
-        <div class="step"><span class="n">1</span><div><b>מודעה באינסטגרם ובפייסבוק</b><small>לקהל המתאים באזור שלך</small></div></div>
-        <div class="step"><span class="n">2</span><div><b>שאלון קצר</b><small>מה בדיוק צריך, מתי ומאיפה</small></div></div>
-        <div class="step hot"><span class="n">3</span><div><b>הליד אצלך בוואטסאפ</b><small>תוך דקה, רק מי שרלוונטי</small></div></div>
+      <aside class="chat reveal" aria-label="המחשה של תשובת ChatGPT">
+        <div class="bar"><b>ChatGPT</b><span class="tagx">המחשה</span></div>
+        <div class="body">
+          <div class="q">איפה כדאי לעשות הסרת שיער בלייזר באשקלון? תמליץ לי על קליניקות טובות</div>
+          <div class="a">הנה כמה מקומות ששווה לבדוק:
+            <ol><li>רשת לייזר ארצית <span>4.9 · 93 ביקורות</span></li><li>רשת לייזר ארצית <span>4.5 · 40 ביקורות</span></li><li>קליניקה מקומית <span>5.0 · 31 ביקורות</span></li></ol>
+          </div>
+          <div class="you"><i aria-hidden="true"></i>הקליניקה שלך: לא מופיעה</div>
+        </div>
       </aside>
     </div>
   </div>
 
-  <section id="services" class="soft">
+  <section id="why" class="soft">
     <div class="wrap">
       <div class="sec-head reveal">
-        <div>
-          <p class="kicker">שירותים</p>
-          <h2>מה אנחנו עושים</h2>
-        </div>
-        <p>שלושה דברים, ועושים אותם טוב. אפשר לקחת אחד מהם או את כולם יחד.</p>
+        <div><p class="kicker">למה עכשיו</p><h2>מה גילינו כששאלנו את ChatGPT</h2></div>
+        <p>בנובמבר 2026 שאלנו את ChatGPT איפה כדאי לעשות הסרת שיער בלייזר ב-16 ערים בישראל, ובדקנו 20 קליניקות בוטיק.</p>
       </div>
-      <div class="cards">
-        <article class="card main reveal">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2Z"/></svg></div>
-          <h3>קמפיינים ולידים במטא</h3>
-          <p>מודעות באינסטגרם ובפייסבוק שמביאות פניות חדשות כל שבוע.</p>
-          <ul><li>כמה מודעות במקביל, משאירים רק את המנצחות</li><li>מגדילים תקציב רק כשיש תוצאות</li></ul>
-        </article>
-        <article class="card reveal">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4Z"/></svg></div>
-          <h3>משפך סינון</h3>
-          <p>שאלון קצר שמפריד בין מי שרק סקרן למי שמוכן לקנות.</p>
-          <ul><li>הליד הרלוונטי מגיע אליך תוך דקה</li><li>פחות "כמה עולה?" שנעלמות</li></ul>
-        </article>
-        <article class="card reveal">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div>
-          <h3>אתרים ודפי נחיתה</h3>
-          <p>דף שנראה טוב, נטען מהר בטלפון ומוביל לפעולה אחת ברורה.</p>
-          <ul><li>מותאם לטלפון</li><li>בנוי סביב הפנייה, לא סביב קישוטים</li></ul>
-          <a href="websites.html" style="color:var(--blue);font-weight:700;font-size:16px;margin-top:auto">אתרים לכל סוג עסק, החל מ-₪1,000</a>
-        </article>
+      <div class="stat">
+        <div class="reveal"><b>14/20</b><p>קליניקות בוטיק שבדקנו לא הופיעו בתשובה בכלל.</p><small>בדיקה של DLA, 14.11.2026</small></div>
+        <div class="reveal"><b>15/16</b><p>ערים שבהן ChatGPT המליץ על לפחות רשת לייזר ארצית אחת.</p><small>בדיקה של DLA, 14.11.2026</small></div>
+        <div class="reveal"><b>45%</b><p>מהצרכנים בארה״ב כבר השתמשו ב-AI כדי למצוא עסק מקומי בשנה האחרונה.</p><small>לפי SOCi, ארה״ב</small></div>
       </div>
     </div>
   </section>
 
-  <section id="process">
+  <section id="fix">
     <div class="wrap">
       <div class="sec-head reveal">
-        <div>
-          <p class="kicker">איך זה עובד</p>
-          <h2>מהשיחה הראשונה ועד הלידים</h2>
-        </div>
+        <div><p class="kicker">מה מתקנים</p><h2>מה ה-AI צריך כדי להמליץ עליכם</h2></div>
+        <p>ChatGPT וחבריו ממליצים על עסקים שהם מוצאים, מבינים וסומכים עליהם. אנחנו דואגים שזה יהיה אתם.</p>
       </div>
+      <div class="cards">
+        <article class="card main reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><h3>פרופיל גוגל עסקי מסודר</h3><p>שם, קטגוריה, שעות, שירותים ותמונות, כך שכל מנוע AI שקורא אותו מבין בדיוק מה אתם ואיפה.</p></article>
+        <article class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg></div><h3>מידע מובנה באתר</h3><p>קוד Schema שמסביר למנועי AI מי העסק, מה הוא מציע ובאיזה אזור. בלי לשנות את העיצוב.</p></article>
+        <article class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/></svg></div><h3>עמוד שאלות ותשובות בעברית</h3><p>תשובות לשאלות שהלקוחות שלכם שואלים את ה-AI, כתובות כך שיהיה לו קל לצטט אתכם.</p></article>
+        <article class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div><h3>5 אינדקסים ורשימות</h3><p>רישום ועדכון במקומות שה-AI בודק כשהוא מחפש "המומלצים באזור".</p></article>
+        <article class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z"/></svg></div><h3>תסריט לבקשת ביקורות</h3><p>הודעה מוכנה לוואטסאפ שעוזרת לכם לאסוף ביקורות טובות, מהלקוחות שכבר מרוצים.</p></article>
+        <article class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></div><h3>בדיקה לפני ואחרי</h3><p>צילומי מסך מ-ChatGPT, Gemini ו-Perplexity לפני התיקון, ובדיקה חוזרת אחרי 30 יום.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="soft">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><p class="kicker">איך זה עובד</p><h2>מבדיקה חינם ועד המלצה</h2></div></div>
       <ol class="steps">
-        <li class="reveal"><h3>שיחת היכרות</h3><p>מבינים את העסק, את הלקוח שלך ומה עובד היום.</p></li>
-        <li class="reveal"><h3>עושים חשבון</h3><p>כמה שווה לך לקוח חדש, וכמה אפשר לשלם על פנייה ועדיין להרוויח.</p></li>
-        <li class="reveal"><h3>פיילוט 30 יום</h3><p>מודעות, שאלון סינון ודף נחיתה עולים לאוויר לחודש ניסיון עם יעד ברור. הכול עובר את האישור שלכם לפני.</p></li>
-        <li class="reveal"><h3>לידים ועדכון כל שבוע</h3><p>פניות מסוננות ישר לוואטסאפ שלך, ועדכון שבועי קבוע: כמה פניות, כמה עברו סינון, כמה תורים.</p></li>
+        <li class="reveal"><h3>בדיקה חינם</h3><p>שולחים לנו שם עסק ועיר. אנחנו שואלים את ה-AI את מה שהלקוחות שלכם שואלים, ושולחים צילומי מסך.</p></li>
+        <li class="reveal"><h3>מה חסר</h3><p>מראים לכם מי כן מופיע במקומכם, ולמה, ומה צריך לתקן אצלכם.</p></li>
+        <li class="reveal"><h3>תיקון</h3><p>מסדרים את הפרופיל, האתר, האינדקסים והביקורות. בדרך כלל תוך שבוע.</p></li>
+        <li class="reveal"><h3>בדיקה חוזרת</h3><p>אחרי 30 יום שואלים שוב ומראים לכם מה השתנה. אפשר להמשיך במעקב חודשי.</p></li>
       </ol>
     </div>
   </section>
 
-  <section id="work" class="soft">
+  <section id="price">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <div>
-          <p class="kicker">עבודות</p>
-          <h2>דפי נחיתה שמביאים פניות</h2>
+      <div class="sec-head reveal"><div><p class="kicker">מחיר</p><h2>מחיר אחד ברור</h2></div><p>בלי ריטיינר יקר ובלי חוזה לשנה. משלמים פעם אחת על התיקון, והמעקב החודשי הוא לבחירתכם.</p></div>
+      <div class="price">
+        <div class="plan main reveal">
+          <h3>תיקון נראות AI</h3>
+          <div class="amt">₪1,490<small>חד-פעמי</small></div>
+          <ul><li>בדיקה ב-ChatGPT, Gemini ו-Perplexity, לפני ואחרי</li><li>פרופיל גוגל עסקי מסודר ומלא</li><li>מידע מובנה (Schema) ועמוד שאלות ותשובות</li><li>רישום ב-5 אינדקסים ורשימות</li><li>תסריט לבקשת ביקורות</li></ul>
+          <a class="btn btn-blue js-wa" href="#contact">להתחיל בבדיקה חינם</a>
         </div>
-        <p>ארבעה סגנונות, אותה מטרה: פניות שמוכנות לקנות. לחצו על דף ונסו את השאלון בעצמכם. <a href="websites.html#work" style="color:var(--blue);font-weight:700">לכל האתרים שבנינו</a></p>
+        <div class="plan reveal">
+          <h3>מעקב חודשי</h3>
+          <div class="amt">₪390<small>לחודש</small></div>
+          <p>בדיקה חוזרת כל חודש, דוח קצר בוואטסאפ: איפה אתם מופיעים, מי המתחרים, ומה כדאי לעדכן.</p>
+          <p>אפשר להפסיק בכל חודש.</p>
+        </div>
       </div>
-      <div class="work">
-        <a class="reveal feat" href="work/lume-laser.html"><div class="shot"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261102_104110_b22c09a6-bada-4195-88e3-a5d8693d8743.png" alt="אתר LUMÉ – סטודיו להסרת שיער בלייזר" loading="lazy"></div><div class="meta"><h3>LUMÉ Laser Studio</h3><span>סטודיו בוטיק · שאלון התאמה של 4 שאלות</span></div></a>
-        <a class="reveal" href="work/adar-laser.html"><div class="shot"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261108_181013_a4fc9d68-785b-4673-9a74-a607f6c4adeb.png" alt="אתר אדר – מרפאה לאסתטיקה ולייזר" loading="lazy"></div><div class="meta"><h3>אדר</h3><span>מרפאה בפיקוח רופאה · מפת גוף שמחשבת מחיר</span></div></a>
-        <a class="reveal" href="work/chalaka-laser.html"><div class="shot"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261108_181013_4038f163-5ecb-42dc-83ab-23a23cf1285c.png" alt="אתר חלקה – סטודיו לייזר צעיר" loading="lazy"></div><div class="meta"><h3>חלקה.</h3><span>סטודיו צעיר · מחשבון גילוח ומנוי חודשי</span></div></a>
-        <a class="reveal" href="work/argo-laser.html"><div class="shot"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3HuDlAzDM15ufVUmc5uh1zZqBZd/hf_20261108_181014_040c5ba5-3c5a-45aa-a479-d4e7531f572d.png" alt="אתר ARGO – הסרת שיער בלייזר לגברים" loading="lazy"></div><div class="meta"><h3>ARGO</h3><span>לייזר לגברים · כניסה פרטית ותורי ערב</span></div></a>
-      </div>
-      <p class="note">אלה פרויקטי קונספט: העסקים באתרים הם דמיוניים, והאתרים נבנו כדי להראות מה אפשר לעשות.</p>
+      <p class="honest reveal"><b>בכנות:</b> אף אחד לא יכול להבטיח ש-ChatGPT ימליץ על עסק מסוים, והתשובות שלו משתנות. מה שאנחנו כן מבטיחים: לתקן את כל מה שבשליטה שלכם, ולהראות לכם את התוצאות לפני ואחרי.</p>
     </div>
   </section>
 
-  <section>
+  <section id="faq" class="soft">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <div>
-          <p class="kicker">למה DLA</p>
-          <h2>איך אנחנו עובדים</h2>
-        </div>
-      </div>
-      <div class="promise">
-        <div class="reveal"><h3>מספרים, לא תחושות</h3><p>לפני שמוציאים שקל על פרסום, מחשבים כמה שווה לך לקוח ומה המחיר המקסימלי לפנייה.</p></div>
-        <div class="reveal"><h3>הכול שקוף</h3><p>חשבון המודעות שלך, הנתונים שלך. רואים בדיוק לאן הולך כל שקל.</p></div>
-        <div class="reveal"><h3>פניות איכותיות</h3><p>עדיף עשר פניות מסוננות מאשר מאה טלפונים של אנשים שרק שואלים מחיר.</p></div>
-        <div class="reveal"><h3>עדכון שבועי קבוע</h3><p>כל שבוע וואטסאפ מסודר: כמה פניות היו, כמה עברו סינון וכמה תורים נקבעו. ככה תמיד יודעים מה קורה.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="calc" class="soft">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div>
-          <p class="kicker">המחשבון</p>
-          <h2>כמה שווה לך לקוח חדש?</h2>
-        </div>
-      </div>
-      <p class="note" style="margin:0 0 24px">ככה אנחנו בודקים, עוד לפני שמוציאים שקל, אם שיווק ממומן משתלם לעסק שלך. שנה את המספרים לשל העסק שלך:</p>
-      <div class="calc reveal">
-        <div class="in">
-          <div class="cfield"><label for="cVal">כמה שווה לך לקוח ממוצע (למשל סדרת טיפולים או עסקה)</label><div class="cwrap"><input id="cVal" type="number" inputmode="numeric" value="2400" min="0"><span>₪</span></div></div>
-          <div class="cfield"><label for="cMar">אחוז הרווח הגולמי שלך</label><div class="cwrap"><input id="cMar" type="number" inputmode="numeric" value="70" min="1" max="95"><span>%</span></div></div>
-          <div class="cfield"><label for="cInv">השקעה חודשית בשיווק (ניהול + תקציב פרסום)</label><div class="cwrap"><input id="cInv" type="number" inputmode="numeric" value="4000" min="0"><span>₪</span></div></div>
-        </div>
-        <div class="out" aria-live="polite">
-          <small>כדי שההשקעה תחזיר את עצמה, מספיקה</small>
-          <div class="big" id="cBig"></div>
-          <p id="cSub"></p>
-          <p style="color:#A3A3A3;font-size:14px">כל עסקה מעבר לזה היא רווח נקי מהשיווק.</p>
-        </div>
+      <div class="sec-head reveal"><div><p class="kicker">שאלות</p><h2>מה שואלים אותנו</h2></div></div>
+      <div class="faq reveal">
+        <details><summary>מה זה GEO?</summary><p>GEO (Generative Engine Optimization) זה כמו קידום בגוגל, אבל למנועי AI. המטרה היא שכשמישהו שואל את ChatGPT או Gemini על עסק כמו שלכם, הם יכירו אתכם ויציעו אתכם.</p></details>
+        <details><summary>זה מחליף את גוגל?</summary><p>לא. גוגל עדיין חשוב, ורוב מה שאנחנו מתקנים עוזר גם בו. ה-AI פשוט מוסיף ערוץ חדש שבו לקוחות מקבלים המלצה אחת או שלוש, במקום עשר תוצאות.</p></details>
+        <details><summary>תוך כמה זמן רואים שינוי?</summary><p>זה משתנה. חלק מהשינויים נקלטים תוך שבועות, חלק לוקחים יותר. בגלל זה אנחנו עושים בדיקה חוזרת אחרי 30 יום, ומראים לכם בדיוק מה השתנה.</p></details>
+        <details><summary>צריך אתר?</summary><p>לא חובה, אבל זה עוזר. אם אין לכם אתר, אפשר לבנות דף פשוט שמרכז את המידע שה-AI מחפש. <a href="websites.html" style="color:var(--blue);font-weight:700">אתרים החל מ-₪1,000</a></p></details>
+        <details><summary>למי זה מתאים?</summary><p>לעסקים מקומיים שלקוחות מחפשים "מומלץ באזור": קליניקות, מכוני יופי, בעלי מקצוע, מסעדות וצימרים.</p></details>
       </div>
     </div>
   </section>
 
-  <section id="contact" style="padding-top:0">
+  <section style="padding-bottom:40px">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><p class="kicker">עוד מ-DLA</p><h2>גם אתרים וקמפיינים</h2></div></div>
+      <div class="also">
+        <a class="reveal" href="websites.html"><b>אתרים ודפי נחיתה</b><span>אתר שנראה כמו העסק שלכם, מותאם לטלפון ומוביל לוואטסאפ. החל מ-₪1,000.</span></a>
+        <a class="reveal js-wa" href="#contact"><b>קמפיינים באינסטגרם ובפייסבוק</b><span>מודעות ושאלון סינון שמביאים פניות ישר לוואטסאפ.</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:40px">
     <div class="wrap">
       <div class="contact reveal">
         <div>
-          <h2>רוצה לבדוק אם זה מתאים לעסק שלך?</h2>
-          <p>שלח הודעה בוואטסאפ. נחזור אליך, נבין את העסק ונגיד בכנות אם אנחנו יכולים לעזור.</p>
+          <h2>רוצים לדעת אם ChatGPT ממליץ עליכם?</h2>
+          <p>שלחו בוואטסאפ את שם העסק והעיר. נבדוק ונחזיר לכם צילומי מסך, בלי עלות ובלי התחייבות.</p>
         </div>
         <div class="ctas">
-          <a class="btn btn-blue js-wa" href="#contact">שליחת הודעה בוואטסאפ</a>
+          <a class="btn btn-blue js-wa" href="#contact">לבדיקה חינם בוואטסאפ</a>
           <a class="btn btn-line js-mail" href="#contact">שליחת מייל</a>
         </div>
       </div>
@@ -331,48 +351,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 <footer>
   <div class="wrap">
     <a class="logo" href="#top" aria-label="DLA – לראש הדף"><b style="font-size:22px">DLA</b><i aria-hidden="true"></i></a>
-    <span>DLA · Digital Leads Agency · © <span id="y"></span></span>
+    <span>DLA · נראות ב-AI, אתרים וקמפיינים לעסקים · © <span id="y"></span></span>
   </div>
 </footer>
 
-<a class="wa-float js-wa" href="#contact" aria-label="שליחת הודעה בוואטסאפ">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.4-.3Z"/></svg>
-</a>
+<a class="wa-float js-wa" href="#contact" aria-label="שליחת הודעה בוואטסאפ"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.4-.3Z"/></svg></a>
 
 <script>
-/* ===== פרטי קשר – למלא כאן ===== */
-const WHATSAPP = "972554608911";   // מספר בפורמט בינלאומי בלי + ובלי 0 בהתחלה, למשל 972501234567
-const EMAIL = "";      // כתובת המייל של העסק
-const WA_TEXT = "היי DLA, הגעתי מהאתר ואשמח לשמוע פרטים";
-/* ================================ */
+const WHATSAPP = "972554608911";
+const EMAIL = "";
+const WA_TEXT = "היי DLA, אשמח לבדיקה חינם: האם ChatGPT ממליץ על העסק שלי?\nשם העסק: \nעיר: ";
 if (WHATSAPP) document.querySelectorAll('.js-wa').forEach(a => { a.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(WA_TEXT); a.target = '_blank'; a.rel = 'noopener'; });
 if (EMAIL) document.querySelectorAll('.js-mail').forEach(a => { a.href = 'mailto:' + EMAIL; });
 else document.querySelectorAll('.js-mail').forEach(a => a.remove());
 document.getElementById('y').textContent = new Date().getFullYear();
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-/* calculator */
-(function(){
-  const V=document.getElementById('cVal'),M=document.getElementById('cMar'),I=document.getElementById('cInv');
-  if(!V)return;
-  const B=document.getElementById('cBig'),S=document.getElementById('cSub');
-  const nis=n=>'\u20aa'+Math.round(n).toLocaleString('he-IL');
-  function go(){
-    const v=+V.value||0,m=(+M.value||0)/100,inv=+I.value||0;
-    const perDeal=v*m;
-    if(!perDeal||!inv){B.textContent='\u05de\u05dc\u05d0\u05d5 \u05d0\u05ea \u05d4\u05de\u05e1\u05e4\u05e8\u05d9\u05dd';S.textContent='';return;}
-    const deals=inv/perDeal;
-    if(deals<=1){
-      const months=1/deals;
-      B.innerHTML='\u05e2\u05e1\u05e7\u05d4 \u05d0\u05d7\u05ea \u05db\u05dc <em>'+(months<1.05?'\u05d7\u05d5\u05d3\u05e9':(Math.round(months*10)/10)+' \u05d7\u05d5\u05d3\u05e9\u05d9\u05dd')+'</em>';
-    }else{
-      B.innerHTML='<em>'+(Math.round(deals*10)/10)+'</em> \u05e2\u05e1\u05e7\u05d0\u05d5\u05ea \u05d1\u05d7\u05d5\u05d3\u05e9';
-    }
-    S.textContent='\u05d4\u05e8\u05d5\u05d5\u05d7 \u05de\u05e2\u05e1\u05e7\u05d4 \u05d0\u05d7\u05ea \u05d0\u05e6\u05dc\u05da: '+nis(perDeal)+' \u00b7 \u05db\u05d3\u05d9 \u05dc\u05d0\u05d6\u05df '+nis(inv)+' \u05d1\u05d7\u05d5\u05d3\u05e9 \u05e6\u05e8\u05d9\u05da '+nis(inv/m)+' \u05de\u05db\u05d9\u05e8\u05d5\u05ea';
-  }
-  [V,M,I].forEach(el=>el.addEventListener('input',go));go();
-})();
 </script>
 </body>
 </html>
