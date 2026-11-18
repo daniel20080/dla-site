@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="קליניקת בוטיק ללייזר ואסתטיקה בקריית אונו. הסרת שיער בלייזר InMode Triton עם קירור, לנשים ולגברים, יחס אישי וללא סדרות כובלות.">
 <meta name="theme-color" content="#0f2e2b">
+<link rel="icon" type="image/png" href="img/logo-dark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -48,7 +49,13 @@ section{padding:clamp(80px,11vw,150px) 0}
 /* header */
 header{position:sticky;top:0;z-index:20;background:rgba(251,253,252,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
 header.scrolled{border-bottom-color:var(--line)}
-.bar{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+.bar{display:flex;align-items:center;justify-content:space-between;height:88px;gap:20px}
+.logo{display:block;width:auto;flex:none}
+.bar .logo{height:68px}
+.phone .top .logo{height:40px}
+footer .logo{height:120px}
+.hero-logo{height:clamp(110px,12vw,150px);width:auto;margin-bottom:22px}
+@media (max-width:480px){.bar{height:76px}.bar .logo{height:54px}.brand b{font-size:28px}}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
 .mono{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--teal);display:grid;place-items:center;font-family:Georgia,serif;font-size:17px;letter-spacing:-.04em;color:var(--teal);flex:none}
 .brand b{font-family:var(--display);font-size:32px;font-weight:700;line-height:1;display:block}
@@ -263,7 +270,7 @@ footer a bdi{unicode-bidi:isolate}
 <header id="hdr">
  <div class="wrap bar">
   <a class="brand" href="#top" aria-label="אור לי קדוש, לראש העמוד">
-   <span class="mono" aria-hidden="true">OK</span>
+   <img class="logo" src="img/logo-dark.png" alt="" width="599" height="589">
    <span><b>אור לי קדוש</b><small>לייזר | אסתטיקה מתקדמת</small></span>
   </a>
   <nav aria-label="ניווט ראשי"><ul>
@@ -282,6 +289,7 @@ footer a bdi{unicode-bidi:isolate}
 <section class="hero">
  <div class="wrap hero-grid">
   <div>
+   <img class="hero-logo" src="img/logo-dark.png" alt="הלוגו של אור לי קדוש" width="599" height="589">
    <p class="kicker">אור לי קדוש | לייזר | אסתטיקה מתקדמת · קריית אונו</p>
    <h1><span>עור חלק.</span><span class="soft">מהטיפול</span><span>הראשון.</span></h1>
    <p class="lead">הסרת שיער בלייזר לנשים ולגברים, על מכשיר InMode Triton עם מערכת קירור. יחס אישי מהרגע שנכנסת, ובלי סדרות כובלות.</p>
@@ -436,7 +444,7 @@ footer a bdi{unicode-bidi:isolate}
   </div>
   <div class="reveal">
    <div class="phone" aria-live="polite">
-    <div class="top"><span class="mono" aria-hidden="true">OK</span><div><b>אור לי קדוש</b><small>לייזר | אסתטיקה מתקדמת</small></div></div>
+    <div class="top"><img class="logo" src="img/logo-light.png" alt="" width="599" height="589"><div><b>אור לי קדוש</b><small>לייזר | אסתטיקה מתקדמת</small></div></div>
     <div class="bubble" id="preview"></div>
    </div>
    <p class="hint">ככה ההודעה תגיע לאור לי</p>
@@ -449,7 +457,7 @@ footer a bdi{unicode-bidi:isolate}
 <footer>
  <div class="wrap">
   <div class="f-grid">
-   <div class="brand"><span class="mono" aria-hidden="true">OK</span><span><b>אור לי קדוש</b><small style="color:#a9c4bf">ענת גוב, קריית אונו · א׳ עד ה׳ 09:00 עד 20:00 · ו׳ עד 14:00</small></span></div>
+   <div class="brand"><img class="logo" src="img/logo-light.png" alt="" width="599" height="589"><span><b>אור לי קדוש</b><small style="color:#a9c4bf">ענת גוב, קריית אונו · א׳ עד ה׳ 09:00 עד 20:00 · ו׳ עד 14:00</small></span></div>
    <div class="f-links">
     <a href="https://wa.me/972526761141" target="_blank" rel="noopener">וואטסאפ 052-676-1141</a>
     <a href="https://www.instagram.com/orly_kadosh/" target="_blank" rel="noopener">אינסטגרם <bdi dir="ltr">@orly_kadosh</bdi></a>
