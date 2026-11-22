@@ -111,6 +111,7 @@ h2{font-size:clamp(30px,4.4vw,48px);line-height:1.1}
 .work b{display:block;font-size:18px}
 .work span{font-size:15px;color:var(--muted)}
 .tag{display:inline-block;font-size:13px;font-weight:700;border-radius:999px;padding:2px 10px;margin-inline-start:8px;background:var(--blue-soft);color:var(--blue)}
+.tag-client{background:#e7f6ec;color:#17713a}
 @media (max-width:760px){.work-grid{grid-template-columns:1fr}}
 
 /* price */
@@ -159,7 +160,7 @@ footer a{color:#fff}
   <nav aria-label="ניווט"><ul>
    <li><a href="#how">איך זה עובד</a></li>
    <li><a href="#get">מה מקבלים</a></li>
-   <li><a href="#work">עבודות</a></li>
+   <li><a href="#clients">לקוחות</a></li>
    <li><a href="#price">מחיר</a></li>
    <li><a href="#faq">שאלות</a></li>
   </ul></nav>
@@ -239,15 +240,31 @@ footer a{color:#fff}
  </div>
 </section>
 
-<section id="work">
+<section id="clients">
  <div class="wrap">
-  <span class="kick"><i></i>עבודות</span>
-  <h2>ככה זה נראה.</h2>
+  <span class="kick"><i></i>לקוחות מרוצים</span>
+  <h2>עסקים אמיתיים שכבר עובדים איתנו.</h2>
+  <p class="lead" style="max-width:640px">כל אתר כאן נבנה לעסק אמיתי, מהתמונות שבעלת העסק שלחה, ומוצג באישור שלה.</p>
   <div class="work-grid">
-   <!-- REAL CLIENT SITES: add only after Orly / Osher approve being shown -->
+   <!--
+     CLIENTS: add a client ONLY after they said yes to being shown (write the date in the hub).
+     Copy this card, put a 960x600 screenshot in assets/client-<name>.jpg, keep it before the "next" card:
+     <a class="work" href="work/<folder>/" target="_blank" rel="noopener"><div class="shot"><img src="assets/client-<name>.jpg" alt="..." width="960" height="600" loading="lazy"></div><div class="tx"><b>שם העסק<span class="tag tag-client">לקוחה</span></b><span>מה העסק עושה · עיר</span></div></a>
+   -->
+   <!-- Osher Abutbul, approved 22.11.2026 -->
+   <a class="work" href="work/osher-alush/" target="_blank" rel="noopener"><div class="shot"><img src="assets/client-osher.jpg" alt="עמוד הבית של האתר של OA Beauty Clinic, הקליניקה של אושר אבוטבול בכפר יונה" width="960" height="600" loading="lazy"></div><div class="tx"><b>OA Beauty Clinic<span class="tag tag-client">לקוחה</span></b><span>ציפורניים, לייזר ופדיקור · כפר יונה</span></div></a>
+   <a class="work" href="https://wa.me/972554608911?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%98%D7%99%D7%95%D7%98%D7%AA%20%D7%90%D7%AA%D7%A8%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener"><div class="shot" style="background:var(--blue);color:#fff;font-size:22px;font-weight:800">העסק שלכם כאן</div><div class="tx"><b>האתר הבא יכול להיות שלכם</b><span>שלחו תמונות ופרטים, ותקבלו טיוטה תוך יום.</span></div></a>
+  </div>
+ </div>
+</section>
+
+<section id="work" style="padding-top:0">
+ <div class="wrap">
+  <span class="kick"><i></i>אתרי הדגמה</span>
+  <h2>ועוד כמה סגנונות.</h2>
+  <div class="work-grid">
    <a class="work" href="work/lume-laser.html" target="_blank" rel="noopener"><div class="shot"><img src="assets/work-lume.jpg" alt="עמוד הבית של אתר ההדגמה LUMÉ Laser Studio" width="960" height="600" loading="lazy"></div><div class="tx"><b>LUMÉ Laser Studio<span class="tag">אתר הדגמה</span></b><span>סטודיו לייזר, עם שאלון התאמה שמסנן פניות.</span></div></a>
    <a class="work" href="work/bianco-noce.html" target="_blank" rel="noopener"><div class="shot"><img src="assets/bianco-noce.jpg" alt="אתר ההדגמה Bianco Noce, מטבחים בעיצוב אישי" loading="lazy"></div><div class="tx"><b>Bianco Noce<span class="tag">אתר הדגמה</span></b><span>מטבחים בעיצוב אישי, עם גלריית פרויקטים.</span></div></a>
-   <a class="work" href="https://wa.me/972554608911?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%98%D7%99%D7%95%D7%98%D7%AA%20%D7%90%D7%AA%D7%A8%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener"><div class="shot" style="background:var(--blue);color:#fff;font-size:22px;font-weight:800">העסק שלכם כאן</div><div class="tx"><b>האתר הבא יכול להיות שלכם</b><span>שלחו תמונות ופרטים, ותקבלו טיוטה תוך יום.</span></div></a>
   </div>
  </div>
 </section>
